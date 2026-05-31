@@ -112,6 +112,16 @@ export default function ContentRow({ item, showWeek, contentType }: ContentRowPr
     return str.replace(/\b\w/g, (char) => char.toUpperCase());
   }
 
+  function getTypeLabel(item: ContentData): string {
+    if (item.external_type) {
+      return titleCase(item.external_type);
+    }
+    if (item.type) {
+      return titleCase(item.type);
+    }
+    return '';
+  }
+
   function isDraft(item: ContentData): boolean {
     return (item.draft !== undefined && item.draft === 1);
   }
@@ -179,6 +189,9 @@ export default function ContentRow({ item, showWeek, contentType }: ContentRowPr
       </td>
       <td className="hidden md:table-cell md:w-[400px]">
         <div className={isChecked ? 'line-through' : ''}>{item.title}</div>
+      </td>
+      <td className="hidden md:table-cell md:w-[140px]">
+        <div className={isChecked ? 'line-through' : ''}>{getTypeLabel(item)}</div>
       </td>
       <td>{item.due_date ? formatDate(item.due_date) : ''}</td>
       <td><DaysLeft dueDate={item.due_date || ''} /></td>

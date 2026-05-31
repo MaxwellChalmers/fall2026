@@ -1,0 +1,583 @@
+{
+  "version": 1,
+  "description": "Canonical taxonomy for course themes, BRAID topics, governance frameworks, and relationship keys used in frontmatter across the SYS/BRAID site.",
+  "suggestedFrontmatter": {
+    "themes": "Array of canonical course theme slugs.",
+    "ethical_patterns": "Array of canonical ethical pattern slugs.",
+    "braid_topics": "Array of canonical BRAID or hardware topic slugs.",
+    "career_readiness_topics": "Array of canonical career readiness topic slugs.",
+    "module_type": "Optional strand label such as course, braid-extension, or career-readiness.",
+    "governance_frameworks": "Array of canonical governance framework slugs.",
+    "related_labs": "Array of assignment slugs for closely related labs.",
+    "dialogues_with": "Array of canonical theme slugs that this page explicitly puts in conversation.",
+    "prerequisites": "Array of assignment or resource slugs that should be read first.",
+    "extends": "Array of assignment or resource slugs that this page deepens or builds on."
+  },
+  "themes": [
+    {
+      "slug": "ai-as-technical-and-social-system",
+      "title": "AI as a Technical and Social System",
+      "shortDescription": "AI systems are shaped by technical design, institutions, labor, infrastructure, and governance.",
+      "group": "course-foundations",
+      "order": 1,
+      "dialoguesWith": [
+        "objectivity-neutrality",
+        "power-political-economy",
+        "anticipatory-governance"
+      ]
+    },
+    {
+      "slug": "objectivity-neutrality",
+      "title": "Objectivity and Neutrality",
+      "shortDescription": "Claims of neutrality often hide value judgments, defaults, and institutional power.",
+      "group": "core-sys-sequence",
+      "order": 2,
+      "dialoguesWith": [
+        "classification-categories",
+        "data-representation-institutional-bias",
+        "technological-solutionism"
+      ]
+    },
+    {
+      "slug": "classification-categories",
+      "title": "Classification and Categories",
+      "shortDescription": "Labels and categories are constructed choices with technical and social consequences.",
+      "group": "core-sys-sequence",
+      "order": 3,
+      "dialoguesWith": [
+        "objectivity-neutrality",
+        "anomaly-detection-normal",
+        "thresholds-errors-responsibility"
+      ]
+    },
+    {
+      "slug": "data-representation-institutional-bias",
+      "title": "Data, Representation, and Institutional Bias",
+      "shortDescription": "Training data reflects omissions, historical structures, and institutional priorities.",
+      "group": "core-sys-sequence",
+      "order": 4,
+      "dialoguesWith": [
+        "classification-categories",
+        "prediction-history-feedback-loops",
+        "surveillance-datafication"
+      ]
+    },
+    {
+      "slug": "technological-solutionism",
+      "title": "Technological Solutionism",
+      "shortDescription": "Not every social problem becomes more just or tractable when translated into a technical one.",
+      "group": "core-sys-sequence",
+      "order": 5,
+      "dialoguesWith": [
+        "objectivity-neutrality",
+        "features-proxies-value-choices",
+        "power-political-economy"
+      ]
+    },
+    {
+      "slug": "features-proxies-value-choices",
+      "title": "Features, Proxies, and Value Choices",
+      "shortDescription": "Variables and proxies encode judgments about what matters and what can stand in for it.",
+      "group": "core-sys-sequence",
+      "order": 6,
+      "dialoguesWith": [
+        "data-representation-institutional-bias",
+        "technological-solutionism",
+        "thresholds-errors-responsibility"
+      ]
+    },
+    {
+      "slug": "thresholds-errors-responsibility",
+      "title": "Thresholds, Errors, and Responsibility",
+      "shortDescription": "Thresholds turn scores into decisions and distribute false positives, false negatives, and accountability.",
+      "group": "core-sys-sequence",
+      "order": 7,
+      "dialoguesWith": [
+        "classification-categories",
+        "features-proxies-value-choices",
+        "anomaly-detection-normal"
+      ]
+    },
+    {
+      "slug": "prediction-history-feedback-loops",
+      "title": "Prediction, History, and Feedback Loops",
+      "shortDescription": "Predictive systems often carry forward historical patterns and can intensify them over time.",
+      "group": "core-sys-sequence",
+      "order": 8,
+      "dialoguesWith": [
+        "data-representation-institutional-bias",
+        "thresholds-errors-responsibility",
+        "power-political-economy"
+      ]
+    },
+    {
+      "slug": "opacity-explainability-contestability",
+      "title": "Opacity, Explainability, and Contestability",
+      "shortDescription": "Complex systems can be hard to inspect, explain, challenge, or govern effectively.",
+      "group": "core-sys-sequence",
+      "order": 9,
+      "dialoguesWith": [
+        "thresholds-errors-responsibility",
+        "edge-ai-privacy-accountability",
+        "anthropomorphism-aliveness-sentience"
+      ]
+    },
+    {
+      "slug": "surveillance-datafication",
+      "title": "Surveillance and Datafication",
+      "shortDescription": "Systems that sense, record, and model people transform lived experience into governable data.",
+      "group": "core-sys-sequence",
+      "order": 10,
+      "dialoguesWith": [
+        "data-representation-institutional-bias",
+        "anomaly-detection-normal",
+        "edge-ai-privacy-accountability"
+      ]
+    },
+    {
+      "slug": "anomaly-detection-normal",
+      "title": "Anomaly Detection and Normal",
+      "shortDescription": "Anomaly detection depends on how systems define baselines, difference, and acceptable variation.",
+      "group": "core-sys-sequence",
+      "order": 11,
+      "dialoguesWith": [
+        "classification-categories",
+        "surveillance-datafication",
+        "thresholds-errors-responsibility"
+      ]
+    },
+    {
+      "slug": "edge-ai-privacy-accountability",
+      "title": "Edge AI, Privacy, and Accountability",
+      "shortDescription": "On-device or edge computing changes data flows, oversight, maintenance, and responsibility.",
+      "group": "core-sys-sequence",
+      "order": 12,
+      "dialoguesWith": [
+        "surveillance-datafication",
+        "opacity-explainability-contestability",
+        "environmental-impacts-of-ai"
+      ]
+    },
+    {
+      "slug": "anthropomorphism-aliveness-sentience",
+      "title": "Anthropomorphism, Aliveness, and Sentience Claims",
+      "shortDescription": "Biological and human-centered metaphors can mislead public understanding of what systems are and do.",
+      "group": "critical-lenses",
+      "order": 13,
+      "dialoguesWith": [
+        "opacity-explainability-contestability",
+        "learning-memory-biological-metaphors",
+        "progress-inevitability"
+      ]
+    },
+    {
+      "slug": "dependency-cognitive-offloading-deskilling",
+      "title": "Dependency, Cognitive Offloading, and Deskilling",
+      "shortDescription": "Reliance on automated systems can reorganize judgment, expertise, and institutional dependency.",
+      "group": "critical-lenses",
+      "order": 14,
+      "dialoguesWith": [
+        "edge-ai-privacy-accountability",
+        "technological-solutionism",
+        "power-political-economy"
+      ]
+    },
+    {
+      "slug": "environmental-impacts-of-ai",
+      "title": "Environmental Impacts of AI",
+      "shortDescription": "AI systems have material energy, infrastructure, extraction, and lifecycle costs.",
+      "group": "critical-lenses",
+      "order": 15,
+      "dialoguesWith": [
+        "edge-ai-privacy-accountability",
+        "energy-efficiency-environmental-tradeoffs",
+        "progress-inevitability"
+      ]
+    },
+    {
+      "slug": "power-political-economy",
+      "title": "Centralization of Power and Political Economy",
+      "shortDescription": "AI development and deployment can concentrate control, profit, infrastructure, and decision-making power.",
+      "group": "critical-lenses",
+      "order": 16,
+      "dialoguesWith": [
+        "objectivity-neutrality",
+        "prediction-history-feedback-loops",
+        "dependency-cognitive-offloading-deskilling"
+      ]
+    },
+    {
+      "slug": "progress-inevitability",
+      "title": "Progress Narratives and Technological Inevitability",
+      "shortDescription": "Stories about unstoppable progress can narrow democratic choices and hide alternative futures.",
+      "group": "critical-lenses",
+      "order": 17,
+      "dialoguesWith": [
+        "technological-solutionism",
+        "environmental-impacts-of-ai",
+        "anticipatory-governance"
+      ]
+    },
+    {
+      "slug": "anticipatory-governance",
+      "title": "Anticipatory Governance of Emerging Technologies",
+      "shortDescription": "Emerging systems should be governed before uses, harms, and dependencies become entrenched.",
+      "group": "course-synthesis",
+      "order": 18,
+      "dialoguesWith": [
+        "ai-as-technical-and-social-system",
+        "progress-inevitability",
+        "power-political-economy"
+      ]
+    }
+  ],
+  "ethicalPatterns": [
+    {
+      "slug": "ai-systems-are-socio-technical-systems",
+      "title": "AI systems are socio-technical systems.",
+      "group": "course-foundations",
+      "order": 1,
+      "relatedThemes": [
+        "ai-as-technical-and-social-system"
+      ]
+    },
+    {
+      "slug": "classification-is-not-neutral",
+      "title": "Classification is not neutral.",
+      "group": "core-sys-sequence",
+      "order": 2,
+      "relatedThemes": [
+        "classification-categories",
+        "objectivity-neutrality"
+      ]
+    },
+    {
+      "slug": "data-is-produced-not-found",
+      "title": "Data is produced, not found.",
+      "group": "core-sys-sequence",
+      "order": 3,
+      "relatedThemes": [
+        "data-representation-institutional-bias"
+      ]
+    },
+    {
+      "slug": "features-are-value-choices",
+      "title": "Features are value choices.",
+      "group": "core-sys-sequence",
+      "order": 4,
+      "relatedThemes": [
+        "features-proxies-value-choices"
+      ]
+    },
+    {
+      "slug": "thresholds-distribute-harm",
+      "title": "Thresholds distribute harm.",
+      "group": "core-sys-sequence",
+      "order": 5,
+      "relatedThemes": [
+        "thresholds-errors-responsibility"
+      ]
+    },
+    {
+      "slug": "prediction-imports-the-past",
+      "title": "Prediction imports the past.",
+      "group": "core-sys-sequence",
+      "order": 6,
+      "relatedThemes": [
+        "prediction-history-feedback-loops"
+      ]
+    },
+    {
+      "slug": "opacity-shifts-authority",
+      "title": "Opacity shifts authority.",
+      "group": "core-sys-sequence",
+      "order": 7,
+      "relatedThemes": [
+        "opacity-explainability-contestability"
+      ]
+    },
+    {
+      "slug": "measurement-becomes-datafication",
+      "title": "Measurement becomes datafication.",
+      "group": "core-sys-sequence",
+      "order": 8,
+      "relatedThemes": [
+        "surveillance-datafication"
+      ]
+    },
+    {
+      "slug": "normal-is-constructed",
+      "title": "\"Normal\" is constructed.",
+      "group": "core-sys-sequence",
+      "order": 9,
+      "relatedThemes": [
+        "anomaly-detection-normal",
+        "classification-categories"
+      ]
+    },
+    {
+      "slug": "automation-changes-accountability",
+      "title": "Automation changes accountability.",
+      "group": "core-sys-sequence",
+      "order": 10,
+      "relatedThemes": [
+        "edge-ai-privacy-accountability",
+        "thresholds-errors-responsibility"
+      ]
+    },
+    {
+      "slug": "emerging-technologies-require-anticipatory-governance",
+      "title": "Emerging technologies require anticipatory governance.",
+      "group": "course-synthesis",
+      "order": 11,
+      "relatedThemes": [
+        "anticipatory-governance"
+      ]
+    },
+    {
+      "slug": "power-can-concentrate-in-infrastructure",
+      "title": "Power can concentrate in infrastructure.",
+      "group": "critical-lenses",
+      "order": 12,
+      "relatedThemes": [
+        "power-political-economy"
+      ]
+    },
+    {
+      "slug": "alternatives-can-be-foreclosed",
+      "title": "Alternatives can be foreclosed.",
+      "group": "critical-lenses",
+      "order": 13,
+      "relatedThemes": [
+        "progress-inevitability",
+        "technological-solutionism"
+      ]
+    },
+    {
+      "slug": "anthropomorphism-aliveness-sentience-claims",
+      "title": "AI systems can encourage anthropomorphism, aliveness, or sentience claims.",
+      "group": "critical-lenses",
+      "order": 14,
+      "relatedThemes": [
+        "anthropomorphism-aliveness-sentience"
+      ]
+    },
+    {
+      "slug": "dependency-cognitive-offloading-deskilling",
+      "title": "AI can create dependency, cognitive offloading, and deskilling.",
+      "group": "critical-lenses",
+      "order": 15,
+      "relatedThemes": [
+        "dependency-cognitive-offloading-deskilling"
+      ]
+    },
+    {
+      "slug": "ai-is-material",
+      "title": "AI is material: it depends on energy, water, chips, labor, mining, and waste.",
+      "group": "critical-lenses",
+      "order": 16,
+      "relatedThemes": [
+        "environmental-impacts-of-ai"
+      ]
+    }
+  ],
+  "braidTopics": [
+    {
+      "slug": "hardware-level-anomaly-detection",
+      "title": "Hardware-Level Anomaly Detection",
+      "shortDescription": "Anomaly detection implemented close to or within specialized hardware changes speed, traceability, and governance.",
+      "group": "braid-core",
+      "order": 1
+    },
+    {
+      "slug": "edge-on-device-ai",
+      "title": "Edge and On-Device AI",
+      "shortDescription": "Computation near the sensor or device shifts privacy, latency, maintenance, and oversight questions.",
+      "group": "braid-core",
+      "order": 2
+    },
+    {
+      "slug": "spiking-neural-networks",
+      "title": "Spiking Neural Networks",
+      "shortDescription": "Spiking models process events and timing rather than only continuous activations.",
+      "group": "braid-core",
+      "order": 3
+    },
+    {
+      "slug": "timing-event-driven-computation",
+      "title": "Timing and Event-Driven Computation",
+      "shortDescription": "Information can be represented through event timing, sparse activation, and temporal patterns.",
+      "group": "braid-core",
+      "order": 4
+    },
+    {
+      "slug": "on-chip-learning",
+      "title": "On-Chip Learning",
+      "shortDescription": "Adaptation can happen on-device, raising questions about monitoring, updates, and reproducibility.",
+      "group": "braid-core",
+      "order": 5
+    },
+    {
+      "slug": "memory-physical-state",
+      "title": "Memory as Physical State",
+      "shortDescription": "Storage, retention, and learning are embodied in material states that can drift, persist, or degrade.",
+      "group": "braid-hardware-foundations",
+      "order": 6
+    },
+    {
+      "slug": "von-neumann-vs-neuromorphic-architectures",
+      "title": "Von Neumann vs. Neuromorphic Architectures",
+      "shortDescription": "Different architectures redistribute memory, processing, energy use, and control.",
+      "group": "braid-hardware-foundations",
+      "order": 7
+    },
+    {
+      "slug": "electricity-signals-circuits",
+      "title": "Electricity, Signals, and Circuits",
+      "shortDescription": "Physical signals become machine-readable states through circuits, thresholds, and switching.",
+      "group": "braid-hardware-foundations",
+      "order": 8
+    },
+    {
+      "slug": "energy-efficiency-environmental-tradeoffs",
+      "title": "Energy Efficiency and Environmental Tradeoffs",
+      "shortDescription": "Efficiency claims should be weighed against lifecycle impacts, rebound effects, and justice questions.",
+      "group": "braid-hardware-foundations",
+      "order": 9
+    },
+    {
+      "slug": "auditability-patching-traceability-accountability",
+      "title": "Auditability, Patching, Traceability, and Accountability",
+      "shortDescription": "Hardware-level AI raises practical questions about logging, repair, updates, and responsibility.",
+      "group": "braid-governance",
+      "order": 10
+    },
+    {
+      "slug": "surveillance-misuse-power-concentration",
+      "title": "Surveillance, Misuse, and Power Concentration",
+      "shortDescription": "Fast, efficient, embedded AI can expand monitoring capacity and concentrate institutional power.",
+      "group": "braid-governance",
+      "order": 11
+    },
+    {
+      "slug": "learning-memory-biological-metaphors",
+      "title": "Learning, Memory, and Biological Metaphors",
+      "shortDescription": "Brain-inspired language can clarify mechanism while also overstating similarity, agency, or aliveness.",
+      "group": "braid-governance",
+      "order": 12
+    },
+    {
+      "slug": "weak-explainability-limited-inspection",
+      "title": "Weak Explainability and Limited Inspection",
+      "shortDescription": "Specialized hardware and adaptive states can make systems harder to inspect, reconstruct, or contest.",
+      "group": "braid-governance",
+      "order": 13
+    }
+  ],
+  "careerReadinessTopics": [
+    {
+      "slug": "career-quiz-values-and-coaching",
+      "title": "Career Quiz, Values, and Coaching Access",
+      "shortDescription": "Students complete the career quiz, create a login, learn that seniors can access a career coach, and work through a values exercise.",
+      "group": "career-readiness-modules",
+      "order": 1
+    },
+    {
+      "slug": "three-possible-lives-and-smart-goals",
+      "title": "Three Possible Lives and SMART Goals",
+      "shortDescription": "Students use design thinking to imagine three possible lives and write a SMART goal for the scope of this semester.",
+      "group": "career-readiness-modules",
+      "order": 2
+    },
+    {
+      "slug": "life-after-college-and-salary-negotiation",
+      "title": "Life After College and Salary Negotiation",
+      "shortDescription": "Students explore life after college through an NC Reality Check style exercise and study salary negotiation, including AAUW guidance related to pay equity.",
+      "group": "career-readiness-modules",
+      "order": 3
+    },
+    {
+      "slug": "strengths-accomplishments-and-durable-skills",
+      "title": "Strengths, Accomplishments, and Durable Skills",
+      "shortDescription": "Students reflect on favorite experiences from the last four years, identify skills gained, review durable skills, examine three positions they want, and connect those positions to skills they already have and still need to build.",
+      "group": "career-readiness-modules",
+      "order": 4
+    },
+    {
+      "slug": "career-storytelling-and-interview-introductions",
+      "title": "Career Storytelling and Interview Introductions",
+      "shortDescription": "Students learn to tell career stories, practice 'Tell me about yourself,' and use interview-prep tools such as Big Interview.",
+      "group": "career-readiness-modules",
+      "order": 5
+    },
+    {
+      "slug": "linkedin-networking-and-informational-interviews",
+      "title": "LinkedIn, Networking, and Informational Interviews",
+      "shortDescription": "Students build a LinkedIn presence, make professional connections, learn networking strategies, and complete an informational interview; tools such as Career Launch may support this work.",
+      "group": "career-readiness-modules",
+      "order": 6
+    },
+    {
+      "slug": "cultural-capital-fit-and-boundaries",
+      "title": "Cultural Capital, Fit, and Boundaries",
+      "shortDescription": "Students consider how they want to show up professionally by examining cultural capital, affinity bias, unwritten rules, ideas of 'fit,' and their own boundaries.",
+      "group": "career-readiness-modules",
+      "order": 7
+    },
+    {
+      "slug": "career-readiness-synthesis-presentation",
+      "title": "Career Readiness Synthesis Presentation",
+      "shortDescription": "Students bring the strand together in a final Coalesce-style presentation that synthesizes goals, strengths, stories, skills, networking, and professional direction.",
+      "group": "career-readiness-modules",
+      "order": 8
+    }
+  ],
+  "governanceFrameworks": [
+    {
+      "slug": "nist-ai-rmf",
+      "title": "NIST AI Risk Management Framework",
+      "shortDescription": "A risk management framework organized around governing, mapping, measuring, and managing AI risk.",
+      "order": 1
+    },
+    {
+      "slug": "eu-ai-act",
+      "title": "EU AI Act",
+      "shortDescription": "A risk-based regulatory framework for AI systems, including obligations for high-risk uses.",
+      "order": 2
+    },
+    {
+      "slug": "ieee-ethically-aligned-design",
+      "title": "IEEE Ethically Aligned Design",
+      "shortDescription": "A principles-oriented framework emphasizing human values, accountability, and ethical design choices.",
+      "order": 3
+    },
+    {
+      "slug": "oecd-ai-principles",
+      "title": "OECD AI Principles",
+      "shortDescription": "A set of principles focused on inclusive growth, human-centered values, transparency, robustness, and accountability.",
+      "order": 4
+    }
+  ],
+  "relationshipTypes": [
+    {
+      "key": "related_labs",
+      "title": "Related Labs",
+      "description": "Use for labs that cover adjacent concepts, similar mechanics, or directly useful comparison cases."
+    },
+    {
+      "key": "dialogues_with",
+      "title": "In Dialogue With",
+      "description": "Use for themes that this page explicitly puts into conversation, tension, or comparison."
+    },
+    {
+      "key": "prerequisites",
+      "title": "Prerequisites",
+      "description": "Use for content that should usually be encountered first to make this page legible."
+    },
+    {
+      "key": "extends",
+      "title": "Extends",
+      "description": "Use for content that this page deepens, complicates, or carries into a new technical or governance context."
+    }
+  ]
+}

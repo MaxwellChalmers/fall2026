@@ -28,6 +28,20 @@ export default function ActivitiesList({
     return null;
   }
 
+  function renderStatusBadge(activity: Activity) {
+    if (activity.draft !== 0 && activity.draft !== 1) {
+      return null;
+    }
+
+    const isDraft = activity.draft === 1;
+    const label = isDraft ? 'Draft' : 'Published';
+    const className = isDraft
+      ? 'inline-block px-1.5 py-0.5 text-[11px] font-medium rounded uppercase bg-amber-50 border border-amber-200 text-gray-700 dark:bg-amber-950 dark:border-amber-900 dark:text-gray-300'
+      : 'inline-block px-1.5 py-0.5 text-[11px] font-medium rounded uppercase bg-green-50 border border-green-200 text-gray-700 dark:bg-green-950 dark:border-green-900 dark:text-gray-300';
+
+    return <span className={className}>{label}</span>;
+  }
+
   function renderActivity(activity: Activity, index: number) {
     const isDraft = activity.draft && activity.draft === 1;
     const itemKey = `${meetingKey}-activity-${index}`;
@@ -51,22 +65,33 @@ export default function ActivitiesList({
           />
         )}
         <div className="flex-1">
-          {isDraft ? (
-            <span>{activity.title}</span>
-          ) : (
-            <>
-              {(() => {
-                const isExternalLink = activity.url?.startsWith('https');
-                const url = activity.url || '#';
-                const linkClass = `text-blue-600 dark:text-blue-400 hover:underline ${isChecked ? '!line-through opacity-60' : ''}`;
-                
-                if (isExternalLink) {
-                  return <Link href={url} target="_blank" className={linkClass} onClick={(e) => e.stopPropagation()}>{activity.title}</Link>;
-                }
-                return <Link href={url} className={linkClass} onClick={(e) => e.stopPropagation()}>{activity.title}</Link>;
-              })()}
-            </>
-          )}
+          <div className="flex flex-wrap items-center gap-2">
+            {isDraft ? (
+              <span>{activity.title}</span>
+            ) : (
+              <>
+                {(() => {
+                  const isExternalLink = activity.url?.startsWith('https');
+                  const url = activity.url || '#';
+                  const linkClass = `text-blue-600 dark:text-blue-400 hover:underline ${isChecked ? '!line-through opacity-60' : ''}`;
+
+                  if (isExternalLink) {
+                    return (
+                      <Link href={url} target="_blank" className={linkClass} onClick={(e) => e.stopPropagation()}>
+                        {activity.title}
+                      </Link>
+                    );
+                  }
+                  return (
+                    <Link href={url} className={linkClass} onClick={(e) => e.stopPropagation()}>
+                      {activity.title}
+                    </Link>
+                  );
+                })()}
+              </>
+            )}
+            {renderStatusBadge(activity)}
+          </div>
         </div>
       </div>
     );

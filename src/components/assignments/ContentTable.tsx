@@ -81,15 +81,16 @@ export default function ContentTable({ items, contentType }: ContentTableProps) 
   }, [nonDraftIds, contentType]);
 
   return (
-    <table className="table-fixed w-full">
+    <table className="w-full">
       <thead>
         <tr>
           <th className="w-[50px]"></th>
-          <th className="hidden md:table-cell md:w-[100px]">Week</th>
-          <th className="md:w-[150px]">Link</th>
-          <th className="hidden md:table-cell md:w-[400px]">Title</th>
-          <th className="md:w-[120px]">Due</th>
-          <th className="md:w-[100px]">Days Left</th>
+          <th className="hidden md:table-cell w-[90px]">Week</th>
+          <th className="w-[150px]">Link</th>
+          <th className="hidden md:table-cell">Title</th>
+          <th className="hidden md:table-cell w-[140px]">Type</th>
+          <th className="w-[110px]">Due</th>
+          <th className="w-[110px]">Days Left</th>
         </tr> 
       </thead>
       <tbody>

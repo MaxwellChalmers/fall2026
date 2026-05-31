@@ -8,94 +8,171 @@ export const baseTopics = [
       <>
         <ul className="list-spaced">
           <li>
-            <strong>Purpose:</strong> Examine how definitions of intelligence shape technologies, institutions, and
-            public expectations, and why those definitions matter as AI becomes a civic issue.
+            <strong>Recognition patterns:</strong> AI systems are socio-technical systems; classification is not
+            neutral; data is produced, not found.
           </li>
           <li>
-            <strong>Key Questions:</strong>
-            <ol className="list-tight">
-              <li>What do people mean when they call something &quot;intelligent&quot;?</li>
-              <li>Who gets to define intelligence?</li>
-              <li>What is lost when human intelligence is reduced to prediction, optimization, or performance?</li>
-              <li>How do metaphors of intelligence influence the technologies we build?</li>
-            </ol>
+            <strong>Unit focus:</strong> Students begin by asking what counts as intelligence, who gets to define it,
+            and how measurement, categorization, and data production shape public life.
           </li>
           <li>
-            <strong>Project connection:</strong> Students begin a public confusion and public question inventory by
-            tracking what people around them seem confused, curious, or anxious about when it comes to AI, and by
-            identifying misconceptions or unresolved questions that may be worth addressing through public-facing work.
-          </li>
-          <li>
-            <strong>Research role:</strong> Collect baseline mental models of intelligence, machine learning, what
-            students think AI is, and whether they see AI as tool, agent, infrastructure, or social force.
+            <strong>BRAID / ELSI arc:</strong> This unit introduces BRAID as a socio-technical system and establishes
+            that categories such as normal, signal, noise, and anomaly have ethical and governance consequences.
           </li>
         </ul>
       </>
     ),
     meetings: [
       {
-        date: 'Week 1',
-        topic: 'Course launch: human and machine intelligence as a public issue',
+        date: 'Tue, Aug 18',
+        topic: 'Course launch: human + machine intelligence as public issue',
         description: (
           <>
-            We frame the course around socio-technical systems and introduce <em>The Dream Hotel</em> as our shared
-            speculative case: a world where data, institutions, and prediction reshape freedom.
+            <p>
+              <strong>Topic / focus:</strong> Course launch and human + machine intelligence as a public issue.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>AI systems are socio-technical systems.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> AI is not just software; it is infrastructure, labor,
+              hardware, institutions, and governance.
+            </p>
           </>
         ),
         activities: [
-          { title: 'Introduce the public-facing final project' },
+          { title: 'Course framing; “Is this AI?” activity' },
           {
-            title: 'Baseline reflection: What do people need to understand about AI?',
-          },
-        ],
-        readings: [
-          { citation: <>Langdon Winner, &quot;Do Artifacts Have Politics?&quot;</> },
-          {
-            citation: <>Sheila Jasanoff on socio-technical imaginaries</>,
+            title: 'Career Module 1: Career quiz, values, coaching access',
+            url: '/assignments/career-module01/',
+            draft: 0,
           },
         ],
       },
       {
-        date: 'Week 2',
-        topic: 'What is intelligence? Human, animal, machine, social, embodied',
+        date: 'Thu, Aug 20',
+        topic: 'What counts as intelligence? Human, animal, machine, social, embodied',
         description: (
           <>
-            We treat intelligence as a social construction and ask what kinds of evidence students think should count as
-            knowledge about a person.
+            <p>
+              <strong>Topic / focus:</strong> What counts as intelligence across human, animal, machine, social, and
+              embodied forms.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>AI systems are socio-technical systems.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Map BRAID as a socio-technical system involving chip, lab,
+              funder, user, regulator, and public.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Lab 0: Map an AI system' }],
+      },
+      {
+        date: 'Tue, Aug 25',
+        topic: 'Measurement, categories, and intelligence',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Measurement, categories, and intelligence.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Classification is not neutral.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> “Normal,” “signal,” “noise,” and “anomaly” are categories
+              with consequences.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Lab 1: Classification Is Not Neutral', url: '/assignments/lab01a/', draft: 0 }],
+      },
+      {
+        date: 'Thu, Aug 27',
+        topic: 'Objectivity, neutrality, and who gets defined',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Objectivity, neutrality, and who gets defined.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Classification is not neutral.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Who gets to define intelligence, normality, risk, or error?
+            </p>
           </>
         ),
         activities: [
+          { title: 'Discussion: case + theory' },
           {
-            title: 'Public question inventory: common assumptions about intelligence, AI, risk, and prediction',
-          },
-        ],
-        readings: [
-          { citation: <>Stephen Jay Gould</> },
-          { citation: <>Ruha Benjamin</> },
-          {
-            citation: <>Disability studies and critical race perspectives on measurement and classification</>,
+            title: 'Career Module 2: Three possible lives + SMART goals',
+            url: '/assignments/career-module02/',
+            draft: 0,
           },
         ],
       },
       {
-        date: 'Week 3',
-        topic: 'Human learning, memory, dreams, prediction, and adaptation',
+        date: 'Tue, Sep 1',
+        topic: 'Human learning, memory, dreams, prediction, adaptation',
         description: (
           <>
-            We focus on embodiment, interiority, and situated cognition as we begin <em>The Dream Hotel</em> and
-            consider dreams as intimate, ambiguous, embodied data.
+            <p>
+              <strong>Topic / focus:</strong> Human learning, memory, dreams, prediction, and adaptation.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Data is produced, not found.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> A bridge into <em>The Dream Hotel</em> and the question of
+              what gets lost when inner life becomes data.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Lab 2: Turning experience into data', url: '/assignments/lab02/', draft: 0 }],
+      },
+      {
+        date: 'Thu, Sep 3',
+        topic: 'Embodiment, interiority, and difficult-to-measure experience',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Embodiment, interiority, and difficult-to-measure experience.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Data is produced, not found.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> A strong opening for <em>The Dream Hotel</em> and its
+              treatment of intimate, difficult-to-measure experience.
+            </p>
           </>
         ),
         activities: [
+          { title: 'Discussion: case + theory' },
           {
-            title: 'Short explainer: Why are human thoughts, dreams, or emotions difficult to turn into data?',
-          },
-        ],
-        readings: [
-          { citation: <>Lucy Suchman</> },
-          { citation: <>Andy Clark</> },
-          {
-            citation: <>Lisa Feldman Barrett or predictive processing excerpts</>,
+            title: 'Career Module 4: Strengths, accomplishments, durable skills',
+            url: '/assignments/career-module04/',
+            draft: 0,
           },
         ],
       },
@@ -103,99 +180,168 @@ export const baseTopics = [
   },
   {
     id: 2,
-    title: 'How Do Machines Learn, and How Do People Imagine Them?',
+    title: 'How Do Machines Learn?',
     description: (
       <>
         <ul className="list-spaced">
           <li>
-            <strong>Purpose:</strong> Develop enough conceptual grounding in contemporary AI to distinguish between
-            different forms of machine learning and communicate those distinctions responsibly to others.
+            <strong>Recognition patterns:</strong> Features are value choices; thresholds distribute harm; prediction
+            imports the past.
           </li>
           <li>
-            <strong>Topics:</strong> Rules, statistics, machine learning, neural networks, generative AI as one paradigm
-            rather than the whole of AI, training versus inference, supervised versus unsupervised learning, and model
-            behavior versus human understanding.
+            <strong>Unit focus:</strong> Students learn how models, data, scores, and thresholds operate while also
+            asking how those choices encode institutional priorities and historical assumptions.
           </li>
           <li>
-            <strong>Project connection:</strong> Students submit a Project Seed Memo identifying an audience they may
-            want to address, an AI-related issue they may want to explain, and why it matters beyond the classroom.
-          </li>
-          <li>
-            <strong>Activities:</strong> Students practice explaining concepts in plain language to a parent, a
-            policymaker, and a high school student, then revise those explanations through peer feedback.
-          </li>
-          <li>
-            <strong>Research role:</strong> We assess where students overgeneralize from LLMs to all AI, equate learning
-            with human-like understanding, or assume more agency and autonomy than is warranted.
+            <strong>BRAID / ELSI arc:</strong> This unit prepares students to see that technical choices in sensing,
+            feature design, thresholds, and adaptation shape downstream governance questions.
           </li>
         </ul>
       </>
     ),
     meetings: [
       {
-        date: 'Week 4',
-        topic: 'How machines learn: data, rules, models, training, and inference',
+        date: 'Tue, Sep 8',
+        topic: 'Data, rules, models, training, and inference',
         description: (
           <>
-            We introduce machine learning as a set of models and simplifications of the world, asking what kinds of data
-            a system trusts and what gets lost when interior life becomes input data.
+            <p>
+              <strong>Topic / focus:</strong> Data, rules, models, training, and inference.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Features are value choices.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Sensor choices, features, and spike encodings shape what
+              hardware can “see.”
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Lab 3: Features Are Value Choices', url: '/assignments/lab03/', draft: 0 }],
+      },
+      {
+        date: 'Thu, Sep 10',
+        topic: 'Generative AI as one paradigm, not all AI',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Generative AI as one paradigm, not all AI.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Features are value choices.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Prevent overgeneralizing from LLMs to all AI, especially
+              neuromorphic AI.
+            </p>
           </>
         ),
         activities: [
+          { title: 'Discussion: case + theory' },
           {
-            title: 'Practice public explanation: supervised vs. unsupervised learning, prediction, and risk scoring',
+            title: 'Career Module 3: Life after college + salary negotiation',
+            url: '/assignments/career-module03/',
+            draft: 0,
           },
-        ],
-        readings: [
-          {
-            citation: (
-              <>
-                Kate Crawford, <em>Atlas of AI</em>
-              </>
-            ),
-          },
-          { citation: <>Emily Bender et al.</> },
-          { citation: <>Nick Seaver</> },
         ],
       },
       {
-        date: 'Week 5',
-        topic: 'Generative AI as one AI paradigm, not all AI',
+        date: 'Tue, Sep 15',
+        topic: 'Supervised learning, scores, and decisions',
         description: (
           <>
-            We examine hype, metaphor, and public imagination, and discuss how <em>The Dream Hotel</em> makes its AI
-            system plausible through familiar fears about AI knowing us.
+            <p>
+              <strong>Topic / focus:</strong> Supervised learning, scores, and decisions.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Thresholds distribute harm.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> False positives and false negatives matter differently across
+              use cases.
+            </p>
           </>
         ),
-        activities: [
-          {
-            title: 'Project Seed Memo due: audience, issue, and possible public-facing product',
-          },
-        ],
-        readings: [
-          { citation: <>Sheila Jasanoff</> },
-          { citation: <>Ted Chiang essays</> },
-          { citation: <>AI hype critiques</> },
-        ],
+        activities: [{ title: 'Lab 4: Thresholds and the Cost of Error', url: '/assignments/lab04/', draft: 0 }],
       },
       {
-        date: 'Week 6',
-        topic: 'Neural networks, biological analogy, and artificial neurons',
+        date: 'Thu, Sep 17',
+        topic: 'Error, responsibility, and decision thresholds',
         description: (
           <>
-            We use metaphor and analogy to compare brain metaphors in AI with the novel&apos;s treatment of dreams,
-            minds, prediction, and machine inference.
+            <p>
+              <strong>Topic / focus:</strong> Error, responsibility, and decision thresholds.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Thresholds distribute harm.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Connect thresholds to accountability, auditability, and
+              oversight.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Discussion: case + theory' }],
+      },
+      {
+        date: 'Tue, Sep 22',
+        topic: 'Prediction and historical data',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Prediction and historical data.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Prediction imports the past.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Prior patterns become embedded in future anomaly judgments.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Lab 5: Prediction and Historical Data', url: '/assignments/lab05/', draft: 0 }],
+      },
+      {
+        date: 'Thu, Sep 24',
+        topic: 'Feedback loops and “neutral” prediction',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Feedback loops and “neutral” prediction.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Prediction imports the past.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Adaptive systems may learn from their own classifications.
+            </p>
           </>
         ),
         activities: [
+          { title: 'Discussion: case + theory' },
           {
-            title: 'Students analyze one AI metaphor and revise it for public clarity',
+            title: 'Career Module 5: Career storytelling + interview introductions',
+            url: '/assignments/career-module05/',
+            draft: 0,
           },
-        ],
-        readings: [
-          { citation: <>Lakoff and Johnson on metaphor</> },
-          { citation: <>N. Katherine Hayles</> },
-          { citation: <>BRAID neuroscience primer</> },
         ],
       },
     ],
@@ -207,73 +353,98 @@ export const baseTopics = [
       <>
         <ul className="list-spaced">
           <li>
-            <strong>Purpose:</strong> Use neuromorphic computing as a case study in how emerging technologies draw on
-            biological metaphors, create new technical possibilities, and raise difficult public questions before their
-            social uses are settled.
+            <strong>Recognition patterns:</strong> Anthropomorphism and aliveness claims; opacity shifts authority; AI
+            is material.
           </li>
           <li>
-            <strong>Topics:</strong> Neurons, spikes, synapses, plasticity, what spiking neural networks capture and
-            what they miss, von Neumann versus neuromorphic computing, cerebellum-inspired anomaly detection and
-            anticipatory response, and the grant-specific focus on hardware-level, energy-efficient, adaptive anomaly
-            detection.
+            <strong>Unit focus:</strong> Students build technical grounding in neuroscience metaphors, neural networks,
+            spiking systems, timing, and neuromorphic architectures without collapsing those systems into myths of
+            human-like intelligence.
           </li>
           <li>
-            <strong>Project connection:</strong> Students complete the SNN and neuromorphic learning activity, then
-            identify what was hard to understand, what helped, and what a public audience would need before discussing
-            ethical implications.
-          </li>
-          <li>
-            <strong>Research role:</strong> We assess learning from the interactive tutorial, examine how students
-            translate technical ideas into public-facing language, and collect reflections on what sufficient
-            understanding looks like.
+            <strong>BRAID / ELSI arc:</strong> The unit prepares students to analyze how brain metaphors, material
+            substrates, and hardware design choices affect public understanding, trust, and governance.
           </li>
         </ul>
       </>
     ),
     meetings: [
       {
-        date: 'Week 7',
-        topic: 'Neuromorphic computing: architectures, SNNs, spikes, and timing',
+        date: 'Tue, Sep 29',
+        topic: 'Neuroscience primer: neurons, synapses, weights, plasticity',
         description: (
           <>
-            We compare von Neumann and neuromorphic architectures and focus on how real emerging AI depends on hardware,
-            sensors, energy, and institutions rather than software alone.
+            <p>
+              <strong>Topic / focus:</strong> Neuroscience primer covering neurons, synapses, weights, and plasticity.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Anthropomorphism and aliveness claims.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Ground biological inspiration before students critique neural
+              networks.
+            </p>
           </>
         ),
-        activities: [{ title: 'Plain-language explanation of neuromorphic computing' }],
-        readings: [
-          { citation: <>BRAID introduction to neuromorphic computing slides</> },
-          { citation: <>Langdon Winner</> },
-          { citation: <>Infrastructure studies selections</> },
-        ],
+        activities: [{ title: 'Lab 6A: Biological Neurons vs Artificial Neurons', url: '/assignments/lab06/', draft: 0 }],
       },
       {
-        date: 'Week 8',
-        topic: 'Cerebellum-inspired anomaly detection: prediction, surprise, response, adaptation',
+        date: 'Thu, Oct 1',
+        topic: 'Neural networks, opacity, trust, contestability, dependency',
         description: (
           <>
-            We connect normality, anomaly, and classification to the central questions of <em>The Dream Hotel</em>: what
-            does the system classify as abnormal, risky, or threatening, and who defines normal?
+            <p>
+              <strong>Topic / focus:</strong> Neural networks, opacity, trust, contestability, and dependency.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Opacity shifts authority.</li>
+              <li>AI can create dependency, cognitive offloading, and deskilling.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Brain metaphors can mislead, and opaque systems can encourage
+              over-trust or deference.
+            </p>
           </>
         ),
         activities: [
-          {
-            title: 'SNN and anomaly detection activity: students compare color anomalies to social anomalies',
-          },
+          { title: 'Discussion: case + theory' },
+          { title: 'Interview story practice' },
         ],
-        readings: [
-          {
-            citation: (
-              <>
-                Bowker and Star, <em>Sorting Things Out</em>
-              </>
-            ),
-          },
-          { citation: <>Ian Hacking</> },
-          {
-            citation: <>BRAID project description on cerebellum-inspired anomaly detection</>,
-          },
-        ],
+      },
+      {
+        date: 'Tue, Oct 6',
+        topic: 'Fall Break',
+        description: 'No class.',
+        holiday: true,
+        activities: [{ title: 'No class' }],
+      },
+      {
+        date: 'Thu, Oct 8',
+        topic: 'Neuromorphic computing: SNNs, spikes, timing',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Neuromorphic computing through SNNs, spikes, and timing.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>AI is material.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Introduce spikes, timing, event-driven computation, and the
+              limits of biological analogy.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Lab 6B: Spiking / timing / simple SNN activity', url: '/assignments/lab13/', draft: 0 }],
       },
     ],
   },
@@ -284,107 +455,218 @@ export const baseTopics = [
       <>
         <ul className="list-spaced">
           <li>
-            <strong>Purpose:</strong> Connect technical features of emerging AI systems to specific societal, ethical,
-            and governance questions, then use that analysis to define public-facing projects.
+            <strong>Recognition patterns:</strong> “Normal” is constructed; measurement becomes datafication;
+            automation changes accountability; power can concentrate in infrastructure; AI is material.
           </li>
           <li>
-            <strong>Topics:</strong> Anomaly detection in low- versus high-stakes contexts, edge AI, biosensing,
-            robotics, cybersecurity, interpretability and accountability in adaptive hardware, bias in defining the
-            normal and the anomalous, surveillance, misuse, power concentration, and environmental claims and lifecycle
-            thinking.
+            <strong>Unit focus:</strong> Students move from mechanism to consequence by connecting anomaly detection,
+            sensing, edge AI, hardware, environmental claims, and institutional power to real governance questions.
           </li>
           <li>
-            <strong>Project connection:</strong> Students choose or refine a final project topic around a real public
-            issue, such as anomaly detection in schools, adaptive biosensors, energy-efficiency claims, edge AI and
-            privacy, or the meaning of human oversight for adaptive hardware systems.
-          </li>
-          <li>
-            <strong>Research role:</strong> We assess whether conceptual grounding enables richer ethical reasoning,
-            what scaffolds help students move from interesting technology to governance implications, and whether
-            analogies, stakeholder maps, and case comparisons improve their reasoning.
+            <strong>BRAID / ELSI arc:</strong> This is the core translational unit for turning neuromorphic mechanisms
+            into questions about surveillance, accountability, vendor power, materials, and lifecycle harm.
           </li>
         </ul>
       </>
     ),
     meetings: [
       {
-        date: 'Week 9',
-        topic: 'Unsupervised learning, clustering, false positives, and false negatives',
+        date: 'Tue, Oct 13',
+        topic: 'Unsupervised learning, clustering, anomaly detection',
         description: (
           <>
-            We connect bias, fairness, and representational harm to lived consequences such as detention, stigma, loss
-            of agency, and the inability to prove innocence.
+            <p>
+              <strong>Topic / focus:</strong> Unsupervised learning, clustering, and anomaly detection.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>“Normal” is constructed.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Core BRAID concept: anomaly detection requires a baseline of
+              expected behavior.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Lab 7: Anomaly Detection and Normal', url: '/assignments/lab08/', draft: 0 }],
+      },
+      {
+        date: 'Thu, Oct 15',
+        topic: 'Normality, anomaly, surveillance',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Normality, anomaly, and surveillance.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>“Normal” is constructed.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Misuse risk: anomaly detection can become surveillance or
+              social control.
+            </p>
           </>
         ),
         activities: [
+          { title: 'Discussion: case + theory' },
           {
-            title: 'Students analyze a low-stakes vs. high-stakes anomaly detection scenario',
+            title: 'Career Module 6: LinkedIn, networking, informational interviews',
+            url: '/assignments/career-module06/',
+            draft: 0,
           },
-        ],
-        readings: [
-          { citation: <>Ruha Benjamin</> },
-          { citation: <>Safiya Noble</> },
-          { citation: <>Joy Buolamwini and Timnit Gebru</> },
         ],
       },
       {
-        date: 'Week 10',
-        topic: 'Edge AI, sensors, wearables, biosensing, and cybersecurity',
+        date: 'Tue, Oct 20',
+        topic: 'Sensors, edge AI, wearables, biosensing, cybersecurity',
         description: (
           <>
-            We finish <em>The Dream Hotel</em> by focusing on dream monitoring, bodily data, institutional power, and
-            who is made visible or vulnerable through surveillance infrastructures.
+            <p>
+              <strong>Topic / focus:</strong> Sensors, edge AI, wearables, biosensing, and cybersecurity.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Measurement becomes datafication.</li>
+              <li>Automation changes accountability.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Edge or on-chip AI changes data flows, logging, oversight, and
+              responsibility.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Lab 8: Edge AI, Privacy, and Accountability', url: '/assignments/lab09/', draft: 0 }],
+      },
+      {
+        date: 'Thu, Oct 22',
+        topic: 'Edge AI, cloud, chips, vendors, human judgment',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Edge AI, cloud, chips, vendors, and human judgment.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Power can concentrate in infrastructure.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Hardware, vendors, standards, and repair shape who can govern
+              or contest systems.
+            </p>
           </>
         ),
         activities: [
-          {
-            title: 'Project Proposal due: issue, audience, public product, and social or theoretical lens',
-          },
-        ],
-        readings: [
-          { citation: <>Simone Browne</> },
-          { citation: <>Virginia Eubanks</> },
-          { citation: <>Shoshana Zuboff</> },
+          { title: 'Discussion: case + theory' },
+          { title: 'Informational interview prep' },
         ],
       },
       {
-        date: 'Week 11',
-        topic: 'Explainability, opacity, adaptive systems, and hardware-level learning',
+        date: 'Tue, Oct 27',
+        topic: 'Hardware, memristors, energy, and material AI',
         description: (
           <>
-            We ask what accountability, contestability, and moral crumple zones look like in practice, and what it would
-            mean for Sara to contest a system decision in the novel.
+            <p>
+              <strong>Topic / focus:</strong> Hardware, memristors, energy, and material AI.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>AI is material.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Memristors and memtransistors, on-chip learning, energy
+              efficiency, and lifecycle impacts.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Lab 9: Neuromorphic Hardware and Material AI', url: '/assignments/lab12/', draft: 0 }],
+      },
+      {
+        date: 'Thu, Oct 29',
+        topic: 'BRAID neuromorphic anomaly detection',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> BRAID neuromorphic anomaly detection.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Emerging technologies require anticipatory governance.</li>
+              <li>AI is material.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Apply NIST, EU AI Act, IEEE, and OECD-style questions to
+              BRAID.
+            </p>
           </>
         ),
         activities: [
+          { title: 'Discussion: case + governance frameworks' },
           {
-            title: 'Accountability map: designer, deployer, regulator, institution, affected person, and public',
+            title: 'Career Module 7: Cultural capital, fit, boundaries',
+            url: '/assignments/career-module07/',
+            draft: 0,
           },
-        ],
-        readings: [
-          { citation: <>Madeleine Clare Elish</> },
-          { citation: <>NIST AI RMF overview</> },
-          { citation: <>EU AI Act overview</> },
         ],
       },
       {
-        date: 'Week 12',
-        topic: 'Environmental claims: efficiency, energy use, materials, e-waste, and lifecycle costs',
+        date: 'Tue, Nov 3',
+        topic: 'Explainability, adaptive hardware, and public understanding',
         description: (
           <>
-            We examine political economy and material consequences by asking what the novel foregrounds and hides: data
-            centers, labor, hardware, maintenance, energy, and contractors.
+            <p>
+              <strong>Topic / focus:</strong> Explainability, adaptive hardware, and public understanding.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Opacity shifts authority.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Students translate a technical mechanism into public-facing
+              language.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Project workshop: technical explainer' }],
+      },
+      {
+        date: 'Thu, Nov 5',
+        topic: 'Environmental claims, efficiency, lifecycle costs',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Environmental claims, efficiency, and lifecycle costs.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>AI is material.</li>
+              <li>Power can concentrate in infrastructure.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Efficiency claims must be weighed against materials,
+              fabrication, e-waste, and scale.
+            </p>
           </>
         ),
         activities: [
-          {
-            title: 'Students add environmental or political-economic analysis to their project',
-          },
-        ],
-        readings: [
-          { citation: <>Kate Crawford</> },
-          { citation: <>Jennifer Gabrys</> },
-          { citation: <>Lifecycle assessment and AI energy readings</> },
+          { title: 'Discussion / project workshop' },
+          { title: 'Professional boundaries / fit reflection' },
         ],
       },
     ],
@@ -396,89 +678,238 @@ export const baseTopics = [
       <>
         <ul className="list-spaced">
           <li>
-            <strong>Purpose:</strong> Use anticipatory governance tools to turn technical and ethical analysis into
-            public-facing proposals, resources, or interventions.
+            <strong>Recognition patterns:</strong> Emerging technologies require anticipatory governance; alternatives
+            can be foreclosed; student-selected pattern.
           </li>
           <li>
-            <strong>Topics:</strong> Why govern before technology is fully deployed, historical analogies involving
-            biometrics, wearables, IoT, predictive policing, and cybersecurity infrastructures, stakeholder
-            participation and its limits, design fiction, scenario planning, public records of concern, and governance
-            frameworks such as the NIST AI RMF, EU AI Act, and OECD anticipatory governance.
+            <strong>Unit focus:</strong> Students connect stakeholders, harms, benefits, history, alternatives, and
+            governance frameworks in order to draft public-facing analyses and proposals.
           </li>
           <li>
-            <strong>Project connection:</strong> This unit is project-studio based. Students draft, test, and revise
-            their public-facing materials, seek feedback from peers or a small outside audience where feasible, and
-            prepare for the SYS showcase.
-          </li>
-          <li>
-            <strong>Research role:</strong> Final projects and reflections become evidence of integrative reasoning,
-            public communication skill, and the ability to connect technical mechanisms to societal and governance
-            implications.
+            <strong>BRAID / ELSI arc:</strong> The central question becomes how to govern anomaly detection and other
+            emerging AI systems before their assumptions, harms, and dependencies become locked in.
           </li>
         </ul>
       </>
     ),
     meetings: [
       {
-        date: 'Week 13',
-        topic: 'Historical analogies: biometrics, IoT, predictive policing, automation, and cybernetics',
+        date: 'Tue, Nov 10',
+        topic: 'Stakeholders, harms, benefits, governance',
         description: (
           <>
-            We treat <em>The Dream Hotel</em> as design fiction and ask what real histories make its imagined future
-            feel plausible.
+            <p>
+              <strong>Topic / focus:</strong> Stakeholders, harms, benefits, and governance.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Student-selected pattern.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Build an ELSI risk memo around a neuromorphic or emerging AI
+              use case.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Project workshop: stakeholder map + harm/benefit analysis' }],
+      },
+      {
+        date: 'Thu, Nov 12',
+        topic: 'Alternatives, refusal, repair, democratic governance',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Alternatives, refusal, repair, and democratic governance.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Alternatives can be foreclosed.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Ask when anomaly detection should be limited, redesigned,
+              refused, or governed differently.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Discussion / project workshop' }],
+      },
+      {
+        date: 'Tue, Nov 17',
+        topic: 'University Senior Symposium',
+        description: 'No class.',
+        holiday: true,
+        activities: [{ title: 'No class' }],
+      },
+      {
+        date: 'Thu, Nov 19',
+        topic: 'Governance frameworks: NIST, EU AI Act, OECD, IEEE',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Governance frameworks including NIST, the EU AI Act, OECD, and IEEE.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Emerging technologies require anticipatory governance.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Turn technical and ethical analysis into governance questions.
+            </p>
           </>
         ),
         activities: [
+          { title: 'Project conferences / studio work' },
           {
-            title: 'Project studio: add one historical or analogical case to the public artifact',
+            title: 'Career Module 8: Career readiness synthesis presentation prep',
+            url: '/assignments/career-module08/',
+            draft: 0,
           },
         ],
-        readings: [
-          { citation: <>Virginia Eubanks</> },
-          { citation: <>Ruha Benjamin</> },
-          { citation: <>Safiya Noble</> },
-          { citation: <>Richmond Wong on design fiction and values advocacy</> },
+      },
+    ],
+  },
+  {
+    id: 6,
+    title: 'Public Communication and Final Synthesis',
+    description: (
+      <>
+        <ul className="list-spaced">
+          <li>
+            <strong>Recognition patterns:</strong> Student-selected pattern; emerging technologies require
+            anticipatory governance.
+          </li>
+          <li>
+            <strong>Unit focus:</strong> Students revise public-facing work, practice peer feedback, and bring
+            technical explanation into direct conversation with stakeholder analysis and governance reasoning.
+          </li>
+          <li>
+            <strong>BRAID / ELSI arc:</strong> The culminating task is to connect mechanism, stakeholder concern, risk,
+            and governance question in a form that is public-facing and usable.
+          </li>
+        </ul>
+      </>
+    ),
+    meetings: [
+      {
+        date: 'Tue, Nov 24',
+        topic: 'Draft presentations / peer review',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Draft presentations and peer review.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Student-selected pattern.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Review for technical accuracy, ELSI clarity, and public
+              usefulness.
+            </p>
+          </>
+        ),
+        activities: [
+          { title: 'Peer critique + revision' },
+          { title: 'Career synthesis presentation draft' },
         ],
       },
       {
-        date: 'Week 14',
-        topic: 'Governance frameworks: NIST AI RMF, EU AI Act, OECD AI principles, IEEE Ethically Aligned Design',
+        date: 'Thu, Nov 26',
+        topic: 'Thanksgiving Break',
+        description: 'No class.',
+        holiday: true,
+        activities: [{ title: 'No class' }],
+      },
+      {
+        date: 'Tue, Dec 1',
+        topic: 'Last day of class: synthesis',
         description: (
           <>
-            We use anticipatory governance and responsible innovation tools to ask what safeguards should have existed
-            before the dream-risk system was deployed.
+            <p>
+              <strong>Topic / focus:</strong> Last day of class synthesis.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Emerging technologies require anticipatory governance.</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Technical mechanism to stakeholder concern to risk to
+              governance question.
+            </p>
           </>
         ),
         activities: [
-          {
-            title: 'Draft workshop: students connect projects to one governance framework',
-          },
-        ],
-        readings: [
-          { citation: <>Stilgoe, Owen, and Macnaghten</> },
-          { citation: <>OECD anticipatory governance materials</> },
-          { citation: <>NIST AI RMF</> },
-          { citation: <>IEEE Ethically Aligned Design</> },
+          { title: 'Final synthesis workshop' },
+          { title: 'Career readiness synthesis due / share-out' },
         ],
       },
       {
-        date: 'Week 15',
-        topic: 'Public communication, showcase, and reflection',
+        date: 'Thu, Dec 3',
+        topic: 'Optional support',
         description: (
           <>
-            We close by asking what fiction can help publics see about AI that technical explanation alone may miss, and
-            we focus on public scholarship and civic participation.
+            <p>
+              <strong>Topic / focus:</strong> Optional support.
+            </p>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Optional final ELSI project support.
+            </p>
           </>
         ),
         activities: [
-          { title: 'SYS showcase: public-facing resource or presentation' },
-          { title: 'Final integrative reflection' },
+          { title: 'Optional conferences or no class' },
+          { title: 'Optional support' },
         ],
-        readings: [
-          {
-            citation: <>No major new reading; revisit Winner, Jasanoff, Benjamin, Elish, and course frameworks</>,
-          },
-        ],
+      },
+    ],
+  },
+  {
+    id: 7,
+    title: 'Final Exam / Presentations',
+    description: (
+      <>
+        <ul className="list-spaced">
+          <li>
+            <strong>Recognition patterns:</strong> Student-selected pattern(s).
+          </li>
+          <li>
+            <strong>Unit focus:</strong> Final presentations synthesize technical explanation, public communication,
+            and governance analysis.
+          </li>
+        </ul>
+      </>
+    ),
+    meetings: [
+      {
+        date: 'Final exam period',
+        topic: 'Final presentations',
+        description: (
+          <>
+            <p>
+              <strong>Topic / focus:</strong> Final presentations.
+            </p>
+            <p>
+              <strong>Recognition patterns:</strong>
+            </p>
+            <ul className="list-tight">
+              <li>Student-selected pattern(s).</li>
+            </ul>
+            <p>
+              <strong>BRAID / ELSI connection:</strong> Public-facing explainer plus ELSI risk analysis.
+            </p>
+          </>
+        ),
+        activities: [{ title: 'Final reflection' }],
       },
     ],
   },

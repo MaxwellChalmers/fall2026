@@ -94,6 +94,10 @@ table.last-col-nowrap {
 table .markdown-checkbox {
   margin-top: 0;
 }
+tr {
+  /* height can still expand to fit content */
+  height: 44px;
+}
 
 th,
 td {

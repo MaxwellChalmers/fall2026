@@ -79,7 +79,7 @@ export default async function AssignmentsPage() {
       <div className="space-y-6">
         <PageHeader 
           title="Assignments" 
-          excerpt="All lab, homework, and project assignments are due at 11:59pm ET on the due date. Assignments should be submitted to the course Moodle unless otherwise specified."
+          excerpt="Labs, career modules, and other assignment-type course materials. Unless otherwise noted, submitted work is due at 11:59pm ET on the listed date."
         />
         
         <ContentTable items={assignments} contentType="assignments" />

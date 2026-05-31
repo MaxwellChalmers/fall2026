@@ -9,9 +9,7 @@ draft: 0
 
 > Note. This is a lot like the anomaly detection lab in terms of substance. it would be good to think of some examples of categories (like 5 per set).
 >
-> Classification sorts cases into predefined categories. Anomaly detection compares cases to an expected pattern and flags those that differ enough from that pattern. In practice, anomaly detection often produces a classification-like label — normal or anomalous — but the underlying question is different: not “Which category is this?” but “Does this depart from what the system has learned to expect?”
-
-## Classification Is Not Neutral
+> Classification sorts examples into predefined categories. Anomaly detection compares examples to an expected pattern and flags those that differ enough from that pattern. In practice, anomaly detection often produces a classification-like label — normal or anomalous — but the underlying question is different: not “Which category is this?” but “Does this depart from what the system has learned to expect?”
 
 How categories become technical, social, and moral decisions.
 
@@ -46,19 +44,19 @@ By the end of this lab, you should be able to:
 
 Individually, respond to the following prompt:
 
-> Think of a category that seems obvious until you have to define it. What makes it hard to define?
-
-Examples:
-
-- safe / unsafe
-- normal / abnormal
-- professional / unprofessional
-- suspicious / harmless
-- healthy / unhealthy
-- human-written / AI-written
-- public / private
-
-Write 3–5 sentences.
+> **TODO: Need a better discussion prompt.** Think of a category that seems obvious until you have to define it. What makes it hard to define? Examples:
+>
+> <!-- .compact -->
+>
+> - safe / unsafe
+> - normal / abnormal
+> - professional / unprofessional
+> - suspicious / harmless
+> - healthy / unhealthy
+> - human-written / AI-written
+> - public / private
+>
+> Write 3–5 sentences.
 
 ## Part 2: Group Classification Task
 
