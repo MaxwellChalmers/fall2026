@@ -1,14 +1,18 @@
 import Link from 'next/link';
+import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import taxonomyData from '../../../../content/config/taxonomy.json';
 import { getPostData, PostData } from '@/lib/markdown';
 import { generateStaticParamsForContentType, validatePostForRender } from '@/lib/static-params';
-import { getRelatedContentForPattern, getRelatedScheduleItemsForPattern, getRelatedTopicsForPattern } from '@/lib/relations';
-import { getTopics } from '@/lib/topics';
-import { getMeetingAnchorId, getModuleAnchorId } from '@/lib/navigation-helpers';
+import {
+  getRelatedContentForPattern,
+  getRelatedScheduleItemsForPattern,
+  getRelatedTopicsForPattern,
+} from '@/lib/relations';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import ContentLayout from '@/components/ContentLayout';
 import MarkdownContent from '@/components/MarkdownContent';
-import PageHeader from '@/components/PageHeader';
+import PatternCaseTabs, { type PatternCaseTab } from '@/components/PatternCaseTabs';
 
 interface PageProps {
   params: Promise<{
@@ -30,8 +34,10 @@ interface TaxonomyData {
 
 const taxonomy = taxonomyData as TaxonomyData;
 
-function getThemeLabel(slug: string) {
-  return taxonomy.themes.find((theme) => theme.slug === slug)?.title || slug;
+interface PatternSubsection {
+  id: string;
+  label: string;
+  content: string;
 }
 
 function formatGroupLabel(group?: string) {
@@ -41,8 +47,222 @@ function formatGroupLabel(group?: string) {
 
   return group
     .split('-')
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ');
+}
+
+function PatternHeader({
+  scope = 'SYS',
+  group,
+  title,
+  excerpt,
+}: {
+  scope?: 'SYS' | 'BRAID';
+  group?: string;
+  title: string;
+  excerpt?: string;
+}) {
+  return (
+    <header className="grid gap-6 border-y border-violet-200 bg-violet-50 px-16 py-16 dark:border-violet-900 dark:bg-violet-950/30 md:grid-cols-[8rem_1fr]">
+      <div className="flex flex-col justify-center border-b border-violet-200 pb-4 dark:border-violet-900 md:border-b-0 md:border-r md:pb-0 md:pr-5">
+        <p className="mb-1 text-3xl font-semibold leading-none tracking-tight text-violet-700 dark:text-violet-300">
+          {scope}
+        </p>
+      </div>
+      <div>
+        {group && (
+          <div className="mb-4 text-xs font-semibold uppercase tracking-wide">
+            <span className="text-violet-700 dark:text-violet-300">{group}</span>
+          </div>
+        )}
+        <h1 className="m-0! max-w-5xl text-5xl font-semibold leading-[1.05] tracking-tight text-gray-950 dark:text-gray-50">
+          {title}
+        </h1>
+        {excerpt && <p className="mb-0 mt-5 max-w-4xl text-lg leading-8 text-gray-700 dark:text-gray-300">{excerpt}</p>}
+      </div>
+    </header>
+  );
+}
+
+function decodeHtmlText(text: string) {
+  return text
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&#x26;/gi, '&')
+    .replace(/&#38;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
+}
+
+function getPlainTextFromHtml(html: string) {
+  return decodeHtmlText(html.replace(/<[^>]+>/g, '').trim());
+}
+
+function slugifyForId(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/&amp;/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function splitPatternContentSections(content: string) {
+  const headingRegex = /<h2[^>]*>([\s\S]*?)<\/h2>/gi;
+  const sections: Array<{ label: string; content: string }> = [];
+  let currentLabel = 'Overview';
+  let currentStart = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = headingRegex.exec(content)) !== null) {
+    const sectionContent = content.slice(currentStart, match.index).trim();
+
+    if (sectionContent) {
+      sections.push({
+        label: currentLabel,
+        content: sectionContent,
+      });
+    }
+
+    currentLabel = getPlainTextFromHtml(match[1]);
+    currentStart = match.index + match[0].length;
+  }
+
+  const finalContent = content.slice(currentStart).trim();
+  if (finalContent) {
+    sections.push({
+      label: currentLabel,
+      content: finalContent,
+    });
+  }
+
+  return sections;
+}
+
+function splitPatternSubsections(content: string): {
+  intro: string;
+  items: PatternSubsection[];
+} {
+  const headingRegex = /<h3[^>]*>([\s\S]*?)<\/h3>/gi;
+  const items: PatternSubsection[] = [];
+  let intro = '';
+  let currentLabel = '';
+  let currentStart = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = headingRegex.exec(content)) !== null) {
+    const sectionContent = content.slice(currentStart, match.index).trim();
+
+    if (currentLabel && sectionContent) {
+      items.push({
+        id: slugifyForId(currentLabel),
+        label: currentLabel,
+        content: sectionContent,
+      });
+    } else if (!currentLabel && sectionContent) {
+      intro = sectionContent;
+    }
+
+    currentLabel = getPlainTextFromHtml(match[1]);
+    currentStart = match.index + match[0].length;
+  }
+
+  const finalContent = content.slice(currentStart).trim();
+  if (currentLabel && finalContent) {
+    items.push({
+      id: slugifyForId(currentLabel),
+      label: currentLabel,
+      content: finalContent,
+    });
+  } else if (!currentLabel && finalContent) {
+    intro = finalContent;
+  }
+
+  return { intro, items };
+}
+
+function splitPatternCaseTabs(content: string): PatternCaseTab[] {
+  const headingRegex = /<h3[^>]*>([\s\S]*?)<\/h3>/gi;
+  const cases: PatternCaseTab[] = [];
+  let currentLabel = '';
+  let currentStart = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = headingRegex.exec(content)) !== null) {
+    const caseContent = content.slice(currentStart, match.index).trim();
+
+    if (currentLabel && caseContent) {
+      cases.push({
+        id: slugifyForId(currentLabel),
+        label: currentLabel,
+        content: caseContent,
+      });
+    }
+
+    currentLabel = getPlainTextFromHtml(match[1]);
+    currentStart = match.index + match[0].length;
+  }
+
+  const finalContent = content.slice(currentStart).trim();
+  if (currentLabel && finalContent) {
+    cases.push({
+      id: slugifyForId(currentLabel),
+      label: currentLabel,
+      content: finalContent,
+    });
+  }
+
+  return cases;
+}
+
+function PatternSection({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <section className="grid gap-8 border-t border-gray-200 pt-7 dark:border-gray-800 md:grid-cols-[8rem_1fr]">
+      <div className="border-b border-gray-200 pb-4 dark:border-gray-800 md:border-b-0 md:border-r md:pb-0 md:pr-5">
+        <p className="mb-0 text-lg font-semibold text-[#0b5d8f] dark:text-[#8fc4ee]">{label}</p>
+      </div>
+      <div className="min-w-0 [&_li]:my-2 [&_ul]:pl-0!">{children}</div>
+    </section>
+  );
+}
+
+function PatternStepGrid({ intro, steps }: { intro: string; steps: PatternSubsection[] }) {
+  return (
+    <div className="space-y-6">
+      {intro && <MarkdownContent content={intro} />}
+      <div className="grid gap-8 lg:grid-cols-3">
+        {steps.map(step => (
+          <article
+            key={step.id}
+            className="min-w-0 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-black"
+          >
+            <h3 className="m-0! mb-4! text-lg font-semibold leading-tight text-gray-950 dark:text-gray-50">
+              {step.label}
+            </h3>
+            <MarkdownContent
+              content={step.content}
+              className="[&_blockquote]:mb-0 [&_blockquote]:mt-4 [&_img]:mb-4 [&_img]:aspect-4/3 [&_img]:w-full [&_img]:max-w-none [&_img]:rounded-xl [&_img]:object-cover"
+            />
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PatternContentSection({ section }: { section: { label: string; content: string } }) {
+  const caseTabs = section.label === 'Examples' ? splitPatternCaseTabs(section.content) : [];
+  const stepGrid = section.label === 'What To Notice' ? splitPatternSubsections(section.content) : null;
+
+  if (stepGrid && stepGrid.items.length > 0) {
+    return <PatternStepGrid intro={stepGrid.intro} steps={stepGrid.items} />;
+  }
+
+  if (caseTabs.length > 0) {
+    return <PatternCaseTabs cases={caseTabs} />;
+  }
+
+  return <MarkdownContent content={section.content} />;
 }
 
 export const dynamicParams = false;
@@ -61,7 +281,7 @@ export default async function EthicalPatternPage({ params }: PageProps) {
       notFound();
     }
 
-    const taxonomyPattern = taxonomy.ethicalPatterns.find((pattern) => pattern.slug === slug);
+    const taxonomyPattern = taxonomy.ethicalPatterns.find(pattern => pattern.slug === slug);
     if (!taxonomyPattern) {
       notFound();
     }
@@ -69,66 +289,47 @@ export default async function EthicalPatternPage({ params }: PageProps) {
     const relatedTopics = getRelatedTopicsForPattern(slug);
     const relatedTaggedContent = getRelatedContentForPattern(slug);
     const relatedScheduleItems = await getRelatedScheduleItemsForPattern(slug);
-    const scheduledTopics = await getTopics();
-
-    const topicHrefBySlug = new Map<string, string>();
-    scheduledTopics.forEach((module) => {
-      const moduleHref = `/#${getModuleAnchorId(module.id)}`;
-      module.meetings.forEach((meeting, index) => {
-        if (meeting.slug) {
-          topicHrefBySlug.set(meeting.slug, `/#${getMeetingAnchorId(module.id, index, meeting.topic)}`);
-        }
-      });
-
-      topicHrefBySlug.set(module.slug || `module-${module.id}`, moduleHref);
-    });
 
     const featuredTopics = (postData as PostData & { featured_topics?: string[] }).featured_topics || [];
     const featuredAssignments = (postData as PostData & { featured_assignments?: string[] }).featured_assignments || [];
     const featuredResources = (postData as PostData & { featured_resources?: string[] }).featured_resources || [];
 
-    const themeSlugs = (postData.themes || taxonomyPattern.relatedThemes || []).filter(Boolean);
-    const resourceItems = relatedTaggedContent.items.filter((item) => item.kind === 'resources');
+    const resourceItems = relatedTaggedContent.items.filter(item => item.kind === 'resources');
     const combinedScheduleItems = relatedScheduleItems;
+    const groupLabel = formatGroupLabel(taxonomyPattern.group);
+    const patternContentSections = splitPatternContentSections(postData.content);
 
     return (
-      <ContentLayout variant="detail-with-toc" fullWidth>
+      <ContentLayout
+        variant="detail-with-toc"
+        fullWidth
+        showToc={false}
+        header={
+          <div className="space-y-4 py-6">
+            <Breadcrumbs
+              className="px-16"
+              items={[
+                { label: 'Ethical Pattern Recognition Field Guide', href: '/ethical-pattern-recognition-field-guide' },
+                { label: postData.title },
+              ]}
+            />
+            <PatternHeader title={postData.title} excerpt={postData.excerpt} group={groupLabel} />
+          </div>
+        }
+      >
         <div className="space-y-8">
-          <div className="mb-4">
-            <Link
-              href="/ethical-pattern-recognition-field-guide"
-              className="text-blue-600 hover:underline dark:text-blue-400"
-            >
-              Ethical Pattern Recognition Field Guide
-            </Link>
-            {' > '}
-            <span className="text-gray-900 dark:text-gray-100">{postData.title}</span>
-          </div>
+          {patternContentSections.map(section => (
+            <PatternSection key={section.label} label={section.label}>
+              <PatternContentSection section={section} />
+            </PatternSection>
+          ))}
 
-          <PageHeader title={postData.title} excerpt={postData.excerpt} group={formatGroupLabel(taxonomyPattern.group)} />
-
-          <div className="flex flex-wrap gap-2">
-            {themeSlugs.map((themeSlug) => (
-              <span
-                key={themeSlug}
-                className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 text-xs font-medium text-gray-700 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300"
-              >
-                {getThemeLabel(themeSlug)}
-              </span>
-            ))}
-          </div>
-
-          <MarkdownContent content={postData.content} />
-
-          <section className="space-y-4">
-            <h2>Related Topics</h2>
+          <PatternSection label="Related Course Topics">
             {relatedTopics.length > 0 ? (
               <ul className="list-tight">
-                {relatedTopics.map((topic) => (
+                {relatedTopics.map(topic => (
                   <li key={topic.meetingSlug}>
-                    <Link href={topicHrefBySlug.get(topic.meetingSlug) || '/'}>
-                      {topic.meetingTitle}
-                    </Link>{' '}
+                    <Link href={`/topics/${topic.meetingSlug}`}>{topic.meetingTitle}</Link>{' '}
                     <span className="text-sm text-gray-600 dark:text-gray-400">({topic.moduleTitle})</span>
                     {featuredTopics.includes(topic.meetingSlug) && (
                       <span className="ml-2 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300">
@@ -141,56 +342,40 @@ export default async function EthicalPatternPage({ params }: PageProps) {
             ) : (
               <p className="text-sm text-gray-600 dark:text-gray-400">No related topics are mapped yet.</p>
             )}
-          </section>
+          </PatternSection>
 
-          <section className="space-y-4">
-            <h2>Related Labs And Activities</h2>
+          <PatternSection label="Related Labs & Activities">
             {combinedScheduleItems.length > 0 ? (
-              <div className="space-y-3">
-                {combinedScheduleItems.map((item) => {
+              <ul className="list-tight">
+                {combinedScheduleItems.map(item => {
                   const slugFromHref = item.href.split('/').filter(Boolean).pop() || '';
                   const isFeatured = featuredAssignments.includes(slugFromHref);
 
                   return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="block rounded-xl border border-gray-200 bg-white p-4 no-underline transition-colors hover:bg-gray-50 dark:border-gray-800 dark:bg-black dark:hover:bg-gray-900"
-                    >
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="min-w-0">
-                          <h3 className="m-0 text-base font-semibold text-gray-900 dark:text-gray-100">
-                            {item.title}
-                          </h3>
-                          <p className="mb-0 mt-1 text-sm text-gray-600 dark:text-gray-400">
-                            {item.moduleTitle} · {item.meetingTitle}
-                          </p>
-                        </div>
-                        <div className="flex shrink-0 items-center gap-2">
-                          <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-700 dark:bg-gray-900 dark:text-gray-300">
-                            {item.kind === 'assignments' ? 'Lab / Assignment' : 'Activity'}
-                          </span>
-                          {isFeatured && (
-                            <span className="rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300">
-                              Featured
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </Link>
+                    <li key={item.href}>
+                      <Link href={item.href}>{item.title}</Link>{' '}
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
+                        ({item.kind === 'assignments' ? 'Lab / Assignment' : 'Activity'} · {item.moduleTitle} ·{' '}
+                        {item.meetingTitle})
+                      </span>
+                      {isFeatured && (
+                        <span className="ml-2 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+                          Featured
+                        </span>
+                      )}
+                    </li>
                   );
                 })}
-              </div>
+              </ul>
             ) : (
               <p className="text-sm text-gray-600 dark:text-gray-400">No related labs or activities are mapped yet.</p>
             )}
-          </section>
+          </PatternSection>
 
-          <section className="space-y-4">
-            <h2>Related Resources And Articles</h2>
+          <PatternSection label="Related Resources & Articles">
             {resourceItems.length > 0 ? (
               <ul className="list-tight">
-                {resourceItems.map((item) => {
+                {resourceItems.map(item => {
                   const slugFromHref = item.href.split('/').filter(Boolean).pop() || '';
                   return (
                     <li key={item.href}>
@@ -206,11 +391,11 @@ export default async function EthicalPatternPage({ params }: PageProps) {
               </ul>
             ) : (
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                No tagged resources or articles are connected yet. As you add `ethical_patterns` to resource frontmatter,
-                they will appear here automatically.
+                No tagged resources or articles are connected yet. As you add `ethical_patterns` to resource
+                frontmatter, they will appear here automatically.
               </p>
             )}
-          </section>
+          </PatternSection>
         </div>
       </ContentLayout>
     );

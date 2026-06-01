@@ -118,6 +118,10 @@ function classifyHref(href: string): 'assignments' | 'activities' | null {
   return null;
 }
 
+function isCareerModuleHref(href: string) {
+  return /^\/assignments\/career-module\d+\/?$/.test(href);
+}
+
 export async function getRelatedScheduleItemsForPattern(patternSlug: string): Promise<RelatedScheduleItem[]> {
   const topics = await getTopics();
   const seen = new Set<string>();
@@ -130,7 +134,7 @@ export async function getRelatedScheduleItemsForPattern(patternSlug: string): Pr
       }
 
       (meeting.activities || []).forEach((activity) => {
-        if (!activity.url) {
+        if (!activity.url || isCareerModuleHref(activity.url)) {
           return;
         }
 

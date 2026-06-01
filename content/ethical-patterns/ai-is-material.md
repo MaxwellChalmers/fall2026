@@ -1,6 +1,6 @@
 ---
-title: "AI is material: it depends on energy, water, chips, labor, mining, and waste."
-excerpt: "AI systems have physical substrates and environmental costs, even when they appear clean or abstract at the interface."
+title: 'AI is material: it depends on energy, water, chips, labor, mining, and waste.'
+excerpt: 'AI systems have physical substrates and environmental costs, even when they appear clean or abstract at the interface.'
 ethical_patterns:
   - ai-is-material
 themes:

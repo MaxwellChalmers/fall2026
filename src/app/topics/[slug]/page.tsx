@@ -111,15 +111,22 @@ function EditorialSection({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-24 grid gap-5 border-t border-gray-200 pt-7 dark:border-gray-800 md:grid-cols-[8rem_1fr]">
+    <section
+      id={id}
+      className="scroll-mt-24 grid gap-8 border-t border-gray-200 pt-7 dark:border-gray-800 md:grid-cols-[8rem_1fr]"
+    >
       <div className="border-b border-gray-200 pb-4 dark:border-gray-800 md:border-b-0 md:border-r md:pb-0 md:pr-5">
-        <p className={`mb-0 text-xs font-semibold uppercase tracking-[0.18em] text-[#0b5d8f] dark:text-[#8fc4ee] ${labelClassName || ''}`}>
+        <p
+          className={`mb-0 text-xs font-semibold uppercase tracking-[0.18em] text-[#0b5d8f] dark:text-[#8fc4ee] ${labelClassName || ''}`}
+        >
           {label}
         </p>
       </div>
       <div>
         {title && (
-          <h2 className={`m-0! mb-4! text-2xl font-semibold tracking-tight text-gray-950 dark:text-gray-50 ${titleClassName || ''}`}>
+          <h2
+            className={`m-0! mb-4! text-2xl font-semibold tracking-tight text-gray-950 dark:text-gray-50 ${titleClassName || ''}`}
+          >
             {title}
           </h2>
         )}
@@ -194,7 +201,7 @@ function getTopicNavigationItems(topics: Topic[]): TopicNavigationItem[] {
 
 function findTopicMeeting(topics: Topic[], slug: string) {
   for (const topic of topics) {
-    const meetingIndex = topic.meetings.findIndex((meeting) => meeting.slug === slug);
+    const meetingIndex = topic.meetings.findIndex(meeting => meeting.slug === slug);
 
     if (meetingIndex !== -1) {
       return {
@@ -300,11 +307,7 @@ function buildTopicWorkItems({
     });
   });
 
-  const assignedItems = Array.isArray(meeting.assigned)
-    ? meeting.assigned
-    : meeting.assigned
-      ? [meeting.assigned]
-      : [];
+  const assignedItems = Array.isArray(meeting.assigned) ? meeting.assigned : meeting.assigned ? [meeting.assigned] : [];
 
   assignedItems.forEach((item, index) => {
     if (typeof item === 'string' || item.draft === 1) {
@@ -326,11 +329,7 @@ function buildTopicWorkItems({
     });
   });
 
-  const dueItems = Array.isArray(meeting.due)
-    ? meeting.due
-    : meeting.due
-      ? [meeting.due]
-      : [];
+  const dueItems = Array.isArray(meeting.due) ? meeting.due : meeting.due ? [meeting.due] : [];
 
   dueItems.forEach((item, index) => {
     if (typeof item === 'string' || item.draft === 1) {
@@ -454,15 +453,9 @@ function EmbeddedTopicContentSection({
   accentClassName: string;
 }) {
   return (
-    <EditorialSection
-      id={item.id}
-      label={item.shortTitle}
-    >
+    <EditorialSection id={item.id} label={item.shortTitle}>
       {item.postData ? (
-        <MarkdownContent
-          content={item.postData.content}
-          className={`embedded-topic-content ${accentClassName}`}
-        />
+        <MarkdownContent content={item.postData.content} className={`embedded-topic-content ${accentClassName}`} />
       ) : (
         <p className="mb-0 text-gray-700 dark:text-gray-300">
           This item has a standalone page, but it could not be embedded here.
@@ -490,15 +483,15 @@ function TopicHeader({
   excerpt?: string;
 }) {
   return (
-    <header className={`grid gap-6 border-y px-16 py-16 ${moduleColor.background} ${moduleColor.border} md:grid-cols-[8rem_1fr]`}>
-      <div className={`border-b pb-4 ${moduleColor.border} md:border-b-0 md:border-r md:pb-0 md:pr-5`}>
-        <p className={`mb-1 text-4xl font-semibold leading-none tracking-tight ${moduleColor.accent}`}>
-          {number}
-        </p>
+    <header
+      className={`grid gap-6 border-y px-16 py-16 ${moduleColor.background} ${moduleColor.border} md:grid-cols-[8rem_1fr]`}
+    >
+      <div
+        className={`flex flex-col justify-center border-b pb-4 ${moduleColor.border} md:border-b-0 md:border-r md:pb-0 md:pr-5`}
+      >
+        <p className={`mb-1 text-4xl font-semibold leading-none tracking-tight ${moduleColor.accent}`}>{number}</p>
         {date && (
-          <p className="mb-0 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400">
-            {date}
-          </p>
+          <p className="mb-0 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400">{date}</p>
         )}
       </div>
       <div>
@@ -510,11 +503,7 @@ function TopicHeader({
         <h1 className="m-0! max-w-5xl text-5xl font-semibold leading-[1.05] tracking-tight text-gray-950 dark:text-gray-50">
           {title}
         </h1>
-        {excerpt && (
-          <p className="mb-0 mt-5 max-w-4xl text-lg leading-8 text-gray-700 dark:text-gray-300">
-            {excerpt}
-          </p>
-        )}
+        {excerpt && <p className="mb-0 mt-5 max-w-4xl text-lg leading-8 text-gray-700 dark:text-gray-300">{excerpt}</p>}
       </div>
     </header>
   );
@@ -530,12 +519,8 @@ function ModuleTopicsList({ topic }: { topic: Topic }) {
           const content = (
             <>
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <span className="text-sm font-semibold text-[#0b5d8f] dark:text-[#8fc4ee]">
-                  {topicNumber}
-                </span>
-                <span className="text-base font-semibold text-gray-950 dark:text-gray-50">
-                  {meeting.topic}
-                </span>
+                <span className="text-sm font-semibold text-[#0b5d8f] dark:text-[#8fc4ee]">{topicNumber}</span>
+                <span className="text-base font-semibold text-gray-950 dark:text-gray-50">{meeting.topic}</span>
                 {meeting.date && (
                   <span className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                     {meeting.date}
@@ -543,9 +528,7 @@ function ModuleTopicsList({ topic }: { topic: Topic }) {
                 )}
               </div>
               {description && (
-                <p className="mb-0 mt-2 text-sm leading-6 text-gray-700 dark:text-gray-300">
-                  {description}
-                </p>
+                <p className="mb-0 mt-2 text-sm leading-6 text-gray-700 dark:text-gray-300">{description}</p>
               )}
             </>
           );
@@ -617,9 +600,7 @@ function TopicSequenceNav({
           className="group flex min-w-0 max-w-full items-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-3 no-underline transition-all hover:border-blue-500 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-600 dark:hover:bg-gray-800 sm:ml-auto sm:max-w-md sm:text-right"
         >
           <div className="flex min-w-0 flex-1 flex-col">
-            <span className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-300">
-              Next
-            </span>
+            <span className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-300">Next</span>
             <span className="block wrap-break-word font-medium text-gray-900 group-hover:text-[#0b5d8f] dark:text-gray-100 dark:group-hover:text-[#8fc4ee]">
               {nextTopic.number} {nextTopic.title}
             </span>
@@ -712,9 +693,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
   const optionalReadings = meeting.optionalReadings || [];
   const activities = (meeting.activities || []).filter(activity => activity.excluded !== 1);
   const embeddedTopicContent = await getEmbeddedTopicContent(meeting);
-  const anchorByHref = new Map(
-    embeddedTopicContent.map(item => [normalizeHref(item.sourceHref), item.contentHref])
-  );
+  const anchorByHref = new Map(embeddedTopicContent.map(item => [normalizeHref(item.sourceHref), item.contentHref]));
   const topicWorkItems = buildTopicWorkItems({
     topicSlug: meeting.slug || slug,
     meeting,
@@ -751,7 +730,10 @@ export default async function TopicPage({ params }: TopicPageProps) {
                 <EditorialLabel>Assigned Readings</EditorialLabel>
                 <ul className="m-0! list-none divide-y divide-gray-200 p-0! dark:divide-gray-800">
                   {readings.map((reading, index) => (
-                    <li key={`${meeting.slug}-reading-${index}`} className="py-3 text-sm leading-6 text-gray-800 dark:text-gray-200">
+                    <li
+                      key={`${meeting.slug}-reading-${index}`}
+                      className="py-3 text-sm leading-6 text-gray-800 dark:text-gray-200"
+                    >
                       {renderReading(reading.citation, reading.url)}
                     </li>
                   ))}
@@ -764,7 +746,10 @@ export default async function TopicPage({ params }: TopicPageProps) {
                 <EditorialLabel>Optional Or Recommended</EditorialLabel>
                 <ul className="m-0! list-none divide-y divide-gray-200 p-0! dark:divide-gray-800">
                   {optionalReadings.map((reading, index) => (
-                    <li key={`${meeting.slug}-optional-reading-${index}`} className="py-3 text-sm leading-6 text-gray-800 dark:text-gray-200">
+                    <li
+                      key={`${meeting.slug}-optional-reading-${index}`}
+                      className="py-3 text-sm leading-6 text-gray-800 dark:text-gray-200"
+                    >
                       {renderReading(reading.citation, reading.url)}
                     </li>
                   ))}

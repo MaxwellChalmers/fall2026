@@ -13,7 +13,7 @@ interface BreadcrumbsProps {
 
 export default function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
   return (
-    <nav className={`mb-4 text-sm ${className}`.trim()} aria-label="Breadcrumb">
+    <nav className={`mb-4 hidden text-sm md:block ${className}`.trim()} aria-label="Breadcrumb">
       <ol className="m-0! flex list-none flex-wrap items-center gap-x-1 gap-y-2 p-0! text-gray-500 dark:text-gray-400">
         {items.map((item, index) => {
           const isCurrent = index === items.length - 1;

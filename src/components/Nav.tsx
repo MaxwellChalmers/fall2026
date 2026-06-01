@@ -1,6 +1,7 @@
 import { getCourseConfig } from '@/lib/config';
 import { getTopics } from '@/lib/topics';
 import { getMeetingAnchorId, getModuleAnchorId } from '@/lib/navigation-helpers';
+import taxonomyData from '../../content/config/taxonomy.json';
 import SidebarNavClient from './SidebarNavClient';
 
 interface SidebarTopicItem {
@@ -19,6 +20,16 @@ interface SidebarModuleItem {
   title: string;
   href: string;
   topics: SidebarTopicItem[];
+}
+
+interface SidebarPatternItem {
+  slug: string;
+  title: string;
+  order?: number;
+}
+
+interface TaxonomyData {
+  ethicalPatterns: SidebarPatternItem[];
 }
 
 function extractResourcesInfo(
@@ -70,6 +81,10 @@ function extractActivitiesInfo(
 export default async function Navigation() {
   const courseConfig = getCourseConfig();
   const topics = await getTopics();
+  const taxonomy = taxonomyData as TaxonomyData;
+  const ethicalPatterns = [...taxonomy.ethicalPatterns]
+    .filter(pattern => pattern.slug)
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
 
   const modules: SidebarModuleItem[] = topics.map((topic) => ({
     id: topic.id,
@@ -109,5 +124,11 @@ export default async function Navigation() {
     ],
   }));
 
-  return <SidebarNavClient courseTitle={`${courseConfig.courseNumber}: ${courseConfig.semester}`} modules={modules} />;
+  return (
+    <SidebarNavClient
+      courseTitle={`${courseConfig.courseNumber}: ${courseConfig.semester}`}
+      modules={modules}
+      ethicalPatterns={ethicalPatterns}
+    />
+  );
 }

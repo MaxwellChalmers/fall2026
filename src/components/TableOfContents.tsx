@@ -183,8 +183,8 @@ export default function TableOfContents({ maxLevel = 2 }: TableOfContentsProps) 
   return (
     <nav className="" data-toc-exclude="true">
       <div className="pl-4 pt-2">
-        <h2 className="!text-lg !font-normal mb-2">On This Page</h2>
-        <ul className="!list-none !p-0 !m-0 space-y-0.5">
+        <h2 className="text-lg! font-normal! mb-2">On This Page</h2>
+        <ul className="list-none! p-0! m-0! space-y-0.5">
           {tocItems.map((item) => {
             // Calculate indentation based on level (h2 = 0, h3 = 4, h4 = 8, etc.)
             const indentClass = item.level === 3 ? 'ml-4' : 
@@ -203,9 +203,9 @@ export default function TableOfContents({ maxLevel = 2 }: TableOfContentsProps) 
                   e.preventDefault();
                   scrollToAnchor(item.id);
                 }}
-                className={`block py-0.5 px-2 text-sm font-normal transition-colors whitespace-nowrap overflow-hidden !border-0 text-ellipsis rounded toc-link ${
+                className={`block py-0.5 px-2 text-sm font-normal transition-colors whitespace-nowrap overflow-hidden border-0! text-ellipsis rounded toc-link ${
                   activeId === item.id
-                    ? '!font-extrabold text-blue-600 dark:text-blue-100 hover:text-blue-600 dark:hover:text-blue-200'
+                    ? 'font-extrabold! text-blue-600 dark:text-blue-100 hover:text-blue-600 dark:hover:text-blue-200'
                     : 'text-gray-500 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-100'
                 }`}
                 title={item.text}

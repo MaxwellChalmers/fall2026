@@ -35,9 +35,16 @@ interface SidebarModuleItem {
   topics: SidebarTopicItem[];
 }
 
+interface SidebarPatternItem {
+  slug: string;
+  title: string;
+  order?: number;
+}
+
 interface SidebarNavClientProps {
   courseTitle: string;
   modules: SidebarModuleItem[];
+  ethicalPatterns: SidebarPatternItem[];
 }
 
 const SIDEBAR_COLLAPSED_KEY = 'sidebar-collapsed';
@@ -50,7 +57,7 @@ function getTopicSlugFromHref(href: string) {
   return href.match(/\/topics\/([^/#?]+)/)?.[1] || null;
 }
 
-export default function SidebarNavClient({ courseTitle, modules }: SidebarNavClientProps) {
+export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns }: SidebarNavClientProps) {
   const pathname = usePathname();
   const router = useRouter();
   const normalizedPath = normalizePath(pathname);
@@ -61,6 +68,9 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
   const [completedTopics, setCompletedTopics] = useState<Record<string, boolean>>({});
   const [modulesOpen, setModulesOpen] = useState(
     normalizedPath === '/' || normalizedPath.startsWith('/modules') || normalizedPath.startsWith('/topics')
+  );
+  const [patternsOpen, setPatternsOpen] = useState(
+    normalizedPath.startsWith('/ethical-pattern-recognition-field-guide')
   );
   const [openModuleId, setOpenModuleId] = useState<number | null>(() => {
     const activeModule = modules.find(module =>
@@ -184,6 +194,7 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
 
     if (newValue) {
       setModulesOpen(false);
+      setPatternsOpen(false);
       setOpenModuleId(null);
     }
   };
@@ -217,6 +228,24 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
       }
       return moduleId;
     });
+  };
+
+  const togglePatterns = () => {
+    if (collapsed) {
+      setCollapsed(false);
+      localStorage.setItem(SIDEBAR_COLLAPSED_KEY, 'false');
+      setPatternsOpen(true);
+      router.push('/ethical-pattern-recognition-field-guide');
+      return;
+    }
+
+    if (!patternsOpen) {
+      setPatternsOpen(true);
+      router.push('/ethical-pattern-recognition-field-guide');
+      return;
+    }
+
+    setPatternsOpen(false);
   };
 
   const baseLinkClass =
@@ -407,7 +436,7 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
             )}
           </div>
 
-          {navItems.slice(2).map(item => (
+          {navItems.slice(2, 5).map(item => (
             <Link
               key={item.href}
               href={item.href}
@@ -420,6 +449,80 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
               {renderNavContent(item.label, item.icon)}
             </Link>
           ))}
+
+          <div className="rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-black">
+            <div className="flex items-center gap-1 p-1">
+              <button
+                type="button"
+                onClick={togglePatterns}
+                aria-expanded={patternsOpen}
+                className={`${baseLinkClass} w-full ${
+                  activePatternGuide
+                    ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-900 dark:text-gray-100'
+                    : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900'
+                } ${collapsed ? 'justify-center' : 'justify-between'}`}
+              >
+                <span className="flex min-w-0 items-center gap-3">
+                  {renderNavContent('Ethical Pattern Recognition', SparklesIcon)}
+                </span>
+                {!collapsed && (
+                  <ChevronDownIcon
+                    className={`h-4 w-4 shrink-0 text-gray-500 transition-transform dark:text-gray-400 ${
+                      patternsOpen ? '' : '-rotate-90'
+                    }`}
+                  />
+                )}
+              </button>
+            </div>
+
+            {!collapsed && patternsOpen && (
+              <div className="border-y border-gray-100 py-2 dark:border-gray-900">
+                <div className="ml-4 mr-1 border-l border-[#0b5d8f]/20 pb-2 pl-3 dark:border-[#2f80d7]/35">
+                  <Link
+                    href="/ethical-pattern-recognition-field-guide"
+                    className={`relative block rounded-md px-2.5 py-1.5 text-[13px] transition-colors no-underline! border-0! ${
+                      normalizedPath === '/ethical-pattern-recognition-field-guide'
+                        ? 'bg-white font-semibold text-[#0b5d8f] shadow-sm ring-1 ring-[#0b5d8f]/15 dark:bg-black dark:text-[#8fc4ee] dark:ring-[#2f80d7]/30'
+                        : 'text-gray-700 hover:bg-white/80 hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/30 dark:hover:text-[#8fc4ee]'
+                    }`}
+                  >
+                    <span className="absolute left-[-17px] top-3 h-2 w-2 rounded-full bg-[#0b5d8f]/20 dark:bg-[#2f80d7]/35" />
+                    Overview
+                  </Link>
+
+                  <div className="mt-1 space-y-0.5">
+                    {ethicalPatterns.map(pattern => {
+                      const href = `/ethical-pattern-recognition-field-guide/${pattern.slug}`;
+                      const isPatternActive = normalizePath(href) === normalizedPath;
+
+                      return (
+                        <Link
+                          key={pattern.slug}
+                          href={href}
+                          className={`relative block rounded-md px-2.5 py-1.5 transition-colors no-underline! border-0! ${
+                            isPatternActive
+                              ? 'bg-white text-[#0b5d8f] shadow-sm ring-1 ring-[#0b5d8f]/15 dark:bg-black dark:text-[#8fc4ee] dark:ring-[#2f80d7]/30'
+                              : 'text-gray-700 hover:bg-white/80 hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/30 dark:hover:text-[#8fc4ee]'
+                          }`}
+                        >
+                          <span
+                            className={`absolute left-[-17px] top-3 h-2 w-2 rounded-full ${
+                              isPatternActive
+                                ? 'bg-[#0b5d8f] dark:bg-[#2f80d7]'
+                                : 'bg-[#0b5d8f]/20 dark:bg-[#2f80d7]/35'
+                            }`}
+                          />
+                          <span className={`block line-clamp-2 text-[13px] leading-snug ${isPatternActive ? 'font-semibold' : 'font-normal'}`}>
+                            {pattern.title}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </nav>
       </div>
 

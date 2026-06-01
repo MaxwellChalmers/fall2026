@@ -1,8 +1,11 @@
+import fs from 'fs';
+import path from 'path';
 import type { Metadata } from 'next';
 import taxonomyData from '../../../content/config/taxonomy.json';
 import ContentLayout from '@/components/ContentLayout';
 import PageHeader from '@/components/PageHeader';
 import RecognitionPatternCards from '@/components/RecognitionPatternCards';
+import { getAllPosts } from '@/lib/markdown';
 
 interface TaxonomyEntry {
   slug?: string;
@@ -11,6 +14,8 @@ interface TaxonomyEntry {
   group?: string;
   order?: number;
   relatedThemes?: string[];
+  featured_image?: string;
+  featured_image_dark?: string;
 }
 
 interface TaxonomyData {
@@ -18,6 +23,72 @@ interface TaxonomyData {
 }
 
 const taxonomy = taxonomyData as TaxonomyData;
+const publicDirectory = path.join(process.cwd(), 'public');
+const basePath = '/fall2026';
+
+function normalizeFeaturedImagePath(src?: string) {
+  if (!src) {
+    return undefined;
+  }
+
+  if (/^(https?:)?\/\//.test(src) || src.startsWith('data:')) {
+    return src;
+  }
+
+  return src.startsWith('/') ? src : `/${src}`;
+}
+
+function getPublicFilePath(src: string) {
+  const pathname = src.split(/[?#]/)[0];
+  const publicPathname = pathname.startsWith(`${basePath}/`)
+    ? pathname.slice(basePath.length)
+    : pathname;
+  const filePath = path.join(publicDirectory, publicPathname);
+  const relativePath = path.relative(publicDirectory, filePath);
+
+  if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
+    return undefined;
+  }
+
+  return filePath;
+}
+
+function getDarkFeaturedImagePath(src?: string) {
+  const normalizedSrc = normalizeFeaturedImagePath(src);
+
+  if (!normalizedSrc || /^(https?:)?\/\//.test(normalizedSrc) || normalizedSrc.startsWith('data:')) {
+    return undefined;
+  }
+
+  const [pathname, suffix = ''] = normalizedSrc.split(/([?#].*)/, 2);
+  const extension = path.posix.extname(pathname);
+
+  if (!extension) {
+    return undefined;
+  }
+
+  const darkSrc = `${pathname.slice(0, -extension.length)}.dark${extension}${suffix}`;
+  const darkFilePath = getPublicFilePath(darkSrc);
+
+  return darkFilePath && fs.existsSync(darkFilePath) ? darkSrc : undefined;
+}
+
+function getPatternsWithMarkdownMetadata(): TaxonomyEntry[] {
+  const patternMetadataBySlug = new Map(
+    getAllPosts('ethical-patterns').map(post => [
+      post.id,
+      {
+        featured_image: normalizeFeaturedImagePath(post.featured_image),
+        featured_image_dark: getDarkFeaturedImagePath(post.featured_image),
+      },
+    ])
+  );
+
+  return taxonomy.ethicalPatterns.map(pattern => ({
+    ...pattern,
+    ...(pattern.slug ? patternMetadataBySlug.get(pattern.slug) : undefined),
+  }));
+}
 
 export const metadata: Metadata = {
   title: 'Ethical Pattern Recognition Field Guide',
@@ -25,6 +96,8 @@ export const metadata: Metadata = {
 };
 
 export default function EthicalPatternRecognitionFieldGuidePage() {
+  const patterns = getPatternsWithMarkdownMetadata();
+
   return (
     <ContentLayout variant="list" fullWidth>
       <div className="space-y-7">
@@ -33,13 +106,8 @@ export default function EthicalPatternRecognitionFieldGuidePage() {
           excerpt="A standalone reference for the recurring patterns students can practice noticing across technical systems, social consequences, and governance debates."
         />
 
-        <section className="rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 dark:border-blue-900 dark:bg-blue-950">
-          <p className="m-0 text-sm text-gray-800 dark:text-gray-200">
-            Use these patterns as reusable prompts for discussion, writing, labs, and project framing. They are meant to travel across cases rather than belong to only one unit.
-          </p>
-        </section>
 
-        <RecognitionPatternCards patterns={taxonomy.ethicalPatterns} />
+        <RecognitionPatternCards patterns={patterns} />
       </div>
     </ContentLayout>
   );

@@ -14,7 +14,7 @@ export default function ModulesPage() {
           excerpt="A semester overview of the course modules, their main questions, and the topic sequence inside each one."
         />
 
-        <section className="grid gap-5 lg:grid-cols-2">
+        <section className="grid gap-8 lg:grid-cols-2">
           {modules.map((module) => {
             const patternCount = module.ethicalPatterns.length + (module.recognitionPatternNotes?.length || 0);
 

@@ -272,7 +272,7 @@
     },
     {
       "slug": "thresholds-distribute-harm",
-      "title": "Thresholds distribute harm.",
+      "title": "Thresholds make uncertainty consequential.",
       "group": "core-sys-sequence",
       "order": 5,
       "relatedThemes": [

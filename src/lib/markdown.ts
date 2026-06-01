@@ -11,6 +11,144 @@ import { preprocessMarkdownTags } from './markdown-tags';
 
 const postsDirectory = path.join(process.cwd(), 'content');
 const quizzesDirectory = path.join(process.cwd(), 'content', 'quizzes');
+const publicDirectory = path.join(process.cwd(), 'public');
+const publicBasePathPrefixes = ['/fall2026'];
+const darkImageExtensions = new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif']);
+
+function splitUrlSuffix(src: string) {
+  const suffixIndex = src.search(/[?#]/);
+
+  if (suffixIndex === -1) {
+    return {
+      pathname: src,
+      suffix: '',
+    };
+  }
+
+  return {
+    pathname: src.slice(0, suffixIndex),
+    suffix: src.slice(suffixIndex),
+  };
+}
+
+function stripPublicBasePath(pathname: string) {
+  const matchingPrefix = publicBasePathPrefixes.find((prefix) =>
+    pathname === prefix || pathname.startsWith(`${prefix}/`)
+  );
+
+  if (!matchingPrefix) {
+    return pathname;
+  }
+
+  return pathname.slice(matchingPrefix.length) || '/';
+}
+
+function getPublicFilePath(src: string) {
+  const { pathname } = splitUrlSuffix(src);
+
+  if (!pathname.startsWith('/') || pathname.startsWith('//')) {
+    return undefined;
+  }
+
+  const publicPathname = stripPublicBasePath(pathname);
+  const normalizedPathname = path.posix.normalize(publicPathname);
+
+  if (!normalizedPathname.startsWith('/')) {
+    return undefined;
+  }
+
+  const filePath = path.join(publicDirectory, normalizedPathname);
+  const relativePath = path.relative(publicDirectory, filePath);
+
+  if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
+    return undefined;
+  }
+
+  return filePath;
+}
+
+function getDarkImageSrc(src: string) {
+  const { pathname, suffix } = splitUrlSuffix(src);
+
+  if (!pathname.startsWith('/') || pathname.startsWith('//')) {
+    return undefined;
+  }
+
+  const extension = path.posix.extname(pathname);
+  const basename = path.posix.basename(pathname, extension);
+
+  if (!darkImageExtensions.has(extension.toLowerCase()) || basename.endsWith('.dark')) {
+    return undefined;
+  }
+
+  const darkPathname = `${pathname.slice(0, -extension.length)}.dark${extension}`;
+  const darkFilePath = getPublicFilePath(darkPathname);
+
+  if (!darkFilePath || !fs.existsSync(darkFilePath)) {
+    return undefined;
+  }
+
+  return `${darkPathname}${suffix}`;
+}
+
+function getHtmlAttribute(attributes: string, name: string) {
+  const attributeRegex = new RegExp(`\\s${name}\\s*=\\s*("([^"]*)"|'([^']*)'|([^\\s"'>]+))`, 'i');
+  const match = attributes.match(attributeRegex);
+
+  if (!match) {
+    return undefined;
+  }
+
+  return match[2] ?? match[3] ?? match[4] ?? '';
+}
+
+function setHtmlAttribute(attributes: string, name: string, value: string) {
+  const attributeRegex = new RegExp(`\\s${name}\\s*=\\s*("([^"]*)"|'([^']*)'|([^\\s"'>]+))`, 'i');
+
+  if (!attributeRegex.test(attributes)) {
+    return `${attributes} ${name}="${value}"`;
+  }
+
+  return attributes.replace(attributeRegex, ` ${name}="${value}"`);
+}
+
+function mergeClassNames(existingClasses: string, additionalClasses: string) {
+  const classNames = new Set(
+    `${existingClasses} ${additionalClasses}`
+      .split(/\s+/)
+      .map((className) => className.trim())
+      .filter(Boolean)
+  );
+
+  return Array.from(classNames).join(' ');
+}
+
+function addHtmlClasses(attributes: string, classNames: string) {
+  const existingClasses = getHtmlAttribute(attributes, 'class');
+
+  return setHtmlAttribute(attributes, 'class', mergeClassNames(existingClasses || '', classNames));
+}
+
+function addDarkModeImageVariants(contentHtml: string) {
+  return contentHtml.replace(/<img\b([^>]*)>/gi, (match, attributes) => {
+    const src = getHtmlAttribute(attributes, 'src');
+
+    if (!src) {
+      return match;
+    }
+
+    const darkSrc = getDarkImageSrc(src);
+
+    if (!darkSrc) {
+      return match;
+    }
+
+    const lightAttributes = addHtmlClasses(attributes, 'dark:hidden');
+    const darkAttributes = addHtmlClasses(setHtmlAttribute(attributes, 'src', darkSrc), 'hidden dark:block');
+
+    return `<img${lightAttributes}><img${darkAttributes}>`;
+  });
+}
 
 export interface PostData {
   id: string;
@@ -24,6 +162,7 @@ export interface PostData {
   featured_topics?: string[];
   featured_assignments?: string[];
   featured_resources?: string[];
+  featured_image?: string;
   group?: string;
   group_order?: number;
   order?: number;
@@ -454,6 +593,8 @@ export async function getPostData(id: string, subdirectory?: string): Promise<Po
     /<a([^>]*href="(https?:\/\/[^"]+)"[^>]*)>\s*<a([^>]*href="\2"[^>]*)>([\s\S]*?)<\/a>\s*<\/a>/g,
     '<a$1>$4</a>'
   );
+
+  contentHtml = addDarkModeImageVariants(contentHtml);
 
   // Combine the data with the id and contentHtml
   return {
