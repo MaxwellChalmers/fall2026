@@ -25,6 +25,17 @@ const courseConfig = getCourseConfig();
 export const metadata: Metadata = {
   title: courseConfig.title,
   description: courseConfig.description,
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    noimageindex: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
 };
 
 export default function RootLayout({
