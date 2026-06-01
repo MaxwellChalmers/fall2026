@@ -6,7 +6,6 @@ import { useEffect, useMemo, useState } from 'react';
 import {
   Bars3Icon,
   BookOpenIcon,
-  CheckCircleIcon,
   ChevronDownIcon,
   ChevronRightIcon,
   ClipboardDocumentListIcon,
@@ -248,8 +247,7 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
     setPatternsOpen(false);
   };
 
-  const baseLinkClass =
-    'flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition-colors !no-underline !border-0';
+  const baseLinkClass = 'flex items-center gap-3 px-3 py-2 text-sm transition-colors !no-underline !border-0';
 
   function renderNavContent(label: string, Icon: React.ComponentType<React.ComponentProps<'svg'>>) {
     return (
@@ -293,7 +291,7 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
       </div>
 
       <div className="flex-1 overflow-y-auto px-3 py-4 scrollbar-none [&::-webkit-scrollbar]:hidden">
-        <nav className="space-y-1">
+        <nav className="divide-y divide-gray-200 overflow-hidden border-y border-gray-200 dark:divide-gray-800 dark:border-gray-800">
           {navItems.slice(0, 1).map(item => (
             <Link
               key={item.href}
@@ -308,8 +306,8 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
             </Link>
           ))}
 
-          <div className="rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-black">
-            <div className="flex items-center gap-1 p-1">
+          <div className="bg-white dark:bg-black">
+            <div className="flex items-center gap-1">
               <button
                 type="button"
                 onClick={toggleModules}
@@ -334,104 +332,85 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
             </div>
 
             {!collapsed && modulesOpen && (
-              <div className="border-y border-gray-100 py-2 dark:border-gray-900">
-                <div className="space-y-1">
-                  {modules.map(module => {
-                    const isOpen = openModuleId === module.id;
+              <div className="border-t border-gray-200 bg-gray-50 py-2 dark:border-gray-800 dark:bg-gray-950">
+                  <div className="space-y-1">
+                    {modules.map(module => {
+                      const isOpen = openModuleId === module.id;
 
-                    return (
-                      <section
-                        key={module.id}
-                        className={`border transition-colors ${
-                          isOpen
-                            ? 'border-white dark:border-[#2f80d7]/25'
-                            : 'border-transparent bg-transparent hover:bg-slate-50 dark:hover:bg-gray-950/30'
-                        }`}
-                      >
-                        <div className="flex items-center">
-                          <button
-                            type="button"
-                            onClick={() => toggleModule(module.id)}
-                            aria-expanded={isOpen}
-                            className={`group flex w-full min-w-0 items-center gap-2 rounded-lg px-2 py-1.5 text-left text-[13px] font-medium transition-colors ${
-                              isOpen
-                                ? 'text-[#0b5d8f] dark:text-[#8fc4ee]'
-                                : 'text-gray-800 hover:text-[#0b5d8f] dark:text-gray-200 dark:hover:text-[#8fc4ee]'
-                            }`}
-                          >
-                            <span
-                              className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${
+                      return (
+                        <section key={module.id} className="rounded-lg transition-colors">
+                          <div className="flex items-center">
+                            <button
+                              type="button"
+                              onClick={() => toggleModule(module.id)}
+                              aria-expanded={isOpen}
+                              className={`group flex w-full min-w-0 items-center gap-2 rounded-lg px-2 py-1.5 text-left text-[13px] transition-colors ${
                                 isOpen
-                                  ? 'bg-[#0b5d8f] text-white dark:bg-[#2f80d7]'
-                                  : 'bg-gray-100 text-gray-600 group-hover:bg-[#0b5d8f]/10 group-hover:text-[#0b5d8f] dark:bg-gray-900 dark:text-gray-400 dark:group-hover:text-[#8fc4ee]'
+                                  ? 'font-semibold text-[#0b5d8f] dark:text-[#8fc4ee]'
+                                  : 'text-gray-800 hover:bg-white hover:text-[#0b5d8f] dark:text-gray-200 dark:hover:bg-black/50 dark:hover:text-[#8fc4ee]'
                               }`}
                             >
-                              {module.id}
-                            </span>
-                            <span className="line-clamp-2 min-w-0 leading-snug">{module.title}</span>
-                            <ChevronDownIcon
-                              className={`ml-auto h-3.5 w-3.5 shrink-0 text-gray-500 transition-transform dark:text-gray-400 ${
-                                isOpen ? '' : '-rotate-90'
-                              }`}
-                            />
-                          </button>
-                        </div>
-
-                        {isOpen && (
-                          <div className="ml-4 mr-1 mt-1 border-l border-[#0b5d8f]/20 pb-3 pl-3 dark:border-[#2f80d7]/35">
-                            <div className="space-y-0.5">
-                              {module.topics.map(topic => {
-                                const isTopicActive = normalizePath(topic.contentHref) === normalizedPath;
-                                const topicSlug = getTopicSlugFromHref(topic.contentHref);
-                                const isCompleted = topicSlug ? completedTopics[topicSlug] === true : false;
-
-                                return (
-                                  <Link
-                                    key={topic.id}
-                                    href={topic.contentHref}
-                                    className={`relative block rounded-md px-2.5 py-1.5 transition-colors no-underline! border-0! ${
-                                      isTopicActive
-                                        ? 'bg-white text-[#0b5d8f] shadow-sm ring-1 ring-[#0b5d8f]/15 dark:bg-black dark:text-[#8fc4ee] dark:ring-[#2f80d7]/30'
-                                        : 'text-gray-700 hover:bg-white/80 hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/30 dark:hover:text-[#8fc4ee]'
-                                    }`}
-                                  >
-                                    <span
-                                      className="absolute left-[-22px] top-2 flex h-5 w-5 items-center justify-center"
-                                    >
-                                      {isCompleted ? (
-                                        <CheckCircleIcon className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-                                      ) : (
-                                        <span
-                                          className={`h-2.5 w-2.5 rounded-full ${
-                                            isTopicActive
-                                              ? 'bg-[#0b5d8f] dark:bg-[#2f80d7]'
-                                              : 'bg-[#0b5d8f]/20 dark:bg-[#2f80d7]/35'
-                                          }`}
-                                        />
-                                      )}
-                                    </span>
-                                    <span className="min-w-0">
-                                      <span
-                                        className={`block min-w-0 line-clamp-2 text-[13px] leading-snug ${
-                                          isTopicActive ? 'font-semibold' : 'font-normal'
-                                        }`}
-                                      >
-                                        {topic.title}
-                                      </span>
-                                      <span className="mt-0.5 block text-[11px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-500">
-                                        {topic.date}
-                                      </span>
-                                    </span>
-                                  </Link>
-                                );
-                              })}
-                            </div>
+                              <span
+                                className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${
+                                  isOpen
+                                    ? 'bg-[#0b5d8f] text-white dark:bg-[#2f80d7]'
+                                    : 'bg-white text-gray-600 group-hover:bg-[#0b5d8f]/10 group-hover:text-[#0b5d8f] dark:bg-black dark:text-gray-400 dark:group-hover:text-[#8fc4ee]'
+                                }`}
+                              >
+                                {module.id}
+                              </span>
+                              <span className="line-clamp-2 min-w-0 leading-snug">{module.title}</span>
+                              <ChevronDownIcon
+                                className={`ml-auto h-3.5 w-3.5 shrink-0 text-gray-500 transition-transform dark:text-gray-400 ${
+                                  isOpen ? '' : '-rotate-90'
+                                }`}
+                              />
+                            </button>
                           </div>
-                        )}
-                      </section>
-                    );
-                  })}
-                </div>
+
+                          {isOpen && (
+                            <div className="mt-1 pb-3">
+                              <div className="space-y-0.5">
+                                {module.topics.map(topic => {
+                                  const isTopicActive = normalizePath(topic.contentHref) === normalizedPath;
+                                  const topicSlug = getTopicSlugFromHref(topic.contentHref);
+                                  const isCompleted = topicSlug ? completedTopics[topicSlug] === true : false;
+
+                                  return (
+                                    <Link
+                                      key={topic.id}
+                                      href={topic.contentHref}
+                                      className={`block py-1.5 pl-9 pr-2.5 transition-colors no-underline! border-0! ${
+                                        isTopicActive
+                                          ? 'bg-[#0b5d8f]/10 text-[#0b5d8f] dark:bg-[#2f80d7]/15 dark:text-[#8fc4ee]'
+                                          : 'text-gray-700 hover:bg-white hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/50 dark:hover:text-[#8fc4ee]'
+                                      }`}
+                                    >
+                                      <span className="min-w-0">
+                                        <span
+                                          className={`block min-w-0 line-clamp-2 text-[13px] leading-snug ${
+                                            isTopicActive ? 'font-semibold' : 'font-normal'
+                                          }`}
+                                        >
+                                          {topic.title}
+                                        </span>
+                                        <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-500">
+                                          <span>{topic.date}</span>
+                                          {isCompleted && (
+                                            <span className="text-emerald-700 dark:text-emerald-400">Done</span>
+                                          )}
+                                        </span>
+                                      </span>
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+                        </section>
+                      );
+                    })}
+                  </div>
               </div>
             )}
           </div>
@@ -450,8 +429,8 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
             </Link>
           ))}
 
-          <div className="rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-black">
-            <div className="flex items-center gap-1 p-1">
+          <div className="bg-white dark:bg-black">
+            <div className="flex items-center gap-1">
               <button
                 type="button"
                 onClick={togglePatterns}
@@ -476,50 +455,42 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
             </div>
 
             {!collapsed && patternsOpen && (
-              <div className="border-y border-gray-100 py-2 dark:border-gray-900">
-                <div className="ml-4 mr-1 border-l border-[#0b5d8f]/20 pb-2 pl-3 dark:border-[#2f80d7]/35">
-                  <Link
-                    href="/ethical-pattern-recognition-field-guide"
-                    className={`relative block rounded-md px-2.5 py-1.5 text-[13px] transition-colors no-underline! border-0! ${
-                      normalizedPath === '/ethical-pattern-recognition-field-guide'
-                        ? 'bg-white font-semibold text-[#0b5d8f] shadow-sm ring-1 ring-[#0b5d8f]/15 dark:bg-black dark:text-[#8fc4ee] dark:ring-[#2f80d7]/30'
-                        : 'text-gray-700 hover:bg-white/80 hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/30 dark:hover:text-[#8fc4ee]'
-                    }`}
-                  >
-                    <span className="absolute left-[-17px] top-3 h-2 w-2 rounded-full bg-[#0b5d8f]/20 dark:bg-[#2f80d7]/35" />
-                    Overview
-                  </Link>
+              <div className="border-t border-gray-200 bg-gray-50 py-2 dark:border-gray-800 dark:bg-gray-950">
+                  <div className="pb-2">
+                    <Link
+                      href="/ethical-pattern-recognition-field-guide"
+                      className={`block py-1.5 pl-9 pr-2.5 text-[13px] transition-colors no-underline! border-0! ${
+                        normalizedPath === '/ethical-pattern-recognition-field-guide'
+                          ? 'bg-[#0b5d8f]/10 font-semibold text-[#0b5d8f] dark:bg-[#2f80d7]/15 dark:text-[#8fc4ee]'
+                          : 'text-gray-700 hover:bg-white hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/50 dark:hover:text-[#8fc4ee]'
+                      }`}
+                    >
+                      Overview
+                    </Link>
 
-                  <div className="mt-1 space-y-0.5">
-                    {ethicalPatterns.map(pattern => {
-                      const href = `/ethical-pattern-recognition-field-guide/${pattern.slug}`;
-                      const isPatternActive = normalizePath(href) === normalizedPath;
+                    <div className="mt-1 space-y-0.5">
+                      {ethicalPatterns.map(pattern => {
+                        const href = `/ethical-pattern-recognition-field-guide/${pattern.slug}`;
+                        const isPatternActive = normalizePath(href) === normalizedPath;
 
-                      return (
-                        <Link
-                          key={pattern.slug}
-                          href={href}
-                          className={`relative block rounded-md px-2.5 py-1.5 transition-colors no-underline! border-0! ${
-                            isPatternActive
-                              ? 'bg-white text-[#0b5d8f] shadow-sm ring-1 ring-[#0b5d8f]/15 dark:bg-black dark:text-[#8fc4ee] dark:ring-[#2f80d7]/30'
-                              : 'text-gray-700 hover:bg-white/80 hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/30 dark:hover:text-[#8fc4ee]'
-                          }`}
-                        >
-                          <span
-                            className={`absolute left-[-17px] top-3 h-2 w-2 rounded-full ${
+                        return (
+                          <Link
+                            key={pattern.slug}
+                            href={href}
+                            className={`block py-1.5 pl-9 pr-2.5 transition-colors no-underline! border-0! ${
                               isPatternActive
-                                ? 'bg-[#0b5d8f] dark:bg-[#2f80d7]'
-                                : 'bg-[#0b5d8f]/20 dark:bg-[#2f80d7]/35'
+                                ? 'bg-[#0b5d8f]/10 text-[#0b5d8f] dark:bg-[#2f80d7]/15 dark:text-[#8fc4ee]'
+                                : 'text-gray-700 hover:bg-white hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/50 dark:hover:text-[#8fc4ee]'
                             }`}
-                          />
-                          <span className={`block line-clamp-2 text-[13px] leading-snug ${isPatternActive ? 'font-semibold' : 'font-normal'}`}>
-                            {pattern.title}
-                          </span>
-                        </Link>
-                      );
-                    })}
+                          >
+                            <span className={`block line-clamp-2 text-[13px] leading-snug ${isPatternActive ? 'font-semibold' : 'font-normal'}`}>
+                              {pattern.title}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
               </div>
             )}
           </div>
