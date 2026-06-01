@@ -39,53 +39,9 @@ interface SidebarNavClientProps {
 }
 
 const SIDEBAR_COLLAPSED_KEY = 'sidebar-collapsed';
-const modulePanelStyles = [
-  {
-    border: 'border-gray-200 dark:border-gray-800',
-    bg: 'bg-gray-50/70 dark:bg-gray-950/20',
-    topicHover: 'hover:bg-gray-100/80 dark:hover:bg-gray-900/40',
-    topicActive: 'bg-white ring-1 ring-gray-200 dark:bg-black dark:ring-gray-800',
-    contentBlock: 'border-gray-200 bg-white/80 dark:border-gray-800 dark:bg-black/40',
-  },
-  {
-    border: 'border-gray-200 dark:border-gray-800',
-    bg: 'bg-gray-50/70 dark:bg-gray-950/20',
-    topicHover: 'hover:bg-gray-100/80 dark:hover:bg-gray-900/40',
-    topicActive: 'bg-white ring-1 ring-gray-200 dark:bg-black dark:ring-gray-800',
-    contentBlock: 'border-gray-200 bg-white/80 dark:border-gray-800 dark:bg-black/40',
-  },
-  {
-    border: 'border-gray-200 dark:border-gray-800',
-    bg: 'bg-gray-50/70 dark:bg-gray-950/20',
-    topicHover: 'hover:bg-gray-100/80 dark:hover:bg-gray-900/40',
-    topicActive: 'bg-white ring-1 ring-gray-200 dark:bg-black dark:ring-gray-800',
-    contentBlock: 'border-gray-200 bg-white/80 dark:border-gray-800 dark:bg-black/40',
-  },
-  {
-    border: 'border-gray-200 dark:border-gray-800',
-    bg: 'bg-gray-50/70 dark:bg-gray-950/20',
-    topicHover: 'hover:bg-gray-100/80 dark:hover:bg-gray-900/40',
-    topicActive: 'bg-white ring-1 ring-gray-200 dark:bg-black dark:ring-gray-800',
-    contentBlock: 'border-gray-200 bg-white/80 dark:border-gray-800 dark:bg-black/40',
-  },
-  {
-    border: 'border-gray-200 dark:border-gray-800',
-    bg: 'bg-gray-50/70 dark:bg-gray-950/20',
-    topicHover: 'hover:bg-gray-100/80 dark:hover:bg-gray-900/40',
-    topicActive: 'bg-white ring-1 ring-gray-200 dark:bg-black dark:ring-gray-800',
-    contentBlock: 'border-gray-200 bg-white/80 dark:border-gray-800 dark:bg-black/40',
-  },
-  {
-    border: 'border-gray-200 dark:border-gray-800',
-    bg: 'bg-gray-50/70 dark:bg-gray-950/20',
-    topicHover: 'hover:bg-gray-100/80 dark:hover:bg-gray-900/40',
-    topicActive: 'bg-white ring-1 ring-gray-200 dark:bg-black dark:ring-gray-800',
-    contentBlock: 'border-gray-200 bg-white/80 dark:border-gray-800 dark:bg-black/40',
-  },
-];
 
 function normalizePath(path: string) {
-  return (path.replace(/^\/fall2026/, '').replace(/\/$/, '')) || '/';
+  return path.replace(/^\/fall2026/, '').replace(/\/$/, '') || '/';
 }
 
 export default function SidebarNavClient({ courseTitle, modules }: SidebarNavClientProps) {
@@ -95,10 +51,10 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
   const [mounted, setMounted] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [modulesOpen, setModulesOpen] = useState(normalizedPath === '/' || normalizedPath.startsWith('/modules'));
+  const [modulesOpen, setModulesOpen] = useState(normalizedPath === '/' || normalizedPath.startsWith('/modules') || normalizedPath.startsWith('/topics'));
   const [openModuleId, setOpenModuleId] = useState<number | null>(() => {
-    const activeModule = modules.find((module) =>
-      module.topics.some((topic) => normalizePath(topic.contentHref) === normalizedPath)
+    const activeModule = modules.find(module =>
+      module.topics.some(topic => normalizePath(topic.contentHref) === normalizedPath)
     );
     return activeModule?.id ?? modules[0]?.id ?? null;
   });
@@ -121,8 +77,8 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
   }, [pathname]);
 
   useEffect(() => {
-    const activeModule = modules.find((module) =>
-      module.topics.some((topic) => normalizePath(topic.contentHref) === normalizedPath)
+    const activeModule = modules.find(module =>
+      module.topics.some(topic => normalizePath(topic.contentHref) === normalizedPath)
     );
 
     if (activeModule) {
@@ -136,11 +92,11 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
   const activeAssignments = normalizedPath === '/assignments' || normalizedPath.startsWith('/assignments/');
   const activeResources = normalizedPath === '/resources' || normalizedPath.startsWith('/resources/');
   const activeModules = normalizedPath === '/modules' || normalizedPath.startsWith('/topics/');
-  const activeHome = normalizedPath === '/';
+  const activeHome = normalizedPath === '/syllabus';
 
   const navItems = useMemo(
     () => [
-      { label: 'Home', href: '/', icon: HomeIcon, active: activeHome },
+      { label: 'Home', href: '/syllabus', icon: HomeIcon, active: activeHome },
       { label: 'Modules', href: '/modules', icon: RectangleGroupIcon, active: activeModules },
       { label: 'Resources', href: '/resources', icon: BookOpenIcon, active: activeResources },
       { label: 'Assignments', href: '/assignments', icon: ClipboardDocumentListIcon, active: activeAssignments },
@@ -190,11 +146,15 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
       setOpenModuleId(modules[0]?.id ?? null);
       return;
     }
-    setModulesOpen((current) => !current);
+
+    if (!modulesOpen && openModuleId === null) {
+      setOpenModuleId(modules[0]?.id ?? null);
+    }
+    setModulesOpen(current => !current);
   };
 
   const toggleModule = (moduleId: number) => {
-    setOpenModuleId((current) => {
+    setOpenModuleId(current => {
       if (current === moduleId) {
         return null;
       }
@@ -221,7 +181,7 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
       } transition-[width] duration-200`}
     >
       <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4 dark:border-gray-800">
-        <Link href="/" className="!no-underline !border-0 min-w-0">
+        <Link href="/" className="no-underline! border-0! min-w-0">
           <div className={`font-medium text-gray-900 dark:text-gray-100 ${collapsed ? 'text-sm' : 'text-base'}`}>
             {collapsed ? 'SYS' : courseTitle}
           </div>
@@ -246,9 +206,9 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
         )}
       </div>
 
-      <div className="flex-1 overflow-y-auto px-3 py-4">
+      <div className="flex-1 overflow-y-auto px-3 py-4 scrollbar-none [&::-webkit-scrollbar]:hidden">
         <nav className="space-y-1">
-          {navItems.slice(0, 1).map((item) => (
+          {navItems.slice(0, 1).map(item => (
             <Link
               key={item.href}
               href={item.href}
@@ -264,93 +224,133 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
 
           <div className="rounded-xl border border-gray-200 bg-white p-1 dark:border-gray-800 dark:bg-black">
             <div className="flex items-center gap-1">
-              <Link
-                href="/modules"
-                className={`${baseLinkClass} flex-1 ${
+              <button
+                type="button"
+                onClick={toggleModules}
+                aria-expanded={modulesOpen}
+                className={`${baseLinkClass} w-full ${
                   activeModules
                     ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-900 dark:text-gray-100'
                     : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900'
-                } ${collapsed ? 'justify-center' : ''}`}
+                } ${collapsed ? 'justify-center' : 'justify-between'}`}
               >
-                {renderNavContent('Modules', RectangleGroupIcon)}
-              </Link>
-              {!collapsed && (
-                <button
-                  onClick={toggleModules}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-900"
-                  aria-label="Toggle module browser"
-                >
-                  <ChevronDownIcon className={`h-4 w-4 transition-transform ${modulesOpen ? '' : '-rotate-90'}`} />
-                </button>
-              )}
+                <span className="flex min-w-0 items-center gap-3">
+                  {renderNavContent('Modules', RectangleGroupIcon)}
+                </span>
+                {!collapsed && (
+                  <ChevronDownIcon
+                    className={`h-4 w-4 shrink-0 text-gray-500 transition-transform dark:text-gray-400 ${
+                      modulesOpen ? '' : '-rotate-90'
+                    }`}
+                  />
+                )}
+              </button>
             </div>
-          </div>
 
-          {!collapsed && modulesOpen && (
-            <div className="space-y-3 pt-2">
-              {modules.map((module, index) => {
-                const panelStyle = modulePanelStyles[index % modulePanelStyles.length];
-                const isOpen = openModuleId === module.id;
+            {!collapsed && modulesOpen && (
+              <div className="mt-1 border-t border-gray-100 px-1 pt-2 dark:border-gray-900">
+                <div className="space-y-1">
+                  <Link
+                    href="/modules"
+                    className={`block rounded-lg px-2 py-1.5 text-[13px] font-medium transition-colors no-underline! border-0! ${
+                      normalizedPath === '/modules'
+                        ? 'text-[#0b5d8f] dark:text-[#8fc4ee]'
+                        : 'text-gray-700 hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:text-[#8fc4ee]'
+                    }`}
+                  >
+                    Overview
+                  </Link>
+                  {modules.map(module => {
+                    const isOpen = openModuleId === module.id;
 
-                return (
-                <section
-                  key={module.id}
-                  className={`rounded-2xl border p-2 ${panelStyle.border} ${panelStyle.bg}`}
-                >
-                  <div className="flex items-center gap-2">
-                    <Link
-                      href={module.href}
-                      className="flex-1 rounded-xl px-3 py-2 text-sm font-medium text-gray-800 hover:bg-white/70 dark:text-gray-200 dark:hover:bg-black/30 !no-underline !border-0"
-                    >
-                      <span className="block whitespace-normal leading-snug text-sm font-medium text-gray-800 dark:text-gray-200">
-                        {module.id}. {module.title}
-                      </span>
-                    </Link>
-                    <button
-                      onClick={() => toggleModule(module.id)}
-                      className="rounded-lg p-2 text-gray-500 hover:bg-white/70 dark:text-gray-400 dark:hover:bg-black/30"
-                      aria-label={`Toggle ${module.title}`}
-                    >
-                      <ChevronDownIcon
-                        className={`h-4 w-4 transition-transform ${isOpen ? '' : '-rotate-90'}`}
-                      />
-                    </button>
-                  </div>
-
-                  {isOpen && (
-                    <div className="mt-2 space-y-2">
-                      {module.topics.map((topic, topicIndex) => {
-                        const isTopicActive = normalizePath(topic.contentHref) === normalizedPath;
-
-                        return (
-                          <article
-                            key={topic.id}
-                            className={`rounded-xl border border-white/80 p-2 dark:border-gray-800 ${
-                              isTopicActive ? panelStyle.topicActive : ''
+                    return (
+                      <section
+                        key={module.id}
+                        className={`rounded-lg border transition-colors ${
+                          isOpen
+                            ? 'border-white dark:border-[#2f80d7]/25'
+                            : 'border-transparent bg-transparent hover:bg-[#fbfaf7] dark:hover:bg-gray-950/30'
+                        }`}
+                      >
+                        <div className="flex items-center">
+                          <button
+                            type="button"
+                            onClick={() => toggleModule(module.id)}
+                            aria-expanded={isOpen}
+                            className={`group flex w-full min-w-0 items-center gap-2 rounded-lg px-2 py-1.5 text-left text-[13px] font-medium transition-colors ${
+                              isOpen
+                                ? 'text-[#0b5d8f] dark:text-[#8fc4ee]'
+                                : 'text-gray-800 hover:text-[#0b5d8f] dark:text-gray-200 dark:hover:text-[#8fc4ee]'
                             }`}
                           >
-                            <div className={`${topicIndex > 0 ? 'border-t border-black/5 pt-2 dark:border-white/5' : ''}`}>
-                              <Link
-                                href={topic.contentHref}
-                                className={`block min-w-0 rounded-lg px-2 py-1.5 !no-underline !border-0 ${panelStyle.topicHover}`}
-                              >
-                                <span className={`block text-sm text-gray-800 dark:text-gray-200 ${isTopicActive ? 'font-semibold' : 'font-normal'}`}>
-                                  {topic.title}
-                                </span>
-                                <span className="block text-xs text-gray-500 dark:text-gray-500">{topic.date}</span>
-                              </Link>
-                            </div>
-                          </article>
-                        );
-                      })}
-                    </div>
-                  )}
-                </section>
-              )})}
-            </div>
-          )}
+                            <span
+                              className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${
+                                isOpen
+                                  ? 'bg-[#0b5d8f] text-white dark:bg-[#2f80d7]'
+                                  : 'bg-gray-100 text-gray-600 group-hover:bg-[#0b5d8f]/10 group-hover:text-[#0b5d8f] dark:bg-gray-900 dark:text-gray-400 dark:group-hover:text-[#8fc4ee]'
+                              }`}
+                            >
+                              {module.id}
+                            </span>
+                            <span className="line-clamp-2 min-w-0 leading-snug">{module.title}</span>
+                            <ChevronDownIcon
+                              className={`ml-auto h-3.5 w-3.5 shrink-0 text-gray-500 transition-transform dark:text-gray-400 ${
+                                isOpen ? '' : '-rotate-90'
+                              }`}
+                            />
+                          </button>
+                        </div>
 
-          {navItems.slice(2).map((item) => (
+                        {isOpen && (
+                          <div className="ml-4 mr-1 mt-1 border-l border-[#0b5d8f]/20 pb-1.5 pl-3 dark:border-[#2f80d7]/35">
+                            <div className="space-y-0.5">
+                              {module.topics.map(topic => {
+                                const isTopicActive = normalizePath(topic.contentHref) === normalizedPath;
+
+                                return (
+                                  <Link
+                                    key={topic.id}
+                                    href={topic.contentHref}
+                                    className={`relative block rounded-md px-2.5 py-1.5 transition-colors no-underline! border-0! ${
+                                      isTopicActive
+                                        ? 'bg-white text-[#0b5d8f] shadow-sm ring-1 ring-[#0b5d8f]/15 dark:bg-black dark:text-[#8fc4ee] dark:ring-[#2f80d7]/30'
+                                        : 'text-gray-700 hover:bg-white/80 hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/30 dark:hover:text-[#8fc4ee]'
+                                    }`}
+                                  >
+                                    <span
+                                      className={`absolute left-[-17px] top-3 h-2 w-2 rounded-full ${
+                                        isTopicActive
+                                          ? 'bg-[#0b5d8f] dark:bg-[#2f80d7]'
+                                          : 'bg-[#0b5d8f]/20 dark:bg-[#2f80d7]/35'
+                                      }`}
+                                    />
+                                    <span className="min-w-0">
+                                      <span
+                                        className={`block line-clamp-2 text-[13px] leading-snug ${
+                                          isTopicActive ? 'font-semibold' : 'font-normal'
+                                        }`}
+                                      >
+                                        {topic.title}
+                                      </span>
+                                      <span className="mt-0.5 block text-[11px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-500">
+                                        {topic.date}
+                                      </span>
+                                    </span>
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+                      </section>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {navItems.slice(2).map(item => (
             <Link
               key={item.href}
               href={item.href}
@@ -390,15 +390,13 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
         >
           <Bars3Icon className="h-6 w-6" />
         </button>
-        <Link href="/" className="text-sm font-medium text-gray-900 dark:text-gray-100 !no-underline !border-0">
+        <Link href="/" className="text-sm font-medium text-gray-900 dark:text-gray-100 no-underline! border-0!">
           {courseTitle}
         </Link>
         <div className="w-10" aria-hidden="true" />
       </div>
 
-      <aside className="hidden md:block md:h-screen md:shrink-0">
-        {sidebarInner}
-      </aside>
+      <aside className="hidden md:block md:h-screen md:shrink-0">{sidebarInner}</aside>
 
       {mobileOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
