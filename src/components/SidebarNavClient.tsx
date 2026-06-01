@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import {
   Bars3Icon,
@@ -41,11 +41,12 @@ interface SidebarNavClientProps {
 const SIDEBAR_COLLAPSED_KEY = 'sidebar-collapsed';
 
 function normalizePath(path: string) {
-  return path.replace(/^\/fall2026/, '').replace(/\/$/, '') || '/';
+  return (path.replace(/^\/fall2026/, '').replace(/\/$/, '')) || '/';
 }
 
 export default function SidebarNavClient({ courseTitle, modules }: SidebarNavClientProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const normalizedPath = normalizePath(pathname);
   const isDark = useDarkMode();
   const [mounted, setMounted] = useState(false);
@@ -53,8 +54,8 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
   const [mobileOpen, setMobileOpen] = useState(false);
   const [modulesOpen, setModulesOpen] = useState(normalizedPath === '/' || normalizedPath.startsWith('/modules') || normalizedPath.startsWith('/topics'));
   const [openModuleId, setOpenModuleId] = useState<number | null>(() => {
-    const activeModule = modules.find(module =>
-      module.topics.some(topic => normalizePath(topic.contentHref) === normalizedPath)
+    const activeModule = modules.find((module) =>
+      module.topics.some((topic) => normalizePath(topic.contentHref) === normalizedPath)
     );
     return activeModule?.id ?? modules[0]?.id ?? null;
   });
@@ -77,8 +78,8 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
   }, [pathname]);
 
   useEffect(() => {
-    const activeModule = modules.find(module =>
-      module.topics.some(topic => normalizePath(topic.contentHref) === normalizedPath)
+    const activeModule = modules.find((module) =>
+      module.topics.some((topic) => normalizePath(topic.contentHref) === normalizedPath)
     );
 
     if (activeModule) {
@@ -144,17 +145,24 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
       localStorage.setItem(SIDEBAR_COLLAPSED_KEY, 'false');
       setModulesOpen(true);
       setOpenModuleId(modules[0]?.id ?? null);
+      router.push('/modules');
       return;
     }
 
-    if (!modulesOpen && openModuleId === null) {
-      setOpenModuleId(modules[0]?.id ?? null);
+    if (!modulesOpen) {
+      if (openModuleId === null) {
+        setOpenModuleId(modules[0]?.id ?? null);
+      }
+      setModulesOpen(true);
+      router.push('/modules');
+      return;
     }
-    setModulesOpen(current => !current);
+
+    setModulesOpen(false);
   };
 
   const toggleModule = (moduleId: number) => {
-    setOpenModuleId(current => {
+    setOpenModuleId((current) => {
       if (current === moduleId) {
         return null;
       }
@@ -208,7 +216,7 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
 
       <div className="flex-1 overflow-y-auto px-3 py-4 scrollbar-none [&::-webkit-scrollbar]:hidden">
         <nav className="space-y-1">
-          {navItems.slice(0, 1).map(item => (
+          {navItems.slice(0, 1).map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -222,8 +230,8 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
             </Link>
           ))}
 
-          <div className="rounded-xl border border-gray-200 bg-white p-1 dark:border-gray-800 dark:bg-black">
-            <div className="flex items-center gap-1">
+          <div className="rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-black">
+            <div className="flex items-center gap-1 p-1">
               <button
                 type="button"
                 onClick={toggleModules}
@@ -248,25 +256,15 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
             </div>
 
             {!collapsed && modulesOpen && (
-              <div className="mt-1 border-t border-gray-100 px-1 pt-2 dark:border-gray-900">
+              <div className="border-y border-gray-100 py-2 dark:border-gray-900">
                 <div className="space-y-1">
-                  <Link
-                    href="/modules"
-                    className={`block rounded-lg px-2 py-1.5 text-[13px] font-medium transition-colors no-underline! border-0! ${
-                      normalizedPath === '/modules'
-                        ? 'text-[#0b5d8f] dark:text-[#8fc4ee]'
-                        : 'text-gray-700 hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:text-[#8fc4ee]'
-                    }`}
-                  >
-                    Overview
-                  </Link>
-                  {modules.map(module => {
+                  {modules.map((module) => {
                     const isOpen = openModuleId === module.id;
 
                     return (
                       <section
                         key={module.id}
-                        className={`rounded-lg border transition-colors ${
+                        className={`border transition-colors ${
                           isOpen
                             ? 'border-white dark:border-[#2f80d7]/25'
                             : 'border-transparent bg-transparent hover:bg-[#fbfaf7] dark:hover:bg-gray-950/30'
@@ -302,9 +300,9 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
                         </div>
 
                         {isOpen && (
-                          <div className="ml-4 mr-1 mt-1 border-l border-[#0b5d8f]/20 pb-1.5 pl-3 dark:border-[#2f80d7]/35">
+                          <div className="ml-4 mr-1 mt-1 border-l border-[#0b5d8f]/20 pb-3 pl-3 dark:border-[#2f80d7]/35">
                             <div className="space-y-0.5">
-                              {module.topics.map(topic => {
+                              {module.topics.map((topic) => {
                                 const isTopicActive = normalizePath(topic.contentHref) === normalizedPath;
 
                                 return (
@@ -350,7 +348,7 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
             )}
           </div>
 
-          {navItems.slice(2).map(item => (
+          {navItems.slice(2).map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -396,7 +394,9 @@ export default function SidebarNavClient({ courseTitle, modules }: SidebarNavCli
         <div className="w-10" aria-hidden="true" />
       </div>
 
-      <aside className="hidden md:block md:h-screen md:shrink-0">{sidebarInner}</aside>
+      <aside className="hidden md:block md:h-screen md:shrink-0">
+        {sidebarInner}
+      </aside>
 
       {mobileOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
