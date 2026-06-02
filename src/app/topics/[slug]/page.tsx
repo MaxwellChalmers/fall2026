@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ContentLayout from '@/components/ContentLayout';
+import HorizontalCardStrip from '@/components/HorizontalCardStrip';
+import type { HorizontalCardStripItem } from '@/components/HorizontalCardStrip';
 import MarkdownContent from '@/components/MarkdownContent';
 import TopicSectionNav from '@/components/TopicSectionNav';
 import type { TopicSectionNavItem } from '@/components/TopicSectionNav';
@@ -95,6 +97,124 @@ function renderReading(citation: string | ReactElement, url?: string) {
   return citation;
 }
 
+function decodeHtmlText(text: string) {
+  return text
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&#x26;/gi, '&')
+    .replace(/&#38;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
+}
+
+function getPlainTextFromHtml(html: string) {
+  return decodeHtmlText(html.replace(/<[^>]+>/g, '').trim());
+}
+
+function slugifyForId(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/&amp;/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function splitHtmlByHeading(content: string, headingLevel: 2 | 3) {
+  const headingRegex = new RegExp(`<h${headingLevel}[^>]*>([\\s\\S]*?)<\\/h${headingLevel}>`, 'gi');
+  const sections: Array<{ label: string; content: string; headingHtml: string }> = [];
+  let currentLabel = '';
+  let currentHeadingHtml = '';
+  let currentStart = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = headingRegex.exec(content)) !== null) {
+    const sectionContent = content.slice(currentStart, match.index).trim();
+
+    if (sectionContent) {
+      sections.push({
+        label: currentLabel,
+        content: sectionContent,
+        headingHtml: currentHeadingHtml,
+      });
+    }
+
+    currentLabel = getPlainTextFromHtml(match[1]);
+    currentHeadingHtml = match[0];
+    currentStart = match.index + match[0].length;
+  }
+
+  const finalContent = content.slice(currentStart).trim();
+  if (finalContent) {
+    sections.push({
+      label: currentLabel,
+      content: finalContent,
+      headingHtml: currentHeadingHtml,
+    });
+  }
+
+  return sections;
+}
+
+function splitSlideCards(content: string): {
+  intro: string;
+  items: HorizontalCardStripItem[];
+} {
+  const sections = splitHtmlByHeading(content, 3);
+  const items: HorizontalCardStripItem[] = [];
+  let intro = '';
+
+  sections.forEach(section => {
+    if (!section.label) {
+      intro = section.content;
+      return;
+    }
+
+    items.push({
+      id: slugifyForId(section.label),
+      label: section.label,
+      content: section.content,
+    });
+  });
+
+  return { intro, items };
+}
+
+function TopicOverviewMarkdown({ content }: { content: string }) {
+  const sections = splitHtmlByHeading(content, 2);
+
+  if (!sections.some(section => section.label.toLowerCase() === 'slides')) {
+    return <MarkdownContent content={content} />;
+  }
+
+  return (
+    <div className="space-y-8">
+      {sections.map((section, index) => {
+        const key = `${section.label || 'intro'}-${index}`;
+
+        if (section.label.toLowerCase() !== 'slides') {
+          return <MarkdownContent key={key} content={`${section.headingHtml}${section.content}`} />;
+        }
+
+        const { intro, items } = splitSlideCards(section.content);
+
+        return (
+          <div key={key} className="min-w-0 space-y-4">
+            <MarkdownContent content={section.headingHtml} />
+            <HorizontalCardStrip
+              intro={intro}
+              items={items}
+              cardClassName="bg-yellow-50 dark:bg-yellow-950/20"
+              cardLayoutClassName="w-[22rem] p-6 sm:w-[28rem]"
+              cardContentClassName="[&_p]:text-base [&_ul]:pl-5! [&_li]:my-1.5"
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function EditorialSection({
   id,
   label,
@@ -113,15 +233,8 @@ function EditorialSection({
   return (
     <section
       id={id}
-      className="scroll-mt-24 grid gap-8 border-t border-gray-200 pt-7 dark:border-gray-800 md:grid-cols-[10rem_1fr]"
+      className="scroll-mt-24 grid gap-8 border-t border-gray-200 pt-7 dark:border-gray-800"
     >
-      <div className="border-b border-gray-200 pb-4 dark:border-gray-800 md:border-b-0 md:border-r md:pb-0 md:pr-5">
-        <p
-          className={`mb-0 text-xs font-semibold uppercase tracking-[0.18em] text-[#0b5d8f] dark:text-[#8fc4ee] ${labelClassName || ''}`}
-        >
-          {label}
-        </p>
-      </div>
       <div>
         {title && (
           <h2
@@ -631,7 +744,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
     let overviewData: Awaited<ReturnType<typeof getPostData>>;
 
     try {
-      overviewData = await getPostData(overviewTopic.slug || slug, 'module-overviews');
+      overviewData = await getPostData(overviewTopic.moduleContentId || overviewTopic.slug || slug, 'modules');
     } catch {
       notFound();
     }
@@ -689,6 +802,9 @@ export default async function TopicPage({ params }: TopicPageProps) {
   const readings = meeting.readings || [];
   const optionalReadings = meeting.optionalReadings || [];
   const activities = (meeting.activities || []).filter(activity => activity.excluded !== 1);
+  const topicPostData = meeting.topicContentId
+    ? await getPostData(meeting.topicContentId, 'topics').catch(() => null)
+    : null;
   const embeddedTopicContent = await getEmbeddedTopicContent(meeting);
   const anchorByHref = new Map(embeddedTopicContent.map(item => [normalizeHref(item.sourceHref), item.contentHref]));
   const topicWorkItems = buildTopicWorkItems({
@@ -704,15 +820,15 @@ export default async function TopicPage({ params }: TopicPageProps) {
   topicSections.push({
     navItem: { id: 'topic-overview', label: 'Overview' },
     panel: (
-      <EditorialSection key="topic-overview" label="Topic Overview" title="Topic Overview">
-        <div className="max-w-4xl text-lg leading-8 text-gray-800 dark:text-gray-200">
-          {typeof meeting.description === 'string' ? (
-            <p className="mb-0">{meeting.description}</p>
+        <div className="max-w-4xl">
+          {topicPostData?.content.trim() ? (
+            <TopicOverviewMarkdown content={topicPostData.content} />
+          ) : typeof meeting.description === 'string' ? (
+            <p className="mb-0 text-lg leading-8 text-gray-800 dark:text-gray-200">{meeting.description}</p>
           ) : (
             meeting.description
           )}
         </div>
-      </EditorialSection>
     ),
   });
 

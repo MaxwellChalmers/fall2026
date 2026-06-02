@@ -1,6 +1,10 @@
 ---
-title: 'Brain-Inspired Computing and Neuromorphic Systems'
+id: 3
+slug: brain-inspired-computing-and-neuromorphic-systems
+title: 'Brain-Inspired Computing'
 excerpt: 'This module builds technical grounding in neural networks, spiking systems, and neuromorphic hardware while questioning easy brain metaphors.'
+unit_focus: 'Students build technical grounding in neuroscience metaphors, neural networks, spiking systems, timing, and neuromorphic architectures without collapsing those systems into myths of human-like intelligence.'
+braid_elsi_arc: 'The unit prepares students to analyze how brain metaphors, material substrates, and hardware design choices affect public understanding, trust, and governance.'
 ---
 
 This module introduces brain-inspired computing without treating the brain as a simple blueprint for AI. Students compare biological neurons, artificial neural networks, spiking neural networks, and neuromorphic architectures while asking what each comparison clarifies and what it can distort.

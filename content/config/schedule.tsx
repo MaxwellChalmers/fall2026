@@ -1,32 +1,11 @@
 import React from 'react';
-import topicsConfig from './topics.json';
 import taxonomyConfig from './taxonomy.json';
-
-interface TopicMeetingConfig {
-  slug: string;
-  title: string;
-  focus: string;
-  ethicalPatterns: string[];
-  recognitionPatternNotes?: string[];
-  themes: string[];
-  braidElsiConnection: string;
-}
-
-interface TopicModuleConfig {
-  id: number;
-  slug: string;
-  title: string;
-  ethicalPatterns: string[];
-  recognitionPatternNotes?: string[];
-  themes: string[];
-  unitFocus: string;
-  braidElsiArc?: string;
-  meetings: TopicMeetingConfig[];
-}
-
-interface TopicsConfigFile {
-  modules: TopicModuleConfig[];
-}
+import { getAllModuleMarkdownMetadata, type ModuleMarkdownMetadata } from '../../src/lib/module-markdown';
+import {
+  getTopicMarkdownByModule,
+  getTopicMarkdownBySlug,
+  type TopicMarkdownMetadata,
+} from '../../src/lib/topic-markdown';
 
 interface SemesterActivity {
   title: string;
@@ -50,14 +29,33 @@ const patternTitleBySlug = Object.fromEntries(
   (taxonomyConfig.ethicalPatterns || []).map(pattern => [pattern.slug, pattern.title])
 ) as Record<string, string>;
 
-const topicModules = (topicsConfig as TopicsConfigFile).modules;
+const modules = getAllModuleMarkdownMetadata();
 
 function getRecognitionPatternLabels(patternSlugs: string[], notes?: string[]) {
   return [...patternSlugs.map(slug => patternTitleBySlug[slug] || slug), ...(notes || [])];
 }
 
-function renderModuleDescription(module: TopicModuleConfig) {
-  const recognitionPatterns = getRecognitionPatternLabels(module.ethicalPatterns, module.recognitionPatternNotes);
+function uniqueStrings(values: Array<string | undefined>) {
+  return Array.from(new Set(values.filter((value): value is string => typeof value === 'string' && value.length > 0)));
+}
+
+function getModuleTopicMetadata(moduleSlug: string) {
+  const topics = getTopicMarkdownByModule(moduleSlug);
+  const recognitionPatternNotes = uniqueStrings(topics.flatMap(topic => topic.recognitionPatternNotes || []));
+
+  return {
+    ethicalPatterns: uniqueStrings(topics.flatMap(topic => topic.ethicalPatterns)),
+    recognitionPatternNotes: recognitionPatternNotes.length > 0 ? recognitionPatternNotes : undefined,
+    themes: uniqueStrings(topics.flatMap(topic => topic.themes)),
+  };
+}
+
+function renderModuleDescription(module: ModuleMarkdownMetadata) {
+  const moduleMetadata = getModuleTopicMetadata(module.slug);
+  const recognitionPatterns = getRecognitionPatternLabels(
+    moduleMetadata.ethicalPatterns,
+    moduleMetadata.recognitionPatternNotes
+  );
 
   return (
     <>
@@ -80,7 +78,7 @@ function renderModuleDescription(module: TopicModuleConfig) {
   );
 }
 
-function renderMeetingDescription(meeting: TopicMeetingConfig) {
+function renderMeetingDescription(meeting: TopicMarkdownMetadata) {
   const recognitionPatterns = getRecognitionPatternLabels(meeting.ethicalPatterns, meeting.recognitionPatternNotes);
 
   return (
@@ -107,19 +105,28 @@ function renderMeetingDescription(meeting: TopicMeetingConfig) {
   );
 }
 
-function buildMeeting(module: TopicModuleConfig, semesterMeeting: SemesterMeetingConfig) {
-  const meeting = module.meetings.find(item => item.slug === semesterMeeting.meetingSlug);
+function buildMeeting(module: ModuleMarkdownMetadata, semesterMeeting: SemesterMeetingConfig) {
+  const meeting = getTopicMarkdownBySlug(semesterMeeting.meetingSlug);
 
   if (!meeting) {
-    throw new Error(`Missing meeting slug "${semesterMeeting.meetingSlug}" for module "${module.slug}"`);
+    throw new Error(`Missing topic markdown slug "${semesterMeeting.meetingSlug}" for module "${module.slug}"`);
+  }
+
+  if (meeting.module !== module.slug) {
+    throw new Error(
+      `Topic markdown slug "${meeting.slug}" belongs to module "${meeting.module}", but schedule places it in "${module.slug}"`
+    );
   }
 
   return {
     slug: meeting.slug,
     topic: meeting.title,
     date: semesterMeeting.date,
-    description: semesterMeeting.holiday ? 'No class.' : renderMeetingDescription(meeting),
-    holiday: semesterMeeting.holiday || false,
+    description: semesterMeeting.holiday || meeting.holiday ? 'No class.' : renderMeetingDescription(meeting),
+    holiday: semesterMeeting.holiday || meeting.holiday || false,
+    topicContentId: meeting.id,
+    focus: meeting.focus,
+    braidElsiConnection: meeting.braidElsiConnection,
     activities: semesterMeeting.activities,
     ethicalPatterns: meeting.ethicalPatterns,
     recognitionPatternNotes: meeting.recognitionPatternNotes,
@@ -392,20 +399,23 @@ const semesterSchedule: SemesterModuleConfig[] = [
 ];
 
 export const baseTopics = semesterSchedule.map(scheduledModule => {
-  const module = topicModules.find(item => item.slug === scheduledModule.moduleSlug);
+  const module = modules.find(item => item.slug === scheduledModule.moduleSlug);
 
   if (!module) {
-    throw new Error(`Missing module slug "${scheduledModule.moduleSlug}" in topics.json`);
+    throw new Error(`Missing module slug "${scheduledModule.moduleSlug}" in content/modules`);
   }
+
+  const moduleMetadata = getModuleTopicMetadata(module.slug);
 
   return {
     id: module.id,
     slug: module.slug,
+    moduleContentId: module.contentId,
     title: module.title,
     description: renderModuleDescription(module),
-    ethicalPatterns: module.ethicalPatterns,
-    recognitionPatternNotes: module.recognitionPatternNotes,
-    themes: module.themes,
+    ethicalPatterns: moduleMetadata.ethicalPatterns,
+    recognitionPatternNotes: moduleMetadata.recognitionPatternNotes,
+    themes: moduleMetadata.themes,
     meetings: scheduledModule.meetings.map(meeting => buildMeeting(module, meeting)),
   };
 });

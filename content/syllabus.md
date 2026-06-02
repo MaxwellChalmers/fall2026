@@ -66,7 +66,7 @@ Major topics include:
 - anticipatory governance of emerging technologies
 - career readiness, professional storytelling, and public communication
 
-Please see the [course schedule](/) for the full module and meeting sequence.
+The full module and meeting sequence appears below.
 
 ## Assessment
 

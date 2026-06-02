@@ -59,7 +59,7 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
         <TopicContextBanner context={topicContext} />
         <Breadcrumbs
           items={[
-            { label: 'Schedule', href: '/' },
+            { label: 'Syllabus', href: '/' },
             { label: postData.title },
           ]}
         />

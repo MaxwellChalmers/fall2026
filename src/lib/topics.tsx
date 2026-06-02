@@ -48,6 +48,9 @@ export interface Meeting {
   date: string;
   topic: string;
   description?: string | React.ReactElement;
+  topicContentId?: string;
+  focus?: string;
+  braidElsiConnection?: string;
   activities?: Activity[];
   quizzes?: Quiz[];
   scheduleQuizzes?: ScheduleQuiz[]; // Quizzes from schedule.tsx with quizName and url
@@ -65,6 +68,7 @@ export interface Meeting {
 export interface Topic {
   id: number;
   slug?: string;
+  moduleContentId?: string;
   title: string;
   description: string | React.ReactElement;
   meetings: Meeting[];
@@ -84,6 +88,9 @@ interface BaseMeeting {
   date: string;
   topic: string;
   description?: string | React.ReactElement;
+  topicContentId?: string;
+  focus?: string;
+  braidElsiConnection?: string;
   activities?: Activity[];
   quizzes?: (Quiz | Reading | ScheduleQuizInput)[]; // Can contain Quiz, Reading (citation), or ScheduleQuiz (quizName/url) from schedule.tsx
   readings?: Reading[];
@@ -100,6 +107,7 @@ interface BaseMeeting {
 interface BaseTopic {
   id: number;
   slug?: string;
+  moduleContentId?: string;
   title: string;
   description: string | React.ReactElement;
   meetings: BaseMeeting[];

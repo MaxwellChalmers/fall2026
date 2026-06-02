@@ -1,5 +1,6 @@
-import topicsData from '../../content/config/topics.json';
 import featuredRelationsData from '../../content/config/featured-relations.json';
+import { getAllModuleMarkdownMetadata } from './module-markdown';
+import { getTopicMarkdownByModule } from './topic-markdown';
 
 export interface TopicMeetingConfig {
   slug: string;
@@ -11,22 +12,21 @@ export interface TopicMeetingConfig {
   braidElsiConnection: string;
 }
 
-export interface TopicModuleConfig {
+interface TopicModuleConfigBase {
+  contentId: string;
   id: number;
   slug: string;
   title: string;
+  excerpt?: string;
+  unitFocus: string;
+  braidElsiArc?: string;
+}
+
+export interface TopicModuleConfig extends TopicModuleConfigBase {
   ethicalPatterns: string[];
   recognitionPatternNotes?: string[];
   themes: string[];
-  unitFocus: string;
-  braidElsiArc?: string;
   meetings: TopicMeetingConfig[];
-}
-
-interface TopicsConfigFile {
-  version: number;
-  description: string;
-  modules: TopicModuleConfig[];
 }
 
 interface FeaturedPatternRelations {
@@ -48,23 +48,41 @@ interface FeaturedRelationsFile {
   topics: Record<string, FeaturedTopicRelations>;
 }
 
-const topicsConfig = topicsData as TopicsConfigFile;
 const featuredRelations = featuredRelationsData as FeaturedRelationsFile;
 
-export function getTopicsConfig() {
-  return topicsConfig;
+function uniqueStrings(values: Array<string | undefined>) {
+  return Array.from(new Set(values.filter((value): value is string => typeof value === 'string' && value.length > 0)));
 }
 
 export function getTopicModules() {
-  return topicsConfig.modules;
+  return getAllModuleMarkdownMetadata().map(module => {
+    const topics = getTopicMarkdownByModule(module.slug);
+    const recognitionPatternNotes = uniqueStrings(topics.flatMap(topic => topic.recognitionPatternNotes || []));
+
+    return {
+      ...module,
+      ethicalPatterns: uniqueStrings(topics.flatMap(topic => topic.ethicalPatterns)),
+      recognitionPatternNotes: recognitionPatternNotes.length > 0 ? recognitionPatternNotes : undefined,
+      themes: uniqueStrings(topics.flatMap(topic => topic.themes)),
+      meetings: topics.map(topic => ({
+        slug: topic.slug,
+        title: topic.title,
+        focus: topic.focus,
+        ethicalPatterns: topic.ethicalPatterns,
+        recognitionPatternNotes: topic.recognitionPatternNotes,
+        themes: topic.themes,
+        braidElsiConnection: topic.braidElsiConnection,
+      })),
+    };
+  });
 }
 
 export function getTopicModuleBySlug(moduleSlug: string) {
-  return topicsConfig.modules.find((module) => module.slug === moduleSlug);
+  return getTopicModules().find((module) => module.slug === moduleSlug);
 }
 
 export function getTopicMeetingBySlug(meetingSlug: string) {
-  for (const module of topicsConfig.modules) {
+  for (const module of getTopicModules()) {
     const meeting = module.meetings.find((item) => item.slug === meetingSlug);
     if (meeting) {
       return { module, meeting };

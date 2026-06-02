@@ -50,11 +50,10 @@ course-website/
 │   └── resources.md        # Course resources
 ├── src/
 │   ├── app/               # Next.js app router pages
-│   │   ├── page.tsx       # Home page
-│   │   ├── syllabus/      # Syllabus page
+│   │   ├── page.tsx       # Syllabus home page
+│   │   ├── syllabus/      # Syllabus compatibility route
 │   │   ├── assignments/   # Assignments page
-│   │   ├── resources/     # Resources page
-│   │   └── schedule/      # Schedule page
+│   │   └── resources/     # Resources page
 │   └── lib/               # Utility functions
 │       └── markdown.ts    # Markdown parsing utilities
 ├── public/                 # Static assets

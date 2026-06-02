@@ -1,6 +1,10 @@
 ---
+id: 5
+slug: governing-uncertain-futures
 title: 'Governing Uncertain Futures'
 excerpt: 'This module turns technical and ethical analysis into stakeholder questions, governance frameworks, and public-facing proposals.'
+unit_focus: 'Students connect stakeholders, harms, benefits, history, alternatives, and governance frameworks in order to draft public-facing analyses and proposals.'
+braid_elsi_arc: 'The central question becomes how to govern anomaly detection and other emerging AI systems before their assumptions, harms, and dependencies become locked in.'
 ---
 
 This module focuses on anticipatory governance: how people can reason about emerging technologies before their assumptions, incentives, and dependencies become difficult to change.

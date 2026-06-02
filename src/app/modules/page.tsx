@@ -15,7 +15,7 @@ export default function ModulesPage() {
         />
 
         <section className="grid gap-8 lg:grid-cols-2">
-          {modules.map((module) => {
+          {modules.map(module => {
             const patternCount = module.ethicalPatterns.length + (module.recognitionPatternNotes?.length || 0);
 
             return (
@@ -38,36 +38,34 @@ export default function ModulesPage() {
                     </h2>
                   </div>
                   <span className="rounded-full border border-gray-200 px-2.5 py-1 text-xs font-medium text-gray-700 dark:border-gray-800 dark:text-gray-300">
-                    {module.meetings.length + 1} pages
+                    {module.meetings.length + 1} topics
                   </span>
                 </div>
 
-                <p className="mb-0 mt-4 text-sm leading-6 text-gray-700 dark:text-gray-300">
-                  {module.unitFocus}
-                </p>
+                <p className="mb-0 mt-4 text-sm leading-6 text-gray-700 dark:text-gray-300">{module.unitFocus}</p>
 
                 {module.braidElsiArc && (
                   <p className="mb-0 mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400">
-                    <span className="font-semibold text-gray-800 dark:text-gray-200">BRAID / ELSI arc:</span>{' '}
+                    <span className="font-semibold text-gray-800 dark:text-gray-200">BRAID / ELSI Connection:</span>{' '}
                     {module.braidElsiArc}
                   </p>
                 )}
 
-                <div className="mt-4 flex flex-wrap gap-2">
+                {/* <div className="mt-4 flex flex-wrap gap-2">
                   <span className="rounded-full border border-gray-200 px-2.5 py-1 text-xs font-medium text-gray-700 dark:border-gray-800 dark:text-gray-300">
                     {patternCount} recognition patterns
                   </span>
                   <span className="rounded-full border border-gray-200 px-2.5 py-1 text-xs font-medium text-gray-700 dark:border-gray-800 dark:text-gray-300">
                     {module.themes.length} linked themes
                   </span>
-                </div>
+                </div> */}
 
-                <Link
+                {/* <Link
                   href={`/topics/${module.slug}`}
                   className="mt-5 inline-flex rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-900 no-underline transition-colors hover:border-[#0b5d8f] hover:text-[#0b5d8f] dark:border-gray-800 dark:text-gray-100 dark:hover:border-[#8fc4ee] dark:hover:text-[#8fc4ee]"
                 >
                   View module overview
-                </Link>
+                </Link> */}
               </article>
             );
           })}

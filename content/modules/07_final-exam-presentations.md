@@ -1,6 +1,9 @@
 ---
+id: 7
+slug: final-exam-presentations
 title: 'Final Exam / Presentations'
 excerpt: 'This module is the course culmination, where students present a public-facing synthesis of technical explanation and governance analysis.'
+unit_focus: 'Final presentations synthesize technical explanation, public communication, and governance analysis.'
 ---
 
 This module is the culminating presentation sequence for the course. Students bring together technical explanation, ethical analysis, stakeholder reasoning, and governance recommendations.

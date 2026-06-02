@@ -6,14 +6,14 @@ import { useEffect, useMemo, useState } from 'react';
 import {
   Bars3Icon,
   BookOpenIcon,
+  CalendarDaysIcon,
   ChevronDownIcon,
   ChevronRightIcon,
   ClipboardDocumentListIcon,
   FolderIcon,
   HomeIcon,
   MoonIcon,
-  RectangleGroupIcon,
-  SparklesIcon,
+  ScaleIcon,
   SunIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
@@ -34,16 +34,9 @@ interface SidebarModuleItem {
   topics: SidebarTopicItem[];
 }
 
-interface SidebarPatternItem {
-  slug: string;
-  title: string;
-  order?: number;
-}
-
 interface SidebarNavClientProps {
   courseTitle: string;
   modules: SidebarModuleItem[];
-  ethicalPatterns: SidebarPatternItem[];
 }
 
 const SIDEBAR_COLLAPSED_KEY = 'sidebar-collapsed';
@@ -56,7 +49,7 @@ function getTopicSlugFromHref(href: string) {
   return href.match(/\/topics\/([^/#?]+)/)?.[1] || null;
 }
 
-export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns }: SidebarNavClientProps) {
+export default function SidebarNavClient({ courseTitle, modules }: SidebarNavClientProps) {
   const pathname = usePathname();
   const router = useRouter();
   const normalizedPath = normalizePath(pathname);
@@ -66,10 +59,7 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
   const [mobileOpen, setMobileOpen] = useState(false);
   const [completedTopics, setCompletedTopics] = useState<Record<string, boolean>>({});
   const [modulesOpen, setModulesOpen] = useState(
-    normalizedPath === '/' || normalizedPath.startsWith('/modules') || normalizedPath.startsWith('/topics')
-  );
-  const [patternsOpen, setPatternsOpen] = useState(
-    normalizedPath.startsWith('/ethical-pattern-recognition-field-guide')
+    normalizedPath.startsWith('/modules') || normalizedPath.startsWith('/topics')
   );
   const [openModuleId, setOpenModuleId] = useState<number | null>(() => {
     const activeModule = modules.find(module =>
@@ -151,12 +141,12 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
   const activeAssignments = normalizedPath === '/assignments' || normalizedPath.startsWith('/assignments/');
   const activeResources = normalizedPath === '/resources' || normalizedPath.startsWith('/resources/');
   const activeModules = normalizedPath === '/modules' || normalizedPath.startsWith('/topics/');
-  const activeHome = normalizedPath === '/syllabus';
+  const activeHome = normalizedPath === '/' || normalizedPath === '/syllabus';
 
   const navItems = useMemo(
     () => [
-      { label: 'Home', href: '/syllabus', icon: HomeIcon, active: activeHome },
-      { label: 'Modules', href: '/modules', icon: RectangleGroupIcon, active: activeModules },
+      { label: 'Home', href: '/', icon: HomeIcon, active: activeHome },
+      { label: 'Course Schedule', href: '/modules', icon: CalendarDaysIcon, active: activeModules },
       { label: 'Resources', href: '/resources', icon: BookOpenIcon, active: activeResources },
       { label: 'Assignments', href: '/assignments', icon: ClipboardDocumentListIcon, active: activeAssignments },
       {
@@ -168,7 +158,8 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
       {
         label: 'Ethical Pattern Recognition Field Guide',
         href: '/ethical-pattern-recognition-field-guide',
-        icon: SparklesIcon,
+        icon: ScaleIcon,
+        tone: 'violet' as const,
         active: activePatternGuide,
       },
     ],
@@ -193,7 +184,6 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
 
     if (newValue) {
       setModulesOpen(false);
-      setPatternsOpen(false);
       setOpenModuleId(null);
     }
   };
@@ -229,30 +219,24 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
     });
   };
 
-  const togglePatterns = () => {
-    if (collapsed) {
-      setCollapsed(false);
-      localStorage.setItem(SIDEBAR_COLLAPSED_KEY, 'false');
-      setPatternsOpen(true);
-      router.push('/ethical-pattern-recognition-field-guide');
-      return;
-    }
-
-    if (!patternsOpen) {
-      setPatternsOpen(true);
-      router.push('/ethical-pattern-recognition-field-guide');
-      return;
-    }
-
-    setPatternsOpen(false);
-  };
-
   const baseLinkClass = 'flex items-center gap-3 px-3 py-2 text-sm transition-colors !no-underline !border-0';
-  const activeTopLevelClass = 'bg-[#0b5d8f]/15 font-semibold text-[#0b5d8f] dark:bg-[#2f80d7]/25 dark:text-[#8fc4ee]';
-  const inactiveTopLevelClass = 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900';
-  const activeNestedClass = 'bg-[#0b5d8f]/20 text-[#0b5d8f] dark:bg-[#2f80d7]/30 dark:text-[#8fc4ee]';
+  const activeTopLevelClass = 'bg-sky-100 font-semibold text-sky-900 dark:bg-sky-900/45 dark:text-sky-100';
+  const activeVioletTopLevelClass =
+    'bg-violet-100 font-semibold text-violet-900 dark:bg-violet-900/45 dark:text-violet-100';
+  const inactiveTopLevelClass =
+    'text-slate-700 hover:bg-slate-100/80 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-900/70 dark:hover:text-slate-100';
+  const activeNestedClass =
+    'border-l-4 border-b border-l-sky-400 border-b-sky-200 bg-transparent font-semibold text-sky-950 dark:border-l-sky-500 dark:border-b-sky-900 dark:text-sky-100';
   const inactiveNestedClass =
-    'text-gray-700 hover:bg-white hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/50 dark:hover:text-[#8fc4ee]';
+    'border-l-4 border-transparent text-slate-700 hover:border-sky-200 hover:bg-sky-50/70 hover:text-sky-900 dark:text-slate-300 dark:hover:border-sky-800 dark:hover:bg-sky-950/30 dark:hover:text-sky-200';
+
+  function getTopLevelItemClass(item: { active: boolean; tone?: 'violet' }) {
+    if (!item.active) {
+      return inactiveTopLevelClass;
+    }
+
+    return item.tone === 'violet' ? activeVioletTopLevelClass : activeTopLevelClass;
+  }
 
   function renderNavContent(label: string, Icon: React.ComponentType<React.ComponentProps<'svg'>>) {
     return (
@@ -271,20 +255,20 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
 
   const sidebarInner = (
     <div
-      className={`flex h-full flex-col border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-black ${
-        collapsed ? 'w-20' : 'w-96'
+      className={`flex h-full flex-col border-r border-slate-200/80 bg-slate-50/80 dark:border-slate-800 dark:bg-slate-950 ${
+        collapsed ? 'w-20' : 'w-72'
       } transition-[width] duration-300 ease-in-out`}
     >
-      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4 dark:border-gray-800">
+      <div className="flex items-center justify-between border-b border-slate-200/80 px-4 py-4 dark:border-slate-800">
         <Link href="/" className="no-underline! border-0! min-w-0">
-          <div className={`font-medium text-gray-900 dark:text-gray-100 ${collapsed ? 'text-sm' : 'text-base'}`}>
+          <div className={`font-medium text-slate-900 dark:text-slate-100 ${collapsed ? 'text-sm' : 'text-base'}`}>
             {collapsed ? 'SYS' : courseTitle}
           </div>
         </Link>
         {!mobileOpen && mounted && (
           <button
             onClick={toggleCollapsed}
-            className="hidden md:flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900"
+            className="hidden md:flex h-9 w-9 items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900"
             aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
             {collapsed ? <ChevronRightIcon className="h-5 w-5" /> : <ChevronDownIcon className="h-5 w-5 -rotate-90" />}
@@ -293,7 +277,7 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
         {mobileOpen && (
           <button
             onClick={() => setMobileOpen(false)}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900 md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900 md:hidden"
             aria-label="Close navigation"
           >
             <XMarkIcon className="h-5 w-5" />
@@ -302,20 +286,18 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
       </div>
 
       <div className="flex-1 overflow-y-auto py-4 scrollbar-none [&::-webkit-scrollbar]:hidden">
-        <nav className="divide-y divide-gray-200 overflow-hidden border-y border-gray-200 dark:divide-gray-800 dark:border-gray-800">
+        <nav className="divide-y divide-slate-200/80 overflow-hidden border-y border-slate-200/80 dark:divide-slate-800 dark:border-slate-800">
           {navItems.slice(0, 1).map(item => (
             <Link
               key={item.href}
               href={item.href}
-              className={`${baseLinkClass} ${
-                item.active ? activeTopLevelClass : inactiveTopLevelClass
-              } ${collapsed ? 'justify-center' : ''}`}
+              className={`${baseLinkClass} ${getTopLevelItemClass(item)} ${collapsed ? 'justify-center' : ''}`}
             >
               {renderNavContent(item.label, item.icon)}
             </Link>
           ))}
 
-          <div className="bg-white dark:bg-black">
+          <div className="bg-slate-50/80 dark:bg-slate-950">
             <div className="flex items-center gap-1">
               <button
                 type="button"
@@ -326,11 +308,11 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
                 } ${collapsed ? 'justify-center' : 'justify-between'}`}
               >
                 <span className="flex min-w-0 items-center gap-3">
-                  {renderNavContent('Modules', RectangleGroupIcon)}
+                  {renderNavContent('Course Schedule', CalendarDaysIcon)}
                 </span>
                 {!collapsed && (
                   <ChevronDownIcon
-                    className={`h-4 w-4 shrink-0 text-gray-500 transition-transform dark:text-gray-400 ${
+                    className={`h-4 w-4 shrink-0 text-slate-500 transition-transform dark:text-slate-400 ${
                       modulesOpen ? '' : '-rotate-90'
                     }`}
                   />
@@ -339,36 +321,38 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
             </div>
 
             {!collapsed && modulesOpen && (
-              <div className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
-                <div className="divide-y divide-gray-200/70 dark:divide-gray-800/70">
+              <div className="border-t border-sky-200/80 bg-sky-50/40 dark:border-sky-900/70 dark:bg-sky-950/20">
+                <div className="divide-y divide-sky-200/60 dark:divide-sky-900/50">
                   {modules.map(module => {
                     const isOpen = openModuleId === module.id;
 
                     return (
-                      <section key={module.id} className="transition-colors bg-white dark:bg-black">
+                      <section key={module.id} className="bg-sky-50/20 transition-colors dark:bg-transparent">
                         <div className="flex items-center">
                           <button
                             type="button"
                             onClick={() => toggleModule(module.id)}
                             aria-expanded={isOpen}
-                            className={`group flex w-full min-w-0 items-center gap-2 pl-8 pr-3 py-1.5 text-left text-sm transition-colors ${
+                            className={`group flex w-full min-w-0 items-center gap-0 pl-6 pr-3 py-1.5 text-left text-sm transition-colors ${
                               isOpen
-                                ? ' bg-white dark:bg-black font-semibold text-[#0b5d8f] dark:text-[#8fc4ee]'
-                                : 'bg-gray-50 dark:bg-gray-950 text-gray-800 hover:bg-gray-100 hover:text-[#0b5d8f] dark:text-gray-200 dark:hover:bg-black/50 dark:hover:text-[#8fc4ee] group-hover:bg-gray-100 group-hover:text-[#0b5d8f]'
+                                ? 'bg-white font-semibold text-sky-900 dark:bg-black dark:text-sky-100'
+                                : 'bg-transparent text-slate-800 hover:bg-sky-50/80 hover:text-sky-900 dark:text-slate-200 dark:hover:bg-sky-950/30 dark:hover:text-sky-200'
                             }`}
                           >
-                            <span
-                              className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[12px] text-center font-semibold ${
+                            {/* <span
+                              className={`mr-4 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-center text-[12px] font-semibold ${
                                 isOpen
-                                  ? 'bg-[#0b5d8f] text-white dark:bg-[#2f80d7]'
-                                  : 'bg-gray-50 text-gray-600 group-hover:bg-[#0b5d8f]/10 group-hover:text-[#0b5d8f] dark:bg-black dark:text-gray-400 dark:group-hover:text-[#8fc4ee]'
+                                  ? 'bg-sky-200 text-sky-900 ring-1 ring-sky-300 dark:bg-sky-800/70 dark:text-sky-100 dark:ring-sky-700'
+                                  : 'bg-slate-50/90 text-slate-600 ring-1 ring-slate-200 group-hover:bg-sky-100 group-hover:text-sky-900 dark:bg-slate-950/80 dark:text-slate-400 dark:ring-slate-800 dark:group-hover:bg-sky-950/50 dark:group-hover:text-sky-200'
                               }`}
                             >
                               {module.id}
+                            </span> */}
+                            <span className="line-clamp-2 min-w-0 ml-5 leading-snug">
+                              {module.id}. {module.title}
                             </span>
-                            <span className="line-clamp-2 min-w-0 leading-snug">{module.title}</span>
                             <ChevronDownIcon
-                              className={`ml-auto h-3.5 w-3.5 shrink-0 text-gray-500 transition-transform dark:text-gray-400 ${
+                              className={`ml-auto h-3.5 w-3.5 shrink-0 text-slate-500 transition-transform dark:text-slate-400 ${
                                 isOpen ? '' : '-rotate-90'
                               }`}
                             />
@@ -377,11 +361,11 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
 
                         <div
                           className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${
-                            isOpen ? 'max-h-[42rem] opacity-100' : 'max-h-0 opacity-0'
+                            isOpen ? 'max-h-168 opacity-100' : 'max-h-0 opacity-0'
                           }`}
                         >
-                          <div className="border-t border-gray-200/70 bg-white/60 dark:border-gray-800/70 dark:bg-black/30">
-                            <div className="divide-y divide-gray-200/50 dark:divide-gray-800/50">
+                          <div className="border-t border-sky-200/70 bg-white dark:border-sky-900/50 dark:bg-black">
+                            <div className="divide-y divide-sky-100 dark:divide-sky-900/40">
                               {module.topics.map(topic => {
                                 const isTopicActive = normalizePath(topic.contentHref) === normalizedPath;
                                 const topicSlug = getTopicSlugFromHref(topic.contentHref);
@@ -391,7 +375,7 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
                                   <Link
                                     key={topic.id}
                                     href={topic.contentHref}
-                                    className={`block py-1.5 pl-15 pr-3 transition-colors no-underline! border-0! ${
+                                    className={`block py-1.5 pl-15 pr-3 transition-colors no-underline! ${
                                       isTopicActive ? activeNestedClass : inactiveNestedClass
                                     }`}
                                   >
@@ -428,89 +412,22 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
             )}
           </div>
 
-          {navItems.slice(2, 5).map(item => (
+          {navItems.slice(2).map(item => (
             <Link
               key={item.href}
               href={item.href}
-              className={`${baseLinkClass} ${
-                item.active ? activeTopLevelClass : inactiveTopLevelClass
-              } ${collapsed ? 'justify-center' : ''}`}
+              className={`${baseLinkClass} ${getTopLevelItemClass(item)} ${collapsed ? 'justify-center' : ''}`}
             >
               {renderNavContent(item.label, item.icon)}
             </Link>
           ))}
-
-          <div className="bg-white dark:bg-black">
-            <div className="flex items-center gap-1">
-              <button
-                type="button"
-                onClick={togglePatterns}
-                aria-expanded={patternsOpen}
-                className={`${baseLinkClass} w-full ${
-                  activePatternGuide ? activeTopLevelClass : inactiveTopLevelClass
-                } ${collapsed ? 'justify-center' : 'justify-between'}`}
-              >
-                <span className="flex min-w-0 items-center gap-3">
-                  {renderNavContent('Ethical Pattern Recognition', SparklesIcon)}
-                </span>
-                {!collapsed && (
-                  <ChevronDownIcon
-                    className={`h-4 w-4 shrink-0 text-gray-500 transition-transform dark:text-gray-400 ${
-                      patternsOpen ? '' : '-rotate-90'
-                    }`}
-                  />
-                )}
-              </button>
-            </div>
-
-            {!collapsed && patternsOpen && (
-              <div className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
-                <div className="divide-y divide-gray-200/70 dark:divide-gray-800/70">
-                  <Link
-                    href="/ethical-pattern-recognition-field-guide"
-                    className={`block py-1.5 pl-9 pr-2.5 text-[13px] transition-colors no-underline! border-0! ${
-                      normalizedPath === '/ethical-pattern-recognition-field-guide'
-                        ? `${activeNestedClass} font-semibold`
-                        : inactiveNestedClass
-                    }`}
-                  >
-                    Overview
-                  </Link>
-
-                  <div className="divide-y divide-gray-200/70 dark:divide-gray-800/70">
-                    {ethicalPatterns.map(pattern => {
-                      const href = `/ethical-pattern-recognition-field-guide/${pattern.slug}`;
-                      const isPatternActive = normalizePath(href) === normalizedPath;
-
-                      return (
-                        <Link
-                          key={pattern.slug}
-                          href={href}
-                          className={`block py-1.5 pl-9 pr-2.5 transition-colors no-underline! border-0! ${
-                            isPatternActive ? activeNestedClass : inactiveNestedClass
-                          }`}
-                        >
-                          <span
-                            className={`block truncate text-[13px] leading-snug ${isPatternActive ? 'font-semibold' : 'font-normal'}`}
-                          >
-                            {pattern.order ? `${pattern.order}. ` : ''}
-                            {pattern.title}
-                          </span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
         </nav>
       </div>
 
-      <div className="border-t border-gray-200 px-3 py-3 dark:border-gray-800">
+      <div className="border-t border-slate-200/80 px-3 py-3 dark:border-slate-800">
         <button
           onClick={toggleDarkMode}
-          className={`flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900 ${
+          className={`flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900 ${
             collapsed ? 'justify-center' : ''
           }`}
         >
@@ -529,15 +446,15 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
 
   return (
     <>
-      <div className="md:hidden sticky top-0 z-40 flex h-16 items-center justify-between border-b border-gray-200 bg-white px-4 dark:border-gray-800 dark:bg-black">
+      <div className="md:hidden sticky top-0 z-40 flex h-16 items-center justify-between border-b border-slate-200/80 bg-slate-50 px-4 dark:border-slate-800 dark:bg-slate-950">
         <button
           onClick={() => setMobileOpen(true)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900"
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900"
           aria-label="Open navigation"
         >
           <Bars3Icon className="h-6 w-6" />
         </button>
-        <Link href="/" className="text-sm font-medium text-gray-900 dark:text-gray-100 no-underline! border-0!">
+        <Link href="/" className="text-sm font-medium text-slate-900 dark:text-slate-100 no-underline! border-0!">
           {courseTitle}
         </Link>
         <div className="w-10" aria-hidden="true" />

@@ -217,6 +217,29 @@ function PatternContentSection({ section }: { section: { label: string; content:
   return <MarkdownContent content={section.content} />;
 }
 
+function FieldGuideReturnSection() {
+  return (
+    <section className="rounded-2xl border border-violet-200 bg-violet-50/70 p-6 dark:border-violet-900 dark:bg-violet-950/20">
+      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-violet-700 dark:text-violet-300">
+        Field Guide
+      </p>
+      <h2 className="m-0 text-2xl font-semibold tracking-tight text-gray-950 dark:text-gray-50">
+        Keep Browsing Ethical Patterns
+      </h2>
+      <p className="mb-0 mt-3 max-w-3xl text-sm leading-6 text-gray-700 dark:text-gray-300">
+        Return to the full field guide to compare this pattern with other recurring ethical and governance patterns
+        across the course.
+      </p>
+      <Link
+        href="/ethical-pattern-recognition-field-guide"
+        className="mt-5 inline-flex items-center rounded-full bg-violet-700 px-4 py-2 text-sm font-semibold text-white no-underline hover:bg-violet-800 dark:bg-violet-500 dark:hover:bg-violet-400"
+      >
+        Back to the Field Guide
+      </Link>
+    </section>
+  );
+}
+
 export const dynamicParams = false;
 
 export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
@@ -348,6 +371,8 @@ export default async function EthicalPatternPage({ params }: PageProps) {
               </p>
             )}
           </PatternSection>
+
+          <FieldGuideReturnSection />
         </div>
       </ContentLayout>
     );

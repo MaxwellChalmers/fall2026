@@ -9,26 +9,27 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   useEffect(() => {
     const mainElement = document.querySelector('main');
     const htmlElement = document.documentElement;
+    const normalizedPath = pathname.replace(/^\/fall2026/, '') || '/';
     
     if (mainElement) {
       // Determine layout type based on pathname
-      const isResourcesDetail = pathname.startsWith('/resources/') && pathname !== '/resources';
-      const isDetailWithToc = pathname === '/syllabus' || 
-                              (pathname.startsWith('/assignments/') && pathname !== '/assignments') ||
-                              (pathname.startsWith('/activities/') && pathname !== '/activities') ||
-                              (pathname.startsWith('/exams/') && pathname !== '/exams') ||
-                              (pathname.startsWith('/topics/') && pathname !== '/topics') ||
-                              (pathname.startsWith('/ethical-pattern-recognition-field-guide/') && pathname !== '/ethical-pattern-recognition-field-guide') ||
-                              pathname === '/repos-hidden';
-      const isListPage = pathname === '/' || 
-                        pathname === '/modules' ||
-                        pathname === '/assignments' || 
-                        pathname === '/activities' || 
-                        pathname === '/resources' ||
-                        pathname === '/bibliography' ||
-                        pathname === '/planning/taxonomy' ||
-                        pathname === '/ethical-pattern-recognition-field-guide' ||
-                        pathname === '/exams';
+      const isResourcesDetail = normalizedPath.startsWith('/resources/') && normalizedPath !== '/resources';
+      const isDetailWithToc = normalizedPath === '/' ||
+                              normalizedPath === '/syllabus' ||
+                              (normalizedPath.startsWith('/assignments/') && normalizedPath !== '/assignments') ||
+                              (normalizedPath.startsWith('/activities/') && normalizedPath !== '/activities') ||
+                              (normalizedPath.startsWith('/exams/') && normalizedPath !== '/exams') ||
+                              (normalizedPath.startsWith('/topics/') && normalizedPath !== '/topics') ||
+                              (normalizedPath.startsWith('/ethical-pattern-recognition-field-guide/') && normalizedPath !== '/ethical-pattern-recognition-field-guide') ||
+                              normalizedPath === '/repos-hidden';
+      const isListPage = normalizedPath === '/modules' ||
+                        normalizedPath === '/assignments' || 
+                        normalizedPath === '/activities' || 
+                        normalizedPath === '/resources' ||
+                        normalizedPath === '/bibliography' ||
+                        normalizedPath === '/planning/taxonomy' ||
+                        normalizedPath === '/ethical-pattern-recognition-field-guide' ||
+                        normalizedPath === '/exams';
       
       // Apply appropriate data attributes and classes
       // All pages using ContentLayout need html overflow hidden for scrollable containers
