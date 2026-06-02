@@ -246,7 +246,7 @@
       "slug": "classification-is-not-neutral",
       "title": "Classification is not neutral.",
       "group": "core-sys-sequence",
-      "order": 2,
+      "order": 4,
       "relatedThemes": [
         "classification-categories",
         "objectivity-neutrality"
@@ -256,7 +256,7 @@
       "slug": "data-is-produced-not-found",
       "title": "Data is produced, not found.",
       "group": "core-sys-sequence",
-      "order": 3,
+      "order": 2,
       "relatedThemes": [
         "data-representation-institutional-bias"
       ]
@@ -265,7 +265,7 @@
       "slug": "features-are-value-choices",
       "title": "Features are value choices.",
       "group": "core-sys-sequence",
-      "order": 4,
+      "order": 6,
       "relatedThemes": [
         "features-proxies-value-choices"
       ]
@@ -274,7 +274,7 @@
       "slug": "thresholds-distribute-harm",
       "title": "Thresholds make uncertainty consequential.",
       "group": "core-sys-sequence",
-      "order": 5,
+      "order": 7,
       "relatedThemes": [
         "thresholds-errors-responsibility"
       ]
@@ -283,7 +283,7 @@
       "slug": "prediction-imports-the-past",
       "title": "Prediction imports the past.",
       "group": "core-sys-sequence",
-      "order": 6,
+      "order": 8,
       "relatedThemes": [
         "prediction-history-feedback-loops"
       ]
@@ -292,7 +292,7 @@
       "slug": "opacity-shifts-authority",
       "title": "Opacity shifts authority.",
       "group": "core-sys-sequence",
-      "order": 7,
+      "order": 9,
       "relatedThemes": [
         "opacity-explainability-contestability"
       ]
@@ -301,7 +301,7 @@
       "slug": "measurement-becomes-datafication",
       "title": "Measurement becomes datafication.",
       "group": "core-sys-sequence",
-      "order": 8,
+      "order": 3,
       "relatedThemes": [
         "surveillance-datafication"
       ]
@@ -310,7 +310,7 @@
       "slug": "normal-is-constructed",
       "title": "\"Normal\" is constructed.",
       "group": "core-sys-sequence",
-      "order": 9,
+      "order": 5,
       "relatedThemes": [
         "anomaly-detection-normal",
         "classification-categories"
@@ -330,7 +330,7 @@
       "slug": "emerging-technologies-require-anticipatory-governance",
       "title": "Emerging technologies require anticipatory governance.",
       "group": "course-synthesis",
-      "order": 11,
+      "order": 16,
       "relatedThemes": [
         "anticipatory-governance"
       ]
@@ -339,7 +339,7 @@
       "slug": "power-can-concentrate-in-infrastructure",
       "title": "Power can concentrate in infrastructure.",
       "group": "critical-lenses",
-      "order": 12,
+      "order": 14,
       "relatedThemes": [
         "power-political-economy"
       ]
@@ -348,7 +348,7 @@
       "slug": "alternatives-can-be-foreclosed",
       "title": "Alternatives can be foreclosed.",
       "group": "critical-lenses",
-      "order": 13,
+      "order": 15,
       "relatedThemes": [
         "progress-inevitability",
         "technological-solutionism"
@@ -358,7 +358,7 @@
       "slug": "anthropomorphism-aliveness-sentience-claims",
       "title": "AI systems can encourage anthropomorphism, aliveness, or sentience claims.",
       "group": "critical-lenses",
-      "order": 14,
+      "order": 12,
       "relatedThemes": [
         "anthropomorphism-aliveness-sentience"
       ]
@@ -367,7 +367,7 @@
       "slug": "dependency-cognitive-offloading-deskilling",
       "title": "AI can create dependency, cognitive offloading, and deskilling.",
       "group": "critical-lenses",
-      "order": 15,
+      "order": 11,
       "relatedThemes": [
         "dependency-cognitive-offloading-deskilling"
       ]
@@ -376,7 +376,7 @@
       "slug": "ai-is-material",
       "title": "AI is material: it depends on energy, water, chips, labor, mining, and waste.",
       "group": "critical-lenses",
-      "order": 16,
+      "order": 13,
       "relatedThemes": [
         "environmental-impacts-of-ai"
       ]

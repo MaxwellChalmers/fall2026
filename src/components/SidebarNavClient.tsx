@@ -248,12 +248,23 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
   };
 
   const baseLinkClass = 'flex items-center gap-3 px-3 py-2 text-sm transition-colors !no-underline !border-0';
+  const activeTopLevelClass = 'bg-[#0b5d8f]/15 font-semibold text-[#0b5d8f] dark:bg-[#2f80d7]/25 dark:text-[#8fc4ee]';
+  const inactiveTopLevelClass = 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900';
+  const activeNestedClass = 'bg-[#0b5d8f]/20 text-[#0b5d8f] dark:bg-[#2f80d7]/30 dark:text-[#8fc4ee]';
+  const inactiveNestedClass =
+    'text-gray-700 hover:bg-white hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/50 dark:hover:text-[#8fc4ee]';
 
   function renderNavContent(label: string, Icon: React.ComponentType<React.ComponentProps<'svg'>>) {
     return (
       <>
         <Icon className="h-5 w-5 shrink-0" />
-        {!collapsed && <span className="truncate">{label}</span>}
+        <span
+          className={`min-w-0 truncate transition-[opacity,width] duration-300 ease-in-out ${
+            collapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'
+          }`}
+        >
+          {label}
+        </span>
       </>
     );
   }
@@ -261,8 +272,8 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
   const sidebarInner = (
     <div
       className={`flex h-full flex-col border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-black ${
-        collapsed ? 'w-20' : 'w-72'
-      } transition-[width] duration-200`}
+        collapsed ? 'w-20' : 'w-96'
+      } transition-[width] duration-300 ease-in-out`}
     >
       <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4 dark:border-gray-800">
         <Link href="/" className="no-underline! border-0! min-w-0">
@@ -290,16 +301,14 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
         )}
       </div>
 
-      <div className="flex-1 overflow-y-auto px-3 py-4 scrollbar-none [&::-webkit-scrollbar]:hidden">
+      <div className="flex-1 overflow-y-auto py-4 scrollbar-none [&::-webkit-scrollbar]:hidden">
         <nav className="divide-y divide-gray-200 overflow-hidden border-y border-gray-200 dark:divide-gray-800 dark:border-gray-800">
           {navItems.slice(0, 1).map(item => (
             <Link
               key={item.href}
               href={item.href}
               className={`${baseLinkClass} ${
-                item.active
-                  ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-900 dark:text-gray-100'
-                  : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900'
+                item.active ? activeTopLevelClass : inactiveTopLevelClass
               } ${collapsed ? 'justify-center' : ''}`}
             >
               {renderNavContent(item.label, item.icon)}
@@ -313,9 +322,7 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
                 onClick={toggleModules}
                 aria-expanded={modulesOpen}
                 className={`${baseLinkClass} w-full ${
-                  activeModules
-                    ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-900 dark:text-gray-100'
-                    : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900'
+                  activeModules ? activeTopLevelClass : inactiveTopLevelClass
                 } ${collapsed ? 'justify-center' : 'justify-between'}`}
               >
                 <span className="flex min-w-0 items-center gap-3">
@@ -332,85 +339,91 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
             </div>
 
             {!collapsed && modulesOpen && (
-              <div className="border-t border-gray-200 bg-gray-50 py-2 dark:border-gray-800 dark:bg-gray-950">
-                  <div className="space-y-1">
-                    {modules.map(module => {
-                      const isOpen = openModuleId === module.id;
+              <div className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
+                <div className="divide-y divide-gray-200/70 dark:divide-gray-800/70">
+                  {modules.map(module => {
+                    const isOpen = openModuleId === module.id;
 
-                      return (
-                        <section key={module.id} className="rounded-lg transition-colors">
-                          <div className="flex items-center">
-                            <button
-                              type="button"
-                              onClick={() => toggleModule(module.id)}
-                              aria-expanded={isOpen}
-                              className={`group flex w-full min-w-0 items-center gap-2 rounded-lg px-2 py-1.5 text-left text-[13px] transition-colors ${
+                    return (
+                      <section key={module.id} className="transition-colors bg-white dark:bg-black">
+                        <div className="flex items-center">
+                          <button
+                            type="button"
+                            onClick={() => toggleModule(module.id)}
+                            aria-expanded={isOpen}
+                            className={`group flex w-full min-w-0 items-center gap-2 pl-8 pr-3 py-1.5 text-left text-sm transition-colors ${
+                              isOpen
+                                ? ' bg-white dark:bg-black font-semibold text-[#0b5d8f] dark:text-[#8fc4ee]'
+                                : 'bg-gray-50 dark:bg-gray-950 text-gray-800 hover:bg-gray-100 hover:text-[#0b5d8f] dark:text-gray-200 dark:hover:bg-black/50 dark:hover:text-[#8fc4ee] group-hover:bg-gray-100 group-hover:text-[#0b5d8f]'
+                            }`}
+                          >
+                            <span
+                              className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[12px] text-center font-semibold ${
                                 isOpen
-                                  ? 'font-semibold text-[#0b5d8f] dark:text-[#8fc4ee]'
-                                  : 'text-gray-800 hover:bg-white hover:text-[#0b5d8f] dark:text-gray-200 dark:hover:bg-black/50 dark:hover:text-[#8fc4ee]'
+                                  ? 'bg-[#0b5d8f] text-white dark:bg-[#2f80d7]'
+                                  : 'bg-gray-50 text-gray-600 group-hover:bg-[#0b5d8f]/10 group-hover:text-[#0b5d8f] dark:bg-black dark:text-gray-400 dark:group-hover:text-[#8fc4ee]'
                               }`}
                             >
-                              <span
-                                className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${
-                                  isOpen
-                                    ? 'bg-[#0b5d8f] text-white dark:bg-[#2f80d7]'
-                                    : 'bg-white text-gray-600 group-hover:bg-[#0b5d8f]/10 group-hover:text-[#0b5d8f] dark:bg-black dark:text-gray-400 dark:group-hover:text-[#8fc4ee]'
-                                }`}
-                              >
-                                {module.id}
-                              </span>
-                              <span className="line-clamp-2 min-w-0 leading-snug">{module.title}</span>
-                              <ChevronDownIcon
-                                className={`ml-auto h-3.5 w-3.5 shrink-0 text-gray-500 transition-transform dark:text-gray-400 ${
-                                  isOpen ? '' : '-rotate-90'
-                                }`}
-                              />
-                            </button>
-                          </div>
+                              {module.id}
+                            </span>
+                            <span className="line-clamp-2 min-w-0 leading-snug">{module.title}</span>
+                            <ChevronDownIcon
+                              className={`ml-auto h-3.5 w-3.5 shrink-0 text-gray-500 transition-transform dark:text-gray-400 ${
+                                isOpen ? '' : '-rotate-90'
+                              }`}
+                            />
+                          </button>
+                        </div>
 
-                          {isOpen && (
-                            <div className="mt-1 pb-3">
-                              <div className="space-y-0.5">
-                                {module.topics.map(topic => {
-                                  const isTopicActive = normalizePath(topic.contentHref) === normalizedPath;
-                                  const topicSlug = getTopicSlugFromHref(topic.contentHref);
-                                  const isCompleted = topicSlug ? completedTopics[topicSlug] === true : false;
+                        <div
+                          className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${
+                            isOpen ? 'max-h-[42rem] opacity-100' : 'max-h-0 opacity-0'
+                          }`}
+                        >
+                          <div className="border-t border-gray-200/70 bg-white/60 dark:border-gray-800/70 dark:bg-black/30">
+                            <div className="divide-y divide-gray-200/50 dark:divide-gray-800/50">
+                              {module.topics.map(topic => {
+                                const isTopicActive = normalizePath(topic.contentHref) === normalizedPath;
+                                const topicSlug = getTopicSlugFromHref(topic.contentHref);
+                                const isCompleted = topicSlug ? completedTopics[topicSlug] === true : false;
 
-                                  return (
-                                    <Link
-                                      key={topic.id}
-                                      href={topic.contentHref}
-                                      className={`block py-1.5 pl-9 pr-2.5 transition-colors no-underline! border-0! ${
-                                        isTopicActive
-                                          ? 'bg-[#0b5d8f]/10 text-[#0b5d8f] dark:bg-[#2f80d7]/15 dark:text-[#8fc4ee]'
-                                          : 'text-gray-700 hover:bg-white hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/50 dark:hover:text-[#8fc4ee]'
-                                      }`}
-                                    >
-                                      <span className="min-w-0">
-                                        <span
-                                          className={`block min-w-0 line-clamp-2 text-[13px] leading-snug ${
-                                            isTopicActive ? 'font-semibold' : 'font-normal'
-                                          }`}
-                                        >
-                                          {topic.title}
-                                        </span>
-                                        <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-500">
-                                          <span>{topic.date}</span>
-                                          {isCompleted && (
-                                            <span className="text-emerald-700 dark:text-emerald-400">Done</span>
-                                          )}
-                                        </span>
+                                return (
+                                  <Link
+                                    key={topic.id}
+                                    href={topic.contentHref}
+                                    className={`block py-1.5 pl-15 pr-3 transition-colors no-underline! border-0! ${
+                                      isTopicActive ? activeNestedClass : inactiveNestedClass
+                                    }`}
+                                  >
+                                    <span className="min-w-0">
+                                      <span
+                                        className={`block min-w-0 text-sm leading-snug ${
+                                          isTopicActive ? 'font-semibold' : 'font-normal'
+                                        }`}
+                                      >
+                                        {topic.title}
                                       </span>
-                                    </Link>
-                                  );
-                                })}
-                              </div>
+                                      {/* <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] font-normal text-gray-400 dark:text-gray-600">
+                                        {isCompleted && (
+                                          <i
+                                            className="fa-solid fa-circle-check text-sm text-emerald-700 dark:text-emerald-400"
+                                            aria-label="Completed"
+                                            title="Completed"
+                                          />
+                                        )}
+                                        <span>{topic.date}</span>
+                                      </span> */}
+                                    </span>
+                                  </Link>
+                                );
+                              })}
                             </div>
-                          )}
-                        </section>
-                      );
-                    })}
-                  </div>
+                          </div>
+                        </div>
+                      </section>
+                    );
+                  })}
+                </div>
               </div>
             )}
           </div>
@@ -420,9 +433,7 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
               key={item.href}
               href={item.href}
               className={`${baseLinkClass} ${
-                item.active
-                  ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-900 dark:text-gray-100'
-                  : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900'
+                item.active ? activeTopLevelClass : inactiveTopLevelClass
               } ${collapsed ? 'justify-center' : ''}`}
             >
               {renderNavContent(item.label, item.icon)}
@@ -436,9 +447,7 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
                 onClick={togglePatterns}
                 aria-expanded={patternsOpen}
                 className={`${baseLinkClass} w-full ${
-                  activePatternGuide
-                    ? 'bg-gray-100 font-semibold text-gray-900 dark:bg-gray-900 dark:text-gray-100'
-                    : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900'
+                  activePatternGuide ? activeTopLevelClass : inactiveTopLevelClass
                 } ${collapsed ? 'justify-center' : 'justify-between'}`}
               >
                 <span className="flex min-w-0 items-center gap-3">
@@ -455,42 +464,43 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
             </div>
 
             {!collapsed && patternsOpen && (
-              <div className="border-t border-gray-200 bg-gray-50 py-2 dark:border-gray-800 dark:bg-gray-950">
-                  <div className="pb-2">
-                    <Link
-                      href="/ethical-pattern-recognition-field-guide"
-                      className={`block py-1.5 pl-9 pr-2.5 text-[13px] transition-colors no-underline! border-0! ${
-                        normalizedPath === '/ethical-pattern-recognition-field-guide'
-                          ? 'bg-[#0b5d8f]/10 font-semibold text-[#0b5d8f] dark:bg-[#2f80d7]/15 dark:text-[#8fc4ee]'
-                          : 'text-gray-700 hover:bg-white hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/50 dark:hover:text-[#8fc4ee]'
-                      }`}
-                    >
-                      Overview
-                    </Link>
+              <div className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
+                <div className="divide-y divide-gray-200/70 dark:divide-gray-800/70">
+                  <Link
+                    href="/ethical-pattern-recognition-field-guide"
+                    className={`block py-1.5 pl-9 pr-2.5 text-[13px] transition-colors no-underline! border-0! ${
+                      normalizedPath === '/ethical-pattern-recognition-field-guide'
+                        ? `${activeNestedClass} font-semibold`
+                        : inactiveNestedClass
+                    }`}
+                  >
+                    Overview
+                  </Link>
 
-                    <div className="mt-1 space-y-0.5">
-                      {ethicalPatterns.map(pattern => {
-                        const href = `/ethical-pattern-recognition-field-guide/${pattern.slug}`;
-                        const isPatternActive = normalizePath(href) === normalizedPath;
+                  <div className="divide-y divide-gray-200/70 dark:divide-gray-800/70">
+                    {ethicalPatterns.map(pattern => {
+                      const href = `/ethical-pattern-recognition-field-guide/${pattern.slug}`;
+                      const isPatternActive = normalizePath(href) === normalizedPath;
 
-                        return (
-                          <Link
-                            key={pattern.slug}
-                            href={href}
-                            className={`block py-1.5 pl-9 pr-2.5 transition-colors no-underline! border-0! ${
-                              isPatternActive
-                                ? 'bg-[#0b5d8f]/10 text-[#0b5d8f] dark:bg-[#2f80d7]/15 dark:text-[#8fc4ee]'
-                                : 'text-gray-700 hover:bg-white hover:text-[#0b5d8f] dark:text-gray-300 dark:hover:bg-black/50 dark:hover:text-[#8fc4ee]'
-                            }`}
+                      return (
+                        <Link
+                          key={pattern.slug}
+                          href={href}
+                          className={`block py-1.5 pl-9 pr-2.5 transition-colors no-underline! border-0! ${
+                            isPatternActive ? activeNestedClass : inactiveNestedClass
+                          }`}
+                        >
+                          <span
+                            className={`block truncate text-[13px] leading-snug ${isPatternActive ? 'font-semibold' : 'font-normal'}`}
                           >
-                            <span className={`block line-clamp-2 text-[13px] leading-snug ${isPatternActive ? 'font-semibold' : 'font-normal'}`}>
-                              {pattern.title}
-                            </span>
-                          </Link>
-                        );
-                      })}
-                    </div>
+                            {pattern.order ? `${pattern.order}. ` : ''}
+                            {pattern.title}
+                          </span>
+                        </Link>
+                      );
+                    })}
                   </div>
+                </div>
               </div>
             )}
           </div>
@@ -505,7 +515,13 @@ export default function SidebarNavClient({ courseTitle, modules, ethicalPatterns
           }`}
         >
           {isDark ? <SunIcon className="h-5 w-5 shrink-0" /> : <MoonIcon className="h-5 w-5 shrink-0" />}
-          {!collapsed && <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>}
+          <span
+            className={`min-w-0 truncate transition-[opacity,width] duration-300 ease-in-out ${
+              collapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'
+            }`}
+          >
+            {isDark ? 'Light Mode' : 'Dark Mode'}
+          </span>
         </button>
       </div>
     </div>

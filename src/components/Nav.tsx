@@ -95,7 +95,7 @@ export default async function Navigation() {
         ? [
             {
               id: topic.slug,
-              title: `${topic.id}.1 Overview`,
+              title: `Overview`,
               date: 'Module overview',
               contentHref: `/topics/${topic.slug}`,
               resourcesHref: `/topics/${topic.slug}`,
@@ -112,7 +112,7 @@ export default async function Navigation() {
 
         return {
           id: meeting.slug || getMeetingAnchorId(topic.id, index, meeting.topic),
-          title: `${topic.id}.${index + 2} ${meeting.topic}`,
+          title: `${meeting.topic}`,
           date: meeting.date,
           contentHref,
           resourcesHref,

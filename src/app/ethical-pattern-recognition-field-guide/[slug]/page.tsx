@@ -46,35 +46,18 @@ function formatGroupLabel(group?: string) {
     .join(' ');
 }
 
-function PatternHeader({
-  scope = 'SYS',
-  group,
-  title,
-  excerpt,
-}: {
-  scope?: 'SYS' | 'BRAID';
-  group?: string;
-  title: string;
-  excerpt?: string;
-}) {
+function PatternHeader({ group, title, excerpt }: { group?: string; title: string; excerpt?: string }) {
   return (
-    <header className="grid gap-6 border-y border-violet-200 bg-violet-50 px-4 py-16 dark:border-violet-900 dark:bg-violet-950/30 md:grid-cols-[8rem_1fr] md:px-16">
-      <div className="flex flex-col justify-center border-b border-violet-200 pb-4 dark:border-violet-900 md:border-b-0 md:border-r md:pb-0 md:pr-5">
-        <p className="mb-1 text-3xl font-semibold leading-none tracking-tight text-violet-700 dark:text-violet-300">
-          {scope}
-        </p>
-      </div>
-      <div>
-        {group && (
-          <div className="mb-4 text-xs font-semibold uppercase tracking-wide">
-            <span className="text-violet-700 dark:text-violet-300">{group}</span>
-          </div>
-        )}
-        <h1 className="m-0! max-w-5xl text-5xl font-semibold leading-[1.05] tracking-tight text-gray-950 dark:text-gray-50">
-          {title}
-        </h1>
-        {excerpt && <p className="mb-0 mt-5 max-w-4xl text-lg leading-8 text-gray-700 dark:text-gray-300">{excerpt}</p>}
-      </div>
+    <header className="border-y border-violet-200 bg-violet-50 px-4 py-16 dark:border-violet-900 dark:bg-violet-950/30 md:px-16">
+      {group && (
+        <div className="mb-4 text-xs font-semibold uppercase tracking-wide">
+          <span className="text-violet-700 dark:text-violet-300">{group}</span>
+        </div>
+      )}
+      <h1 className="m-0! max-w-5xl text-5xl font-semibold leading-[1.05] tracking-tight text-gray-950 dark:text-gray-50">
+        {title}
+      </h1>
+      {excerpt && <p className="mb-0 mt-5 max-w-4xl text-lg leading-8 text-gray-700 dark:text-gray-300">{excerpt}</p>}
     </header>
   );
 }
@@ -212,10 +195,8 @@ function splitPatternCaseTabs(content: string): PatternCaseTab[] {
 
 function PatternSection({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <section className="grid gap-8 border-t border-gray-200 pt-7 dark:border-gray-800 md:grid-cols-[8rem_1fr]">
-      <div className="border-b border-gray-200 pb-4 dark:border-gray-800 md:border-b-0 md:border-r md:pb-0 md:pr-5">
-        <p className="mb-0 text-lg font-semibold text-[#0b5d8f] dark:text-[#8fc4ee]">{label}</p>
-      </div>
+    <section className="space-y-4 pt-4">
+      <h2 className="text-3xl font-semibold tracking-tight text-gray-950 dark:text-gray-50">{label}</h2>
       <div className="min-w-0 [&_li]:my-2 [&_ol]:pl-5! [&_ul]:pl-5!">{children}</div>
     </section>
   );

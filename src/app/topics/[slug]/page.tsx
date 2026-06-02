@@ -113,7 +113,7 @@ function EditorialSection({
   return (
     <section
       id={id}
-      className="scroll-mt-24 grid gap-8 border-t border-gray-200 pt-7 dark:border-gray-800 md:grid-cols-[8rem_1fr]"
+      className="scroll-mt-24 grid gap-8 border-t border-gray-200 pt-7 dark:border-gray-800 md:grid-cols-[10rem_1fr]"
     >
       <div className="border-b border-gray-200 pb-4 dark:border-gray-800 md:border-b-0 md:border-r md:pb-0 md:pr-5">
         <p
@@ -484,20 +484,17 @@ function TopicHeader({
 }) {
   return (
     <header
-      className={`grid gap-6 border-y px-4 py-16 ${moduleColor.background} ${moduleColor.border} md:grid-cols-[8rem_1fr] md:px-16`}
+      className={`grid gap-6 border-y px-4 py-16 ${moduleColor.background} ${moduleColor.border} md:grid-cols-[10rem_1fr] md:px-16`}
     >
       <div
         className={`flex flex-col justify-center border-b pb-4 ${moduleColor.border} md:border-b-0 md:border-r md:pb-0 md:pr-5`}
       >
-        <p className={`mb-1 text-4xl font-semibold leading-none tracking-tight ${moduleColor.accent}`}>{number}</p>
-        {date && (
-          <p className="mb-0 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400">{date}</p>
-        )}
+        <p className="mt-0! text-xl text-center font-bold uppercase tracking-wide text-gray-600 dark:text-gray-400">{date ? date : 'Overview'}</p>
       </div>
       <div>
         <div className="mb-4 text-xs font-semibold uppercase tracking-wide">
           <span className={moduleColor.accent}>
-            Module {moduleId}: {moduleTitle}
+            Module {moduleId}. {moduleTitle}
           </span>
         </div>
         <h1 className="m-0! max-w-5xl text-5xl font-semibold leading-[1.05] tracking-tight text-gray-950 dark:text-gray-50">
@@ -707,7 +704,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
   topicSections.push({
     navItem: { id: 'topic-overview', label: 'Overview' },
     panel: (
-      <EditorialSection key="topic-overview" label="Context" title="Topic Overview">
+      <EditorialSection key="topic-overview" label="Topic Overview" title="Topic Overview">
         <div className="max-w-4xl text-lg leading-8 text-gray-800 dark:text-gray-200">
           {typeof meeting.description === 'string' ? (
             <p className="mb-0">{meeting.description}</p>

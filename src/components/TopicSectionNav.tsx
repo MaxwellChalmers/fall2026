@@ -68,11 +68,11 @@ export default function TopicSectionNav({ items, children }: TopicSectionNavProp
   return (
     <div className="topic-section-nav space-y-8">
       <div
-        className="topic-section-tablist sticky top-0 z-10 border-y border-gray-200 bg-white/95 py-3 backdrop-blur dark:border-gray-800 dark:bg-black/95"
+        className="topic-section-tablist sticky top-0 z-10 border-b border-gray-200 bg-white/95 backdrop-blur dark:border-gray-800 dark:bg-black/95"
         role="tablist"
         aria-label="Topic sections"
       >
-        <div className="flex gap-2 overflow-x-auto">
+        <div className="flex overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-none [&::-webkit-scrollbar]:hidden">
           {items.map(item => {
             const isActive = activeId === item.id;
 
@@ -85,10 +85,10 @@ export default function TopicSectionNav({ items, children }: TopicSectionNavProp
                 aria-selected={isActive}
                 aria-controls={`${item.id}-panel`}
                 onClick={() => activateTab(item.id)}
-                className={`shrink-0 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors ${
+                className={`relative -mb-px shrink-0 whitespace-nowrap border-b-3 px-4 py-2 text-sm font-semibold transition-colors ${
                   isActive
-                    ? 'border-[#0b5d8f] bg-[#0b5d8f] text-white dark:border-[#8fc4ee] dark:bg-[#8fc4ee] dark:text-black'
-                    : 'border-gray-200 bg-white text-gray-700 hover:border-[#0b5d8f] hover:text-[#0b5d8f] dark:border-gray-800 dark:bg-black dark:text-gray-300 dark:hover:border-[#8fc4ee] dark:hover:text-[#8fc4ee]'
+                    ? 'border-[#0b5d8f] text-[#0b5d8f] dark:border-[#8fc4ee] dark:text-[#8fc4ee]'
+                    : 'border-transparent text-gray-600 hover:border-gray-300 hover:text-[#0b5d8f] dark:text-gray-400 dark:hover:border-gray-700 dark:hover:text-[#8fc4ee]'
                 }`}
               >
                 {item.label}
