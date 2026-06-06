@@ -31,10 +31,3 @@ Watch for this when you see uneven error rates, performance caveats buried in do
 ## Why This Matters
 
 This pattern helps you ask whose experience was treated as representative when a system was built — and who bears the cost of that assumption. It connects to broader questions about who is included in design processes, who is excluded from training data, and who is harmed when systems fail at the margins that were never really treated as margins.
-
-## STS Readings
-
-- Safiya Umoja Noble, [_Algorithms of Oppression: How Search Engines Reinforce Racism_](https://nyupress.org/9781479837243/algorithms-of-oppression/), NYU Press, 2018. Documents how algorithmic systems encode and reproduce racial bias through their construction and the datasets they rely on.
-- Joy Buolamwini and Timnit Gebru, ["Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification,"](http://proceedings.mlr.press/v81/buolamwini18a.html) _Proceedings of Machine Learning Research_, 2018. The foundational empirical study of accuracy disparities in commercial face analysis systems.
-- Geoffrey C. Bowker and Susan Leigh Star, _Sorting Things Out: Classification and Its Consequences_, MIT Press, 1999. Useful for understanding how classification systems naturalize one group's experience while marking others as deviant or exceptional.
-- Caroline Criado Perez, _Invisible Women: Data Bias in a World Designed for Men_, Abrams Press, 2019. An accessible survey of how the male default in data collection and system design produces systematic harm — useful for illustrating the pattern across many domains at once.

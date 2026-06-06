@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const TABS = [
-  { label: 'Recognition Cards', href: '/field-guide' },
+  { label: 'Recognition Cards', href: '/field-guide/recognition' },
   { label: 'Concept Cards', href: '/field-guide/concepts' },
   { label: 'Example Cards', href: '/field-guide/examples' },
 ];
@@ -16,9 +16,7 @@ export default function FieldGuideNav() {
   return (
     <nav className="mt-8 flex flex-wrap gap-2" aria-label="Field guide sections">
       {TABS.map(tab => {
-        const isActive = tab.href === '/field-guide'
-          ? normalizedPath === '/field-guide'
-          : normalizedPath.startsWith(tab.href);
+        const isActive = normalizedPath === tab.href || normalizedPath.startsWith(tab.href + '/');
 
         return (
           <Link

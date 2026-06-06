@@ -34,10 +34,3 @@ The ethical question is not simply whether the threshold is "right." It is what 
 Use this pattern when you want to move from model output to lived consequence. A model score is not yet a decision. The threshold is what makes the score act in the world.
 
 Accuracy alone does not tell you enough. A system with identical accuracy can behave very differently depending on where the threshold is set, what happens near the cutoff, and who has power to challenge the result. Thresholds are therefore part of governance — they connect technical uncertainty to institutional action, and choices about where to draw the line are choices about who bears the cost of mistakes.
-
-## STS Readings
-
-- Virginia Eubanks, [_Automating Inequality: How High-Tech Tools Profile, Police, and Punish the Poor_](https://us.macmillan.com/books/9781250074317/automatinginequality), St. Martin's Press, 2018. Detailed case studies of predictive risk systems in public services — useful for tracing how threshold choices translate into scrutiny, investigation, and intervention for specific populations.
-- Julia Angwin, Jeff Larson, Surya Mattu, and Lauren Kirchner, ["Machine Bias,"](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing) _ProPublica_, 2016. The foundational investigation of COMPAS risk scores in criminal sentencing — shows how threshold choices interact with racial disparities in false positive and false negative rates.
-- Solon Barocas, Moritz Hardt, and Arvind Narayanan, [_Fairness and Machine Learning_](https://fairmlbook.org/), 2023. Chapter 2 is especially useful for understanding how different fairness definitions involve different threshold tradeoffs — and why it is mathematically impossible to satisfy all definitions simultaneously.
-- Clare Garvie, Alvaro Bedoya, and Jonathan Frankle, ["The Perpetual Line-Up,"](https://www.perpetuallineup.org/) Georgetown Law Center on Privacy and Technology, 2016. Systematic analysis of police use of face recognition, including the threshold and accuracy problems that lead to wrongful identifications.

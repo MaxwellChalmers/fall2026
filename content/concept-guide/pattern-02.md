@@ -62,13 +62,3 @@ Data is a human construct. It is shaped by goals, tools, values, institutions, a
 ## Why This Matters
 
 This pattern helps you resist the idea that datasets simply show up ready-made and objective. It also helps you connect technical measurement to larger questions of representation, omission, and institutional power.
-
-## STS Readings
-
-- Lisa Gitelman and Virginia Jackson, ["Introduction: Raw Data Is an Oxymoron"](https://dsl.lsu.edu/nehtextualdata/wp-content/uploads/2017/11/RawData.pdf), in _Raw Data Is an Oxymoron_, edited by Lisa Gitelman, MIT Press, 2013. A clear starting point for the claim that data are always made through interpretation, classification, and context.
-- Geoffrey C. Bowker and Susan Leigh Star, _Sorting Things Out: Classification and Its Consequences_, MIT Press, 1999. Useful for understanding how classification systems become infrastructure and how they shape what can be known.
-- danah boyd and Kate Crawford, ["Critical Questions for Big Data"](https://doi.org/10.1080/1369118X.2012.678878), _Information, Communication & Society_, 2012. A concise article on scale, context, bias, and the mistaken belief that large datasets are automatically more objective.
-- Kate Crawford, ["The Hidden Biases in Big Data"](https://www.hbr.org/2013/04/the-hidden-biases-in-big-data), _Harvard Business Review_, 2013. A short, accessible piece that uses cases like Street Bump to show how data collection can reflect unequal participation.
-- Kristian Lum and William Isaac, ["To Predict and Serve?"](https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2016.00960.x), _Significance_, 2016. A clear case study of predictive policing, feedback loops, and how police data can reproduce past enforcement patterns.
-- David Lazer, Ryan Kennedy, Gary King, and Alessandro Vespignani, ["The Parable of Google Flu: Traps in Big Data Analysis"](https://doi.org/10.1126/science.1248506), _Science_, 2014. A useful case for discussing platform-generated data, proxy measurement, and the limits of large-scale behavioral traces.
-- Catherine D'Ignazio and Lauren F. Klein, [_Data Feminism_](https://data-feminism.mitpress.mit.edu/), MIT Press, 2020. Especially useful for thinking about missing data, power, standpoint, and the politics of counting.

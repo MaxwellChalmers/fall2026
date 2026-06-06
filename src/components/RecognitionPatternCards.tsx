@@ -74,16 +74,18 @@ export default function RecognitionPatternCards({
   patterns,
   badgeLabel = 'Lens',
   preserveOrder = false,
+  columns = 1,
 }: {
   patterns: TaxonomyEntry[];
   badgeLabel?: string;
   preserveOrder?: boolean;
+  columns?: 1 | 2;
 }) {
   const sortedPatterns = preserveOrder ? patterns : [...patterns].sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
 
   return (
     <section id="field-guide" className="space-y-4 max-w-5xl">
-      <div className="grid grid-cols-1 gap-6">
+      <div className={`grid gap-6 ${columns === 2 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
         {sortedPatterns.map((pattern, index) => {
           const shouldShowShortDescription =
             pattern.shortDescription && pattern.shortDescription.trim() !== pattern.subtitle?.trim();

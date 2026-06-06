@@ -14,6 +14,7 @@ import MarkdownContent from '@/components/MarkdownContent';
 import PatternCaseTabs, { type PatternCaseTab } from '@/components/PatternCaseTabs';
 import PatternComicStrip, { type PatternComicStripItem } from '@/components/PatternComicStrip';
 import { getExamplesForCard } from '@/lib/examples';
+import { getReadingsForCard, type Reading } from '@/lib/readings';
 
 interface PageProps {
   params: Promise<{
@@ -229,16 +230,26 @@ function FieldGuideReturnSection() {
 export const dynamicParams = false;
 
 export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
-  return generateStaticParamsForContentType('ethical-patterns');
+  const recognition = await generateStaticParamsForContentType('recognition-guide');
+  const concept = await generateStaticParamsForContentType('concept-guide');
+  return [...recognition, ...concept];
 }
 
 export default async function EthicalPatternPage({ params }: PageProps) {
   const { slug } = await params;
 
   try {
-    const postData = await getPostData(slug, 'ethical-patterns');
+    let postData;
+    let contentDir: 'recognition-guide' | 'concept-guide';
+    try {
+      postData = await getPostData(slug, 'recognition-guide');
+      contentDir = 'recognition-guide';
+    } catch {
+      postData = await getPostData(slug, 'concept-guide');
+      contentDir = 'concept-guide';
+    }
 
-    if (!validatePostForRender(slug, postData, 'ethical-patterns')) {
+    if (!validatePostForRender(slug, postData, contentDir)) {
       notFound();
     }
 
@@ -246,6 +257,7 @@ export default async function EthicalPatternPage({ params }: PageProps) {
     const relatedTaggedContent = getRelatedContentForPattern(slug);
     const relatedScheduleItems = await getRelatedScheduleItemsForPattern(slug);
     const relatedExamples = await getExamplesForCard(postData.num ?? '');
+    const bibliographyReadings = getReadingsForCard(postData.num ?? '');
 
     const featuredTopics = (postData as PostData & { featured_topics?: string[] }).featured_topics || [];
     const featuredAssignments = (postData as PostData & { featured_assignments?: string[] }).featured_assignments || [];
@@ -294,6 +306,26 @@ export default async function EthicalPatternPage({ params }: PageProps) {
                   content: `${ex.content}<div class="mt-5 rounded-lg border border-violet-200 bg-violet-50 p-4 dark:border-violet-800 dark:bg-violet-950/30"><p class="mb-1 text-xs font-semibold uppercase tracking-widest text-violet-700 dark:text-violet-400">How this connects</p><p class="mb-0 text-sm leading-6 text-gray-800 dark:text-gray-200">${ex.interpretation}</p></div>`,
                 }))}
               />
+            </PatternSection>
+          )}
+
+          {bibliographyReadings.length > 0 && (
+            <PatternSection label="Readings">
+              <ul className="list-tight">
+                {bibliographyReadings.map((reading: Reading) => (
+                  <li key={reading.id}>
+                    <a href={reading.url} target="_blank" rel="noopener noreferrer">
+                      {reading.title}
+                    </a>
+                    {reading.authors && (
+                      <span className="text-sm text-gray-600 dark:text-gray-400"> — {reading.authors}</span>
+                    )}
+                    {reading.notes && (
+                      <p className="mb-0 mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">{reading.notes}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </PatternSection>
           )}
 

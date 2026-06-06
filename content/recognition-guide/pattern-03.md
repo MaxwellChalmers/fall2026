@@ -31,9 +31,3 @@ The key question is not whether repurposing is technically permitted. Terms of s
 ## Why This Matters
 
 Contextual integrity — the principle that information should flow in ways that match the norms of the context in which it was shared — is a useful diagnostic. It helps you identify why a repurposing that is technically lawful can still constitute a violation, and why fine-print terms of service that technically authorize reuse do not equal meaningful consent.
-
-## STS Readings
-
-- Helen Nissenbaum, [_Privacy in Context: Technology, Policy, and the Integrity of Social Life_](https://www.sup.org/books/title/?id=8862), Stanford University Press, 2010. Introduces contextual integrity: the argument that privacy violations occur when information flows violate the norms of the context in which data was originally shared.
-- Shoshana Zuboff, _The Age of Surveillance Capitalism_, PublicAffairs, 2019. Argues that the core logic of major platforms is the systematic appropriation and repurposing of behavioral data as a commodity, regardless of user expectations or awareness.
-- danah boyd and Kate Crawford, ["Critical Questions for Big Data,"](https://doi.org/10.1080/1369118X.2012.678878) _Information, Communication & Society_, 2012. Relevant for the section on context collapse and the assumption that large datasets are neutral rather than contextually produced.

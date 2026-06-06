@@ -5,7 +5,6 @@ import { getPostData, getAllPosts } from '@/lib/markdown';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ContentLayout from '@/components/ContentLayout';
 import MarkdownContent from '@/components/MarkdownContent';
-import FieldGuideNav from '@/components/FieldGuideNav';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -48,7 +47,7 @@ export default async function ExamplePage({ params }: PageProps) {
     const post = await getPostData(slug, 'examples');
     const domains = (post.domains as string[]) ?? [];
     const connectedCards = (post.connected_cards as Array<{ num: string; interpretation: string }>) ?? [];
-    const allPatterns = getAllPosts('ethical-patterns');
+    const allPatterns = [...getAllPosts('recognition-guide'), ...getAllPosts('concept-guide')];
     const numToSlug = Object.fromEntries(allPatterns.map(p => [p.num, p.id]));
 
     return (
@@ -90,7 +89,6 @@ export default async function ExamplePage({ params }: PageProps) {
                   ))}
                 </div>
               )}
-              <FieldGuideNav />
             </header>
           </div>
         }

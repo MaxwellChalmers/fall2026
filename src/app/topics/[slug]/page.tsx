@@ -16,6 +16,7 @@ import type { PostData } from '@/lib/markdown';
 import { getModuleColorClasses, type ModuleColorClasses } from '@/lib/module-colors';
 import { getTopics } from '@/lib/topics';
 import type { Topic } from '@/lib/topics';
+import { getReadingsForTopic, type Reading } from '@/lib/readings';
 import { getTopicModules } from '@/lib/topic-config';
 
 interface TopicPageProps {
@@ -771,6 +772,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
 
   const readings = meeting.readings || [];
   const optionalReadings = meeting.optionalReadings || [];
+  const bibliographyReadings = getReadingsForTopic(meeting.scheduledDay);
   const activities = (meeting.activities || []).filter(activity => activity.excluded !== 1);
   const topicPostData = meeting.topicContentId
     ? await getPostData(meeting.topicContentId, 'topics').catch(() => null)
@@ -802,7 +804,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
     ),
   });
 
-  if (readings.length > 0 || optionalReadings.length > 0) {
+  if (readings.length > 0 || optionalReadings.length > 0 || bibliographyReadings.length > 0) {
     topicSections.push({
       navItem: { id: 'read-watch', label: 'Read / Watch' },
       panel: (
@@ -834,6 +836,23 @@ export default async function TopicPage({ params }: TopicPageProps) {
                       className="py-3 text-sm leading-6 text-gray-800 dark:text-gray-200"
                     >
                       {renderReading(reading.citation, reading.url)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {bibliographyReadings.length > 0 && (
+              <div className="space-y-3">
+                <EditorialLabel>Field Guide Bibliography</EditorialLabel>
+                <ul className="m-0! list-none divide-y divide-gray-200 p-0! dark:divide-gray-800">
+                  {bibliographyReadings.map((reading: Reading) => (
+                    <li key={reading.id} className="py-3 text-sm leading-6 text-gray-800 dark:text-gray-200">
+                      <a href={reading.url} target="_blank" rel="noopener noreferrer" className="font-medium">
+                        {reading.title}
+                      </a>
+                      {reading.authors && (
+                        <span className="text-gray-600 dark:text-gray-400"> — {reading.authors}</span>
+                      )}
                     </li>
                   ))}
                 </ul>
