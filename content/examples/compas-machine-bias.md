@@ -1,5 +1,7 @@
 ---
 title: 'ProPublica Publishes "Machine Bias"'
+id: ex-compas-machine-bias
+slug: compas-machine-bias
 year: '2016'
 show_in_timeline: true
 excerpt: "ProPublica's investigation of the COMPAS recidivism prediction tool finds it nearly twice as likely to falsely flag Black defendants as high-risk compared to white defendants — sparking a major public and academic debate about what it means for a predictive system to be fair."
@@ -28,6 +30,8 @@ connected_cards:
     interpretation: "The COMPAS score is a probability expressed as a categorical risk level. A threshold converts that category into a sentencing or bail input. The choice of threshold is not set by the model — it is a human decision — and its effects fall disproportionately on one group depending on where the line is drawn."
   - num: '22'
     interpretation: "When recorded recidivism rates differ between groups, no classifier can simultaneously achieve equal false positive rates and equal false negative rates. Northpointe's tool was calibrated for predictive parity — accuracy balanced across groups — which mathematically required accepting different error rates. Whether predictive parity or equal false positive rates is the correct criterion is a value judgment that the algorithm does not and cannot make."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

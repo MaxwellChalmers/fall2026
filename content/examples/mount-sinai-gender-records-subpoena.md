@@ -1,5 +1,7 @@
 ---
 title: 'Mount Sinai patient records subpoenaed for gender care investigation'
+id: ex-mount-sinai-gender-records-subpoena
+slug: mount-sinai-gender-records-subpoena
 excerpt: 'Medical records collected for adolescent healthcare were subpoenaed by a federal grand jury investigating gender-related treatments — the second Manhattan hospital system to face such a demand.'
 domains: ['healthcare-and-medicine', 'criminal-justice-and-policing']
 contested: >-
@@ -15,6 +17,8 @@ contested: >-
 connected_cards:
   - num: '5'
     interpretation: "Adolescent patients shared sensitive health information with Mount Sinai for a medical purpose: receiving gender-related care. That data was then subpoenaed by a federal grand jury in Texas as part of a criminal investigation. The records hadn't changed — what changed was the institutional context they could now flow into. Patients consented to treatment, not to federal disclosure. The hospital's plan to produce only 'de-identified' information was contested by families who argued the government could still identify individuals from the records. This is a case where the secondary use was not just unanticipated but actively harmful to the people whose data was at stake."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

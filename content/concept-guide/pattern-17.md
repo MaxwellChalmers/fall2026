@@ -1,10 +1,12 @@
 ---
 title: "Early choices can shape future benefits and harms."
 num: '17'
+id: sts-17
+slug: early-choices-can-shape-future-benefits-and-harms
 excerpt: "Design, data, and deployment decisions can shape who benefits, who is exposed to risk, and what becomes harder to change later."
-field_guide_section: 'concept-cards'
-field_guide_section_title: 'Concept Cards'
-field_guide_section_intro: 'These cards provide the STS foundations underlying the recognition patterns. Use them for deeper analysis, formal writing, or understanding why the recognition patterns occur.'
+field_guide_section: 'sts-concepts'
+field_guide_section_title: 'STS Concepts'
+field_guide_section_intro: "These cards provide the theoretical foundations that explain why deployment patterns occur. Use them for deeper analysis, formal writing, or understanding the structural forces behind what you observe."
 field_guide_section_order: 7
 field_guide_order: 7
 order: 2

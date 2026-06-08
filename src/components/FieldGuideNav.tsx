@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const TABS = [
-  { label: 'Recognition Cards', href: '/field-guide/recognition' },
-  { label: 'Concept Cards', href: '/field-guide/concepts' },
+  { label: 'AI Deployment Patterns', href: '/field-guide/deployment-patterns' },
+  { label: 'STS Concepts', href: '/field-guide/sts-concepts' },
   { label: 'Example Cards', href: '/field-guide/examples' },
-  { label: 'Ethical Frameworks', href: '/field-guide/frameworks' },
+  { label: 'Ethical Frameworks', href: '/field-guide/ethical-frameworks' },
   { label: 'Technical Explainers', href: '/field-guide/technical-explainers' },
   { label: 'History of AI', href: '/field-guide/ai-history' },
 ];

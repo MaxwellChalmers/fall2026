@@ -1,5 +1,7 @@
 ---
 card_type: technical-explainer
+id: te-neuromorphic-computing
+slug: neuromorphic-computing
 title: "Neuromorphic Computing"
 subtitle: "How brain-inspired hardware enables ultra-low-power AI at the edge — and why edge deployment changes the accountability picture."
 num: '6'
@@ -7,6 +9,8 @@ order: 6
 related_recognition_cards: ['7', '9', '10']
 related_concept_cards: []
 related_labs: ['9', '10']
+field_guide_section: 'technical-explainers'
+field_guide_section_title: 'Technical Explainers'
 ---
 
 > **Course connection:** This is the system at the center of the course's anticipatory governance analysis. The questions in the critical bridge section are the ones Module 5 asks prospectively — before deployment, not after. The technical design choices described here are exactly the ones the BRAID framework asks you to analyze in advance.

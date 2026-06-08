@@ -1,5 +1,7 @@
 ---
 title: 'Actuarial Risk Tools in Criminal Sentencing'
+id: ex-actuarial-risk-tools
+slug: actuarial-risk-tools
 year: '1994'
 show_in_timeline: true
 excerpt: "Statistical instruments that use group-level factors to predict individual recidivism appear in US sentencing and parole decisions — establishing the template for algorithmic decision-making in high-stakes institutional contexts, and the arguments about fairness that persist today."
@@ -25,6 +27,8 @@ connected_cards:
     interpretation: "Risk scores don't predict outcomes for individuals; they express statistical probabilities. A threshold converts those probabilities into sentencing inputs. That decision point transforms a range of uncertainty into a binary outcome — incarceration or release — with significant and irreversible consequences for the individual."
   - num: '22'
     interpretation: "Risk tools that use neighborhood, employment history, and family criminal history as features import the background conditions of structural inequality without naming them. The tool doesn't account for differential policing; it reproduces its outcomes. Groups most subject to surveillance and prosecution appear higher-risk — a consequence of who the system was watching, not only who was committing crimes."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

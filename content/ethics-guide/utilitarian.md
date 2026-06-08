@@ -1,5 +1,7 @@
 ---
 card_type: ethical-framework
+id: ef-utilitarian
+slug: utilitarian
 title: "Utilitarian / Consequentialist"
 subtitle: "What are the aggregate outcomes, and are they good?"
 num: '1'
@@ -7,6 +9,8 @@ order: 1
 related_recognition_cards: []
 related_concept_cards: []
 related_example_cards: []
+field_guide_section: 'ethical-frameworks'
+field_guide_section_title: 'Ethical Frameworks'
 ---
 
 ## The Core Idea

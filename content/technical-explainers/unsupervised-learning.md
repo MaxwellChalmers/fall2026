@@ -1,5 +1,7 @@
 ---
 card_type: technical-explainer
+id: te-unsupervised-learning
+slug: unsupervised-learning
 title: "Unsupervised Learning"
 subtitle: "How machines find structure without labels — and why the structure it finds reflects the data it was given."
 num: '2'
@@ -7,6 +9,8 @@ order: 2
 related_recognition_cards: ['22']
 related_concept_cards: []
 related_labs: ['1b', '1c', '8']
+field_guide_section: 'technical-explainers'
+field_guide_section_title: 'Technical Explainers'
 ---
 
 ## What the System Is Trying to Do

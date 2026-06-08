@@ -1,5 +1,7 @@
 ---
 title: 'The Allegheny Family Screening Tool'
+id: ex-allegheny-family-screening
+slug: allegheny-family-screening
 excerpt: 'A child welfare risk model produces a score from 1 to 20. The county had to decide what score triggers a high-risk flag — and that threshold is a policy choice about which families receive scrutiny.'
 domains: ['public-benefits-and-welfare', 'criminal-justice-and-policing']
 contested: >-
@@ -16,6 +18,8 @@ contested: >-
 connected_cards:
   - num: '9'
     interpretation: "The Allegheny Family Screening Tool outputs a risk score, but the county separately decided that scores above 14 should trigger a high-risk flag visible to intake workers. That threshold is a policy choice, not a technical result. Moving it shifts which families receive additional scrutiny. The costs of threshold errors are not symmetric: a missed high-risk case may mean a child is not protected; a false high-risk flag subjects a family to investigation, which can destabilize a household. The tool doesn't balance those consequences — the threshold does."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

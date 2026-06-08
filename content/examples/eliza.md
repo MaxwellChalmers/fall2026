@@ -1,5 +1,7 @@
 ---
 title: 'ELIZA and the Illusion of Understanding'
+id: ex-eliza
+slug: eliza
 year: '1966'
 show_in_timeline: true
 excerpt: "Joseph Weizenbaum builds a program that simulates a therapist by pattern-matching user input and reflecting it back as questions. Users attribute genuine understanding and empathy to a system that has none."
@@ -12,6 +14,8 @@ timeline_cards:
 connected_cards:
   - num: '12'
     interpretation: "ELIZA had no model of the user, no understanding of language, and no memory between responses beyond the current exchange. It matched surface patterns in input and reflected them back as questions. Users — including Weizenbaum's own secretary, who asked to be left alone with the program — attributed empathy, understanding, and genuine engagement to it. Weizenbaum found the response alarming enough to write _Computer Power and Human Reason_ (1976) as a warning about the human tendency to project inner life onto systems that have none."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

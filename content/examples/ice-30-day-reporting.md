@@ -1,5 +1,7 @@
 ---
 title: 'ICE and the 30-day reporting window'
+id: ex-ice-30-day-reporting
+slug: ice-30-day-reporting
 year: '2026'
 show_in_timeline: true
 excerpt: 'A reporting boundary determined which deaths in immigration detention entered the official record — and a policy change in 2026 moved that boundary back.'
@@ -14,6 +16,8 @@ connected_cards:
     interpretation: "The number of deaths linked to detention did not change when the reporting boundary shifted. What changed was which deaths existed as data — countable, investigable, attributable. The 30-day rule produced a category of death. Eliminating it unmade that category. The data was not a neutral record of what happened; it was a record of what the measurement boundary allowed to be seen."
   - num: '10'
     interpretation: "Responsibility for deaths connected to detention was distributed across ICE, private contractors, and a bureaucratic handoff at the moment of release. When the 30-day window closed, that distributed responsibility became harder to trace. The change in reporting requirement didn't change who was responsible — it changed whether anyone had to account for it."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

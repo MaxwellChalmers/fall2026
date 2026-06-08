@@ -1,5 +1,7 @@
 ---
 card_type: ethical-framework
+id: ef-rawlsian
+slug: rawlsian
 title: "Rawlsian"
 subtitle: "Would you accept this system's design if you didn't know which side of it you'd land on?"
 num: '5'
@@ -7,6 +9,8 @@ order: 5
 related_recognition_cards: []
 related_concept_cards: []
 related_example_cards: []
+field_guide_section: 'ethical-frameworks'
+field_guide_section_title: 'Ethical Frameworks'
 ---
 
 ## The Core Idea

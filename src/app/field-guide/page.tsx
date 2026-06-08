@@ -23,13 +23,13 @@ export default async function FieldGuideLandingPage() {
 
   const sections = [
     {
-      label: 'Recognition Cards',
-      href: '/field-guide/recognition',
+      label: 'AI Deployment Patterns',
+      href: '/field-guide/deployment-patterns',
       post: recognitionPost,
     },
     {
-      label: 'Concept Cards',
-      href: '/field-guide/concepts',
+      label: 'STS Concepts',
+      href: '/field-guide/sts-concepts',
       post: conceptPost,
     },
     {
@@ -39,7 +39,7 @@ export default async function FieldGuideLandingPage() {
     },
     {
       label: 'Ethical Frameworks',
-      href: '/field-guide/frameworks',
+      href: '/field-guide/ethical-frameworks',
       post: frameworksPost,
     },
     {

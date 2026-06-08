@@ -37,7 +37,7 @@ function getPatternsWithMarkdownMetadata(): TaxonomyEntry[] {
   return getAllPosts('recognition-guide')
     .filter(post => !post.hide_from_list && !post.no_render && post.card_type === 'recognition')
     .map((post: PostData) => ({
-      slug: post.slug ? `deployment-patterns/${post.slug}` : post.id,
+      slug: post.slug ? `deployment-patterns/${post.slug}` : undefined,
       num: post.num,
       title: post.field_guide_display_title || post.title,
       subtitle: post.excerpt,
@@ -120,10 +120,10 @@ function getFieldGuideSections(patterns: TaxonomyEntry[]): GuideSection[] {
 
 export const metadata: Metadata = {
   title: 'AI Deployment Patterns — AI Field Guide',
-  description: 'A field guide to making sense of AI debates in everyday life.',
+  description: 'Recurring patterns in how AI systems are deployed in the world.',
 };
 
-export default function RecognitionCardsPage() {
+export default function DeploymentPatternsPage() {
   const patterns = getPatternsWithMarkdownMetadata();
   const sections = getFieldGuideSections(patterns);
 
@@ -142,7 +142,7 @@ export default function RecognitionCardsPage() {
                       </h2>
                       <p className="mb-0 max-w-5xl text-base leading-7 text-gray-700 dark:text-gray-300">{section.intro}</p>
                     </div>
-                    <RecognitionPatternCards patterns={section.items} badgeLabel="Lens" preserveOrder columns={columns} />
+                    <RecognitionPatternCards patterns={section.items} badgeLabel="Pattern" preserveOrder columns={columns} />
                   </section>
                 </FieldGuideCardSection>
                 <FieldGuideCompactSection

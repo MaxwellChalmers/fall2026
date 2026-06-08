@@ -1,5 +1,7 @@
 ---
 card_type: technical-explainer
+id: te-reinforcement-learning
+slug: reinforcement-learning
 title: "Reinforcement Learning"
 subtitle: "How machines learn by trial and error — and why the reward signal is a values decision, not a technical one."
 num: '3'
@@ -7,6 +9,8 @@ order: 3
 related_recognition_cards: ['23', '8', '25']
 related_concept_cards: []
 related_labs: []
+field_guide_section: 'technical-explainers'
+field_guide_section_title: 'Technical Explainers'
 ---
 
 ## What the System Is Trying to Do

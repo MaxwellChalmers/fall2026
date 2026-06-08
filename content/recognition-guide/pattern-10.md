@@ -1,10 +1,12 @@
 ---
 title: "Automation changes accountability."
 num: '10'
+id: dp-10
+slug: automation-changes-accountability
 excerpt: "Automation can make decisions feel more diffuse, making it harder to locate who is responsible for choices, errors, or harms."
-field_guide_section: 'how-systems-act-and-shift-power'
-field_guide_section_title: 'On how systems act and shift power'
-field_guide_section_intro: "AI systems don't just process information — they act in the world, redistributing authority and accountability. This section helps you trace who gains power, who loses it, and what happens to responsibility when a system makes a decision."
+field_guide_section: 'deployment-patterns'
+field_guide_section_title: 'AI Deployment Patterns'
+field_guide_section_intro: "These cards describe recurring patterns in how AI systems are deployed in the world. Use them to identify what a system is doing to and through people when you encounter it."
 field_guide_section_order: 3
 field_guide_order: 2
 order: 2

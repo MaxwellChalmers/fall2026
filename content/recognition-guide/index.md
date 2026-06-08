@@ -2,7 +2,7 @@
 title: 'AI in the Wild'
 subtitle: 'A field guide to making sense of AI debates in everyday life.'
 type: 'landing'
-section_label: 'Recognition Cards'
+section_label: 'AI Deployment Patterns'
 featured_image: 'fall2026/images/ethics-field-guide/landing/binoculars-landscape-banner.png'
 thumb_image: 'fall2026/images/ethics-field-guide/landing/binoculars-thumb.png'
 ---

@@ -1,5 +1,7 @@
 ---
 title: 'Blood pressure and the overnight epidemic'
+id: ex-blood-pressure-reclassification
+slug: blood-pressure-reclassification
 excerpt: 'In 2017, a guideline change reclassified 31 million Americans as hypertensive — without any change in their physiology. What changed was where the threshold was drawn.'
 domains: ['healthcare-and-medicine']
 contested: >-
@@ -18,6 +20,8 @@ connected_cards:
     interpretation: "The threshold for hypertension diagnosis — 130/80 vs. 140/90 mmHg — is a judgment call about what risk level warrants a clinical label and intervention. When that judgment changed in 2017, 31 million people crossed the threshold without any change in their bodies. The threshold didn't track a natural boundary in reality; it produced a medical status. Where the line is drawn determines who receives medication, monitoring, insurance flags, and the self-perception that comes with a chronic condition label."
   - num: '23'
     interpretation: "This case directly illustrates how classification produces rather than describes. The category 'hypertensive' is not a natural state waiting to be discovered — it is a status produced by a threshold. When the guideline changed, the category's boundary moved, and millions of people were suddenly inside it. Their bodies hadn't changed; the classification had. And with it, what treatments were available, what insurance categories applied, and how they understood their own health."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

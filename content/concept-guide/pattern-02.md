@@ -1,11 +1,13 @@
 ---
 title: 'Data is produced, not found.'
 num: '2'
+id: sts-02
+slug: data-is-produced-not-found
 excerpt: 'Data is created through measurement choices, interfaces, institutions, and assumptions about what should count.'
 featured_image: 'fall2026/images/ethics-field-guide/data/02-observation-sensing.png'
-field_guide_section: 'concept-cards'
-field_guide_section_title: 'Concept Cards'
-field_guide_section_intro: 'These cards provide the STS foundations underlying the recognition patterns. Use them for deeper analysis, formal writing, or understanding why the recognition patterns occur.'
+field_guide_section: 'sts-concepts'
+field_guide_section_title: 'STS Concepts'
+field_guide_section_intro: "These cards provide the theoretical foundations that explain why deployment patterns occur. Use them for deeper analysis, formal writing, or understanding the structural forces behind what you observe."
 field_guide_section_order: 7
 field_guide_order: 1
 order: 2

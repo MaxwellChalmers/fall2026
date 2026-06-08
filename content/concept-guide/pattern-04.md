@@ -1,10 +1,12 @@
 ---
 title: "Classification is not neutral."
 num: '6'
+id: sts-06
+slug: classification-is-not-neutral
 excerpt: "Categories and labels are constructed choices that shape what kinds of people, behaviors, or events become visible and consequential."
-field_guide_section: 'concept-cards'
-field_guide_section_title: 'Concept Cards'
-field_guide_section_intro: 'These cards provide the STS foundations underlying the recognition patterns. Use them for deeper analysis, formal writing, or understanding why the recognition patterns occur.'
+field_guide_section: 'sts-concepts'
+field_guide_section_title: 'STS Concepts'
+field_guide_section_intro: "These cards provide the theoretical foundations that explain why deployment patterns occur. Use them for deeper analysis, formal writing, or understanding the structural forces behind what you observe."
 field_guide_section_order: 7
 field_guide_order: 3
 order: 2

@@ -1,5 +1,7 @@
 ---
 title: 'The EU AI Act'
+id: ex-eu-ai-act
+slug: eu-ai-act
 year: '2024'
 show_in_timeline: true
 excerpt: "The European Union's AI Act enters into force — establishing the first comprehensive regulatory framework for AI systems, and becoming the reference point for global debates about AI governance."
@@ -22,6 +24,8 @@ connected_cards:
     interpretation: "The Act was contested by technology companies and some EU member states on the grounds that compliance costs would disadvantage European AI development. This framing — governance as a drag on innovation — positions regulatory requirements and technical progress as inherently in tension, and treats the question 'can we build this?' as answering the question 'should we?'"
   - num: '21'
     interpretation: "The Act explicitly classifies some AI applications as prohibited — social scoring systems by public authorities, real-time biometric identification in public spaces in most cases, AI that exploits psychological vulnerabilities. The prohibition is a formal claim that the ability to build something does not settle whether to build it. Certain risk levels are treated as unacceptable regardless of potential benefit."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

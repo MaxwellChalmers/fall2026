@@ -1,5 +1,7 @@
 ---
 card_type: ethical-framework
+id: ef-rights-based
+slug: rights-based
 title: "Rights-Based"
 subtitle: "Are there protections here that aren't negotiable regardless of outcomes?"
 num: '4'
@@ -7,6 +9,8 @@ order: 4
 related_recognition_cards: []
 related_concept_cards: []
 related_example_cards: []
+field_guide_section: 'ethical-frameworks'
+field_guide_section_title: 'Ethical Frameworks'
 ---
 
 ## The Core Idea

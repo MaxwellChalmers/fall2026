@@ -49,7 +49,11 @@ export default async function ExamplePage({ params }: PageProps) {
     const contested = (post as typeof post & { contested?: string }).contested;
     const connectedCards = (post.connected_cards as Array<{ num: string; interpretation: string }>) ?? [];
     const allPatterns = [...getAllPosts('recognition-guide'), ...getAllPosts('concept-guide')];
-    const numToSlug = Object.fromEntries(allPatterns.map(p => [String(p.num), p.id]));
+    const numToSlug = Object.fromEntries(allPatterns.map(p => {
+      const section = p.card_type === 'recognition' ? 'deployment-patterns' : 'sts-concepts';
+      const urlSlug = (p as typeof p & { slug?: string }).slug || p.id;
+      return [String(p.num), `${section}/${urlSlug}`];
+    }));
     const numToTitle = Object.fromEntries(allPatterns.map(p => [String(p.num), p.title]));
 
     return (

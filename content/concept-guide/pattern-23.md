@@ -1,10 +1,12 @@
 ---
 title: "Classification systems don't just describe the world — they produce it."
 num: '23'
+id: sts-23
+slug: classification-systems-dont-just-describe-the-world-they-produce-it
 excerpt: "When a system sorts, labels, or categorizes, it doesn't simply reflect reality. It creates the categories that people, institutions, and environments are then made to fit."
-field_guide_section: 'concept-cards'
-field_guide_section_title: 'Concept Cards'
-field_guide_section_intro: 'These cards provide the STS foundations underlying the recognition patterns. Use them for deeper analysis, formal writing, or understanding why the recognition patterns occur.'
+field_guide_section: 'sts-concepts'
+field_guide_section_title: 'STS Concepts'
+field_guide_section_intro: "These cards provide the theoretical foundations that explain why deployment patterns occur. Use them for deeper analysis, formal writing, or understanding the structural forces behind what you observe."
 field_guide_section_order: 7
 field_guide_order: 9
 order: 9

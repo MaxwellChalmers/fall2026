@@ -43,10 +43,10 @@ interface SidebarNavClientProps {
 }
 
 const FIELD_GUIDE_ITEMS = [
-  { label: 'Recognition Cards', href: '/field-guide/recognition' },
-  { label: 'Concept Cards', href: '/field-guide/concepts' },
+  { label: 'AI Deployment Patterns', href: '/field-guide/deployment-patterns' },
+  { label: 'STS Concepts', href: '/field-guide/sts-concepts' },
   { label: 'Examples', href: '/field-guide/examples' },
-  { label: 'Ethical Frameworks', href: '/field-guide/frameworks' },
+  { label: 'Ethical Frameworks', href: '/field-guide/ethical-frameworks' },
   { label: 'Technical Explainers', href: '/field-guide/technical-explainers' },
 ];
 

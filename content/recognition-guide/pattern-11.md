@@ -1,10 +1,12 @@
 ---
 title: "AI can create dependency, cognitive offloading, and deskilling."
 num: '11'
+id: dp-11
+slug: ai-can-create-dependency-cognitive-offloading-and-deskilling
 excerpt: "As systems take over tasks, they can reshape judgment, memory, expertise, and the distribution of skill."
-field_guide_section: 'how-systems-act-and-shift-power'
-field_guide_section_title: 'On how systems act and shift power'
-field_guide_section_intro: "AI systems don't just process information — they act in the world, redistributing authority and accountability. This section helps you trace who gains power, who loses it, and what happens to responsibility when a system makes a decision."
+field_guide_section: 'deployment-patterns'
+field_guide_section_title: 'AI Deployment Patterns'
+field_guide_section_intro: "These cards describe recurring patterns in how AI systems are deployed in the world. Use them to identify what a system is doing to and through people when you encounter it."
 field_guide_section_order: 3
 field_guide_order: 3
 order: 3

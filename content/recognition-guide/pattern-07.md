@@ -1,10 +1,12 @@
 ---
 title: "Thresholds make uncertainty consequential."
 num: '9'
+id: dp-09
+slug: thresholds-make-uncertainty-consequential
 excerpt: "Thresholds turn scores, signals, and probabilities into action. They decide when systems intervene, wait, ignore, escalate, or ask for human judgment."
-field_guide_section: 'how-systems-draw-boundaries'
-field_guide_section_title: 'How systems draw boundaries — and who and what falls outside them'
-field_guide_section_intro: "Every AI system classifies people in some way. This section helps you ask whose experience is treated as the norm, how categories are drawn, and who bears the cost when a system's categories don't fit."
+field_guide_section: 'deployment-patterns'
+field_guide_section_title: 'AI Deployment Patterns'
+field_guide_section_intro: "These cards describe recurring patterns in how AI systems are deployed in the world. Use them to identify what a system is doing to and through people when you encounter it."
 field_guide_section_order: 2
 field_guide_order: 2
 order: 1

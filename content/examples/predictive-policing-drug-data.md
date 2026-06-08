@@ -1,5 +1,7 @@
 ---
 title: 'Predictive policing and drug-crime data'
+id: ex-predictive-policing-drug-data
+slug: predictive-policing-drug-data
 excerpt: 'Predictive policing systems trained on arrest records learned the history of enforcement, not the geography of drug use.'
 domains: ['criminal-justice-and-policing']
 contested: >-
@@ -17,6 +19,8 @@ contested: >-
 connected_cards:
   - num: '2'
     interpretation: "Drug arrest records were treated as if they measured where drug use occurs. But those records were produced by patrol decisions, enforcement priorities, and earlier patterns of surveillance. Drug use is far more widespread than arrest data suggests. A model trained on arrest records learned the history of policing — and sent police back to already-policed neighborhoods, generating more records that appeared to confirm the original pattern."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   description: 'The STS frameworks and theoretical foundations underlying the field guide recognition patterns.',
 };
 
-export default function ConceptCardsPage() {
+export default function STSConceptsPage() {
   const cards = getConceptCards();
 
   return (
@@ -56,7 +56,7 @@ export default function ConceptCardsPage() {
               cards={cards.map(card => ({
                 title: card.title,
                 subtitle: card.subtitle,
-                href: card.slug ? `/field-guide/${card.slug}` : undefined,
+                href: `/field-guide/${card.slug}`,
               }))}
             />
           </FieldGuideViewProvider>

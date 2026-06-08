@@ -1,5 +1,7 @@
 ---
 card_type: technical-explainer
+id: te-anomaly-detection
+slug: anomaly-detection
 title: "Anomaly Detection"
 subtitle: "How systems learn what counts as normal — and why that definition is never neutral."
 num: '5'
@@ -7,6 +9,8 @@ order: 5
 related_recognition_cards: ['22', '7', '25', '8']
 related_concept_cards: []
 related_labs: ['8', '9']
+field_guide_section: 'technical-explainers'
+field_guide_section_title: 'Technical Explainers'
 ---
 
 > **Course connection:** This explainer connects directly to the course's capstone case — a neuromorphic chip designed for edge-based anomaly detection. The technical failure modes here are the same ones the capstone analysis asks you to evaluate prospectively.

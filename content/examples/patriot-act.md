@@ -1,5 +1,7 @@
 ---
 title: 'The USA PATRIOT Act and the Architecture of Data Surveillance'
+id: ex-patriot-act
+slug: patriot-act
 year: '2001'
 show_in_timeline: true
 excerpt: "The PATRIOT Act dramatically expands government authority to access communications and financial records — establishing the legal architecture for large-scale data collection and demonstrating how infrastructure built for one purpose can be repurposed at scale."
@@ -26,6 +28,8 @@ connected_cards:
     interpretation: "The communications infrastructure that enables phone calls, email, and financial transfers was built for those purposes — not for intelligence collection. The PATRIOT Act repurposed that infrastructure by expanding government access to data generated through it. Users had no knowledge that the infrastructure they used for communication was also generating records accessible to government agencies under expanded legal authority."
   - num: '10'
     interpretation: "The PATRIOT Act expanded the use of National Security Letters, which allowed FBI field agents to obtain records from telecommunications and financial companies without judicial review. Removing the judicial check changed accountability: a decision that previously required a judge now required only an agent's determination that the records were relevant to an investigation. The distributed structure of that authorization made it difficult to trace or challenge."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

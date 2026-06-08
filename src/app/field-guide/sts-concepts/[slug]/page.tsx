@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
-import { getPostData, PostData } from '@/lib/markdown';
-import { generateStaticParamsForContentType, validatePostForRender } from '@/lib/static-params';
+import { getAllPosts, getPostDataBySlug, PostData } from '@/lib/markdown';
 import {
   getRelatedContentForPattern,
   getRelatedScheduleItemsForPattern,
@@ -17,16 +16,11 @@ import { getExamplesForCard } from '@/lib/examples';
 import { getReadingsForCard, type Reading } from '@/lib/readings';
 
 interface PageProps {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: Promise<{ slug: string }>;
 }
 
 function formatGroupLabel(group?: string) {
-  if (!group) {
-    return undefined;
-  }
-
+  if (!group) return undefined;
   return group
     .split('-')
     .map(part => part.charAt(0).toUpperCase() + part.slice(1))
@@ -78,71 +72,34 @@ function splitPatternContentSections(content: string) {
   let currentLabel = 'Overview';
   let currentStart = 0;
   let match: RegExpExecArray | null;
-
   while ((match = headingRegex.exec(content)) !== null) {
     const sectionContent = content.slice(currentStart, match.index).trim();
-
-    if (sectionContent) {
-      sections.push({
-        label: currentLabel,
-        content: sectionContent,
-      });
-    }
-
+    if (sectionContent) sections.push({ label: currentLabel, content: sectionContent });
     currentLabel = getPlainTextFromHtml(match[1]);
     currentStart = match.index + match[0].length;
   }
-
   const finalContent = content.slice(currentStart).trim();
-  if (finalContent) {
-    sections.push({
-      label: currentLabel,
-      content: finalContent,
-    });
-  }
-
+  if (finalContent) sections.push({ label: currentLabel, content: finalContent });
   return sections;
 }
 
-function splitPatternSubsections(content: string): {
-  intro: string;
-  items: PatternComicStripItem[];
-} {
+function splitPatternSubsections(content: string): { intro: string; items: PatternComicStripItem[] } {
   const headingRegex = /<h3[^>]*>([\s\S]*?)<\/h3>/gi;
   const items: PatternComicStripItem[] = [];
   let intro = '';
   let currentLabel = '';
   let currentStart = 0;
   let match: RegExpExecArray | null;
-
   while ((match = headingRegex.exec(content)) !== null) {
     const sectionContent = content.slice(currentStart, match.index).trim();
-
-    if (currentLabel && sectionContent) {
-      items.push({
-        id: slugifyForId(currentLabel),
-        label: currentLabel,
-        content: sectionContent,
-      });
-    } else if (!currentLabel && sectionContent) {
-      intro = sectionContent;
-    }
-
+    if (currentLabel && sectionContent) items.push({ id: slugifyForId(currentLabel), label: currentLabel, content: sectionContent });
+    else if (!currentLabel && sectionContent) intro = sectionContent;
     currentLabel = getPlainTextFromHtml(match[1]);
     currentStart = match.index + match[0].length;
   }
-
   const finalContent = content.slice(currentStart).trim();
-  if (currentLabel && finalContent) {
-    items.push({
-      id: slugifyForId(currentLabel),
-      label: currentLabel,
-      content: finalContent,
-    });
-  } else if (!currentLabel && finalContent) {
-    intro = finalContent;
-  }
-
+  if (currentLabel && finalContent) items.push({ id: slugifyForId(currentLabel), label: currentLabel, content: finalContent });
+  else if (!currentLabel && finalContent) intro = finalContent;
   return { intro, items };
 }
 
@@ -152,31 +109,14 @@ function splitPatternCaseTabs(content: string): PatternCaseTab[] {
   let currentLabel = '';
   let currentStart = 0;
   let match: RegExpExecArray | null;
-
   while ((match = headingRegex.exec(content)) !== null) {
     const caseContent = content.slice(currentStart, match.index).trim();
-
-    if (currentLabel && caseContent) {
-      cases.push({
-        id: slugifyForId(currentLabel),
-        label: currentLabel,
-        content: caseContent,
-      });
-    }
-
+    if (currentLabel && caseContent) cases.push({ id: slugifyForId(currentLabel), label: currentLabel, content: caseContent });
     currentLabel = getPlainTextFromHtml(match[1]);
     currentStart = match.index + match[0].length;
   }
-
   const finalContent = content.slice(currentStart).trim();
-  if (currentLabel && finalContent) {
-    cases.push({
-      id: slugifyForId(currentLabel),
-      label: currentLabel,
-      content: finalContent,
-    });
-  }
-
+  if (currentLabel && finalContent) cases.push({ id: slugifyForId(currentLabel), label: currentLabel, content: finalContent });
   return cases;
 }
 
@@ -192,37 +132,28 @@ function PatternSection({ label, children }: { label: string; children: ReactNod
 function PatternContentSection({ section }: { section: { label: string; content: string } }) {
   const caseTabs = section.label === 'Examples' ? splitPatternCaseTabs(section.content) : [];
   const stepGrid = section.label === 'What To Notice' ? splitPatternSubsections(section.content) : null;
-
-  if (stepGrid && stepGrid.items.length > 0) {
-    return <PatternComicStrip intro={stepGrid.intro} items={stepGrid.items} />;
-  }
-
-  if (caseTabs.length > 0) {
-    return <PatternCaseTabs cases={caseTabs} />;
-  }
-
+  if (stepGrid && stepGrid.items.length > 0) return <PatternComicStrip intro={stepGrid.intro} items={stepGrid.items} />;
+  if (caseTabs.length > 0) return <PatternCaseTabs cases={caseTabs} />;
   return <MarkdownContent content={section.content} />;
 }
 
-function FieldGuideReturnSection({ sectionTitle, sectionHref }: { sectionTitle?: string; sectionHref?: string }) {
-  const href = sectionHref || '/field-guide';
-  const label = sectionTitle ? `Back to ${sectionTitle}` : 'Back to the Field Guide';
+function FieldGuideReturnSection() {
   return (
     <section className="rounded-2xl border border-violet-200 bg-violet-50/70 p-6 dark:border-violet-900 dark:bg-violet-950/20">
       <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-violet-700 dark:text-violet-300">
         Field Guide
       </p>
       <h2 className="m-0 text-2xl font-semibold tracking-tight text-gray-950 dark:text-gray-50">
-        {sectionTitle ? `Browse ${sectionTitle}` : 'Keep Browsing the Field Guide'}
+        Browse STS Concepts
       </h2>
       <p className="mb-0 mt-3 max-w-3xl text-sm leading-6 text-gray-700 dark:text-gray-300">
-        Return to the full field guide to compare this pattern with other patterns across the course.
+        Return to the full list of STS concepts.
       </p>
       <Link
-        href={href}
+        href="/field-guide/sts-concepts"
         className="mt-5 inline-flex items-center rounded-full bg-violet-700 px-4 py-2 text-sm font-semibold text-white no-underline hover:bg-violet-800 dark:bg-violet-500 dark:hover:bg-violet-400"
       >
-        {label}
+        Back to STS Concepts
       </Link>
     </section>
   );
@@ -231,45 +162,27 @@ function FieldGuideReturnSection({ sectionTitle, sectionHref }: { sectionTitle?:
 export const dynamicParams = false;
 
 export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
-  const recognition = await generateStaticParamsForContentType('recognition-guide');
-  const concept = await generateStaticParamsForContentType('concept-guide');
-  return [...recognition, ...concept];
+  const posts = getAllPosts('concept-guide').filter(
+    p => p.card_type === 'concept' && p.slug && !p.excluded && p.no_render !== 1
+  );
+  return posts.map(p => ({ slug: p.slug as string }));
 }
 
-export default async function EthicalPatternPage({ params }: PageProps) {
+export default async function STSConceptPage({ params }: PageProps) {
   const { slug } = await params;
-
   try {
-    let postData;
-    let contentDir: 'recognition-guide' | 'concept-guide';
-    try {
-      postData = await getPostData(slug, 'recognition-guide');
-      contentDir = 'recognition-guide';
-    } catch {
-      postData = await getPostData(slug, 'concept-guide');
-      contentDir = 'concept-guide';
-    }
-
-    if (!validatePostForRender(slug, postData, contentDir)) {
-      notFound();
-    }
-
-    const relatedTopics = getRelatedTopicsForPattern(slug);
-    const relatedTaggedContent = getRelatedContentForPattern(slug);
-    const relatedScheduleItems = await getRelatedScheduleItemsForPattern(slug);
+    const postData = await getPostDataBySlug(slug, 'concept-guide');
+    const relatedTopics = getRelatedTopicsForPattern(postData.id);
+    const relatedTaggedContent = getRelatedContentForPattern(postData.id);
+    const relatedScheduleItems = await getRelatedScheduleItemsForPattern(postData.id);
     const relatedExamples = await getExamplesForCard(postData.num ?? '');
     const bibliographyReadings = getReadingsForCard(postData.num ?? '');
-
     const featuredTopics = (postData as PostData & { featured_topics?: string[] }).featured_topics || [];
     const featuredAssignments = (postData as PostData & { featured_assignments?: string[] }).featured_assignments || [];
     const featuredResources = (postData as PostData & { featured_resources?: string[] }).featured_resources || [];
-
     const resourceItems = relatedTaggedContent.items.filter(item => item.kind === 'resources');
     const combinedScheduleItems = relatedScheduleItems;
-    const postWithGuideMetadata = postData as PostData & {
-      field_guide_section_title?: string;
-      group?: string;
-    };
+    const postWithGuideMetadata = postData as PostData & { field_guide_section_title?: string; group?: string };
     const groupLabel = postWithGuideMetadata.field_guide_section_title || formatGroupLabel(postWithGuideMetadata.group);
     const patternContentSections = splitPatternContentSections(postData.content);
 
@@ -284,6 +197,7 @@ export default async function EthicalPatternPage({ params }: PageProps) {
               className="px-4 md:px-16"
               items={[
                 { label: 'Field Guide', href: '/field-guide' },
+                { label: 'STS Concepts', href: '/field-guide/sts-concepts' },
                 { label: postData.title },
               ]}
             />
@@ -315,15 +229,9 @@ export default async function EthicalPatternPage({ params }: PageProps) {
               <ul className="list-tight">
                 {bibliographyReadings.map((reading: Reading) => (
                   <li key={reading.id}>
-                    <a href={reading.url} target="_blank" rel="noopener noreferrer">
-                      {reading.title}
-                    </a>
-                    {reading.authors && (
-                      <span className="text-sm text-gray-600 dark:text-gray-400"> — {reading.authors}</span>
-                    )}
-                    {reading.notes && (
-                      <p className="mb-0 mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">{reading.notes}</p>
-                    )}
+                    <a href={reading.url} target="_blank" rel="noopener noreferrer">{reading.title}</a>
+                    {reading.authors && <span className="text-sm text-gray-600 dark:text-gray-400"> — {reading.authors}</span>}
+                    {reading.notes && <p className="mb-0 mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">{reading.notes}</p>}
                   </li>
                 ))}
               </ul>
@@ -338,9 +246,7 @@ export default async function EthicalPatternPage({ params }: PageProps) {
                     <Link href={`/topics/${topic.meetingSlug}`}>{topic.meetingTitle}</Link>{' '}
                     <span className="text-sm text-gray-600 dark:text-gray-400">({topic.moduleTitle})</span>
                     {featuredTopics.includes(topic.meetingSlug) && (
-                      <span className="ml-2 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300">
-                        Featured
-                      </span>
+                      <span className="ml-2 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300">Featured</span>
                     )}
                   </li>
                 ))}
@@ -356,19 +262,13 @@ export default async function EthicalPatternPage({ params }: PageProps) {
                 {combinedScheduleItems.map(item => {
                   const slugFromHref = item.href.split('/').filter(Boolean).pop() || '';
                   const isFeatured = featuredAssignments.includes(slugFromHref);
-
                   return (
                     <li key={item.href}>
                       <Link href={item.href}>{item.title}</Link>{' '}
                       <span className="text-sm text-gray-600 dark:text-gray-400">
-                        ({item.kind === 'assignments' ? 'Lab / Assignment' : 'Activity'} · {item.moduleTitle} ·{' '}
-                        {item.meetingTitle})
+                        ({item.kind === 'assignments' ? 'Lab / Assignment' : 'Activity'} · {item.moduleTitle} · {item.meetingTitle})
                       </span>
-                      {isFeatured && (
-                        <span className="ml-2 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300">
-                          Featured
-                        </span>
-                      )}
+                      {isFeatured && <span className="ml-2 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300">Featured</span>}
                     </li>
                   );
                 })}
@@ -387,26 +287,18 @@ export default async function EthicalPatternPage({ params }: PageProps) {
                     <li key={item.href}>
                       <Link href={item.href}>{item.title}</Link>
                       {featuredResources.includes(slugFromHref) && (
-                        <span className="ml-2 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300">
-                          Featured
-                        </span>
+                        <span className="ml-2 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300">Featured</span>
                       )}
                     </li>
                   );
                 })}
               </ul>
             ) : (
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                No tagged resources or articles are connected yet. As you add `ethical_patterns` to resource
-                frontmatter, they will appear here automatically.
-              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">No tagged resources or articles are connected yet.</p>
             )}
           </PatternSection>
 
-          <FieldGuideReturnSection
-            sectionTitle={postData.field_guide_section_title}
-            sectionHref={postData.field_guide_section ? `/field-guide/${postData.field_guide_section}` : undefined}
-          />
+          <FieldGuideReturnSection />
         </div>
       </ContentLayout>
     );

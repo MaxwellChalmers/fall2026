@@ -1,5 +1,7 @@
 ---
 title: 'Facial recognition accuracy gaps (Gender Shades)'
+id: ex-facial-recognition-accuracy-gaps
+slug: facial-recognition-accuracy-gaps
 year: '2018'
 show_in_timeline: true
 excerpt: 'Systematic testing of commercial face analysis systems found error rates up to 34 percentage points higher for darker-skinned women than for lighter-skinned men.'
@@ -13,6 +15,8 @@ timeline_cards:
 connected_cards:
   - num: '22'
     interpretation: "The Gender Shades study found that commercial face analysis systems had been benchmarked primarily on lighter-skinned faces, and that performance on those faces was treated as the standard for evaluation. The accuracy gaps weren't incidental — they were a direct consequence of whose faces the training data reflected most fully. The systems worked well for the group that was treated as the default, and performed substantially worse for everyone else."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

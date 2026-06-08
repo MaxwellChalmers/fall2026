@@ -1,5 +1,7 @@
 ---
 title: 'SAG-AFTRA and WGA Strikes'
+id: ex-sag-wga-strikes
+slug: sag-wga-strikes
 year: '2023'
 show_in_timeline: true
 excerpt: "Hollywood writers and actors strike, with AI among the central issues — the first major labor actions explicitly about AI's potential to displace creative workers and use their likenesses and work without consent or compensation."
@@ -32,6 +34,8 @@ connected_cards:
     interpretation: "Standard industry contracts did not include provisions about AI-generated likenesses or AI-assisted script generation because the capability didn't exist when those contracts were written. Studios asserted that existing work-for-hire provisions covered AI training uses. Workers argued that agreeing to make content for a studio is not the same as consenting to that content being used to train a system that will generate similar content without payment."
   - num: '11'
     interpretation: "The concern raised by striking writers was not only about displacement — losing jobs entirely — but about craft: that routinizing AI assistance in the writers' room would atrophy the skills that make original television and film distinctive, creating dependency in the workforce and reducing the bargaining power of individual writers over time. Deskilling is a long-term consequence of tool adoption that doesn't show up in short-term productivity comparisons."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

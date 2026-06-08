@@ -1,5 +1,7 @@
 ---
 card_type: ethical-framework
+id: ef-kantian
+slug: kantian
 title: "Kantian / Deontological"
 subtitle: "Is anyone being treated as a means rather than an end?"
 num: '3'
@@ -7,6 +9,8 @@ order: 3
 related_recognition_cards: []
 related_concept_cards: []
 related_example_cards: []
+field_guide_section: 'ethical-frameworks'
+field_guide_section_title: 'Ethical Frameworks'
 ---
 
 ## The Core Idea

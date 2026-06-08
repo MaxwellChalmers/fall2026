@@ -1,5 +1,7 @@
 ---
 title: 'Facebook data and Cambridge Analytica'
+id: ex-cambridge-analytica
+slug: cambridge-analytica
 year: '2018'
 show_in_timeline: true
 excerpt: 'Data collected through a personality quiz for academic research was used to build political targeting profiles for 87 million users.'
@@ -21,6 +23,8 @@ timeline_cards:
 connected_cards:
   - num: '5'
     interpretation: "Facebook users provided personal data through a third-party quiz app in what appeared to be an academic research context. That data was then used by a political consulting firm to build personality profiles and target political advertising. The collection and repurposing were separated by multiple layers — Facebook's API, a researcher, and a consulting firm — none of which were visible to users. The context of the original collection bore no resemblance to the context of its eventual use."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

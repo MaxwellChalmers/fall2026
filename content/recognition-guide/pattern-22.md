@@ -1,10 +1,12 @@
 ---
 title: 'This system treats one group as the default.'
 num: '22'
+id: dp-22
+slug: this-system-treats-one-group-as-the-default
 excerpt: 'When one group is treated as the normal baseline, everyone else becomes an edge case — and bears the cost of the gap.'
-field_guide_section: 'how-systems-draw-boundaries'
-field_guide_section_title: 'How systems draw boundaries — and who and what falls outside them'
-field_guide_section_intro: "Every AI system classifies people in some way. This section helps you ask whose experience is treated as the norm, how categories are drawn, and who bears the cost when a system's categories don't fit."
+field_guide_section: 'deployment-patterns'
+field_guide_section_title: 'AI Deployment Patterns'
+field_guide_section_intro: "These cards describe recurring patterns in how AI systems are deployed in the world. Use them to identify what a system is doing to and through people when you encounter it."
 field_guide_section_order: 2
 field_guide_order: 1
 order: 5

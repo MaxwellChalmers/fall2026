@@ -1,10 +1,12 @@
 ---
 title: "Features are value choices."
 num: '3'
+id: sts-03
+slug: features-are-value-choices
 excerpt: "Feature selection reflects judgments about what matters, what can stand in for it, and what the system is allowed to ignore."
-field_guide_section: 'concept-cards'
-field_guide_section_title: 'Concept Cards'
-field_guide_section_intro: 'These cards provide the STS foundations underlying the recognition patterns. Use them for deeper analysis, formal writing, or understanding why the recognition patterns occur.'
+field_guide_section: 'sts-concepts'
+field_guide_section_title: 'STS Concepts'
+field_guide_section_intro: "These cards provide the theoretical foundations that explain why deployment patterns occur. Use them for deeper analysis, formal writing, or understanding the structural forces behind what you observe."
 field_guide_section_order: 7
 field_guide_order: 5
 order: 3

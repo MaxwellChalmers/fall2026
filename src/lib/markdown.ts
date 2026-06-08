@@ -152,6 +152,7 @@ function addDarkModeImageVariants(contentHtml: string) {
 
 export interface PostData {
   id: string;
+  slug?: string;
   num?: string;
   title: string;
   topics?: string[];
@@ -616,6 +617,25 @@ export async function getPostData(id: string, subdirectory?: string): Promise<Po
     content: contentHtml,
     ...matterResult.data,
   } as PostData;
+}
+
+
+export async function getPostDataBySlug(slug: string, subdirectory: string): Promise<PostData> {
+  const directory = path.join(postsDirectory, subdirectory);
+  if (!fs.existsSync(directory)) {
+    throw new Error(`Directory not found: ${subdirectory}`);
+  }
+  const fileNames = fs.readdirSync(directory).filter(f => f.endsWith('.md'));
+  for (const fileName of fileNames) {
+    const fullPath = path.join(directory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const matterResult = matter(fileContents);
+    if (matterResult.data.slug === slug) {
+      const id = fileName.replace(/\.md$/, '');
+      return getPostData(id, subdirectory);
+    }
+  }
+  throw new Error(`No post found with slug "${slug}" in ${subdirectory}`);
 }
 
 export function getAllPosts(subdirectory?: string): PostData[] {

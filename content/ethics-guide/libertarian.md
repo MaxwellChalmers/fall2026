@@ -1,5 +1,7 @@
 ---
 card_type: ethical-framework
+id: ef-libertarian
+slug: libertarian
 title: "Libertarian"
 subtitle: "Does this system respect individual freedom and voluntary consent, and does it involve coercion?"
 num: '7'
@@ -7,6 +9,8 @@ order: 7
 related_recognition_cards: []
 related_concept_cards: []
 related_example_cards: []
+field_guide_section: 'ethical-frameworks'
+field_guide_section_title: 'Ethical Frameworks'
 ---
 
 ## The Core Idea

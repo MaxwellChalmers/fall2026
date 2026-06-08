@@ -1,5 +1,7 @@
 ---
 card_type: ethical-framework
+id: ef-care-ethics
+slug: care-ethics
 title: "Care Ethics"
 subtitle: "Does this system attend to the particular needs of the people it affects, or does it replace relationship with procedure?"
 num: '2'
@@ -7,6 +9,8 @@ order: 2
 related_recognition_cards: []
 related_concept_cards: []
 related_example_cards: []
+field_guide_section: 'ethical-frameworks'
+field_guide_section_title: 'Ethical Frameworks'
 ---
 
 ## The Core Idea

@@ -1,5 +1,7 @@
 ---
 title: 'Clearview AI'
+id: ex-clearview-ai
+slug: clearview-ai
 year: '2019'
 show_in_timeline: true
 excerpt: "Clearview AI scrapes billions of images from public websites to build a facial recognition database used by law enforcement — testing the claim that publicly accessible data is available for any use."
@@ -30,6 +32,8 @@ connected_cards:
     interpretation: "Clearview framed its product as a new capability: a tool that makes public information useful for law enforcement in new ways. What it actually did was aggregate data that individuals had made available in fragmented public contexts and centralize it into a searchable surveillance database — extracting value from data produced by others, without their knowledge or compensation."
   - num: '26'
     interpretation: "Images posted publicly are technically accessible. Accessibility in a given context does not constitute consent to all possible uses. A photo posted on a professional networking site is public in that context. Its inclusion in a facial recognition database used for law enforcement identification is a categorically different use that the original context did not disclose or anticipate."
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

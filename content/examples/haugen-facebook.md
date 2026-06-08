@@ -1,5 +1,7 @@
 ---
 title: 'Facebook, Frances Haugen, and the Limits of Engagement Metrics'
+id: ex-haugen-facebook
+slug: haugen-facebook
 year: '2021'
 show_in_timeline: true
 excerpt: "Frances Haugen, a former Facebook product manager, leaks internal documents and testifies before Congress about Facebook's awareness of its systems' effects — raising the question of what a system optimized for engagement is actually optimizing."
@@ -30,6 +32,8 @@ timeline_cards:
 connected_cards:
   - num: '23'
     interpretation: "Facebook's internal research teams measured engagement — clicks, time on site, reactions, shares — because those metrics were trackable and tied to business outcomes. Questions about downstream effects on mental health, civic discourse, or political polarization were harder to operationalize and less directly tied to revenue. What got measured shaped what got optimized. The case raises a question that applies wherever algorithmic systems use proxies: when you optimize for a metric, what are you actually optimizing?"
+field_guide_section: 'examples'
+field_guide_section_title: 'Examples'
 ---
 
 ## What Happened

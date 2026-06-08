@@ -1,5 +1,7 @@
 ---
 card_type: technical-explainer
+id: te-large-language-models
+slug: large-language-models
 title: "Large Language Models"
 subtitle: "How LLMs work — and why fluency is not the same as accuracy, understanding, or trustworthiness."
 num: '4'
@@ -7,6 +9,8 @@ order: 4
 related_recognition_cards: ['12', '9', '15', '3', '27', '8', '22']
 related_concept_cards: []
 related_labs: ['6']
+field_guide_section: 'technical-explainers'
+field_guide_section_title: 'Technical Explainers'
 ---
 
 ## What the System Is Trying to Do

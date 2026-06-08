@@ -3,60 +3,53 @@ import FieldGuideSectionLayout from '@/components/FieldGuideSectionLayout';
 import RecognitionPatternCards from '@/components/RecognitionPatternCards';
 import { FieldGuideViewProvider, FieldGuideCardSection, FieldGuideCompactSection } from '@/components/FieldGuideView';
 import { getAllPosts, type PostData } from '@/lib/markdown';
-import { normalizeFeaturedImagePath, getDarkFeaturedImagePath } from '@/lib/featured-image';
 
-interface ConceptEntry {
+interface FrameworkEntry {
   slug: string;
   num?: string;
   title: string;
   subtitle?: string;
   card_type?: string;
   order?: number;
-  field_guide_order?: number;
-  featured_image?: string;
-  featured_image_dark?: string;
 }
 
-function getConceptCards(): ConceptEntry[] {
-  return getAllPosts('concept-guide')
-    .filter(post => !post.hide_from_list && !post.no_render && post.card_type === 'concept')
+function getFrameworkCards(): FrameworkEntry[] {
+  return getAllPosts('ethics-guide')
+    .filter(post => !post.hide_from_list && !post.no_render && post.card_type === 'ethical-framework')
     .map((post: PostData) => ({
-      slug: post.slug ? `sts-concepts/${post.slug}` : post.id,
+      slug: `ethical-frameworks/${post.id}`,
       num: post.num,
       title: post.title,
-      subtitle: post.excerpt,
+      subtitle: (post as PostData & { subtitle?: string }).subtitle ?? post.excerpt,
       card_type: post.card_type,
-      order: post.field_guide_order ?? post.order,
-      field_guide_order: post.field_guide_order,
-      featured_image: normalizeFeaturedImagePath(post.featured_image),
-      featured_image_dark: getDarkFeaturedImagePath(post.featured_image),
+      order: post.order,
     }))
     .sort((a, b) => (parseInt(a.num ?? '') || 999) - (parseInt(b.num ?? '') || 999));
 }
 
 export const metadata: Metadata = {
-  title: 'STS Concepts — AI Field Guide',
-  description: 'The STS frameworks and theoretical foundations underlying the field guide recognition patterns.',
+  title: 'Ethical Frameworks — AI Field Guide',
+  description: "Tools for evaluating what you've found. Use these to move from analysis to judgment.",
 };
 
-export default function ConceptCardsPage() {
-  const cards = getConceptCards();
+export default function EthicalFrameworksPage() {
+  const cards = getFrameworkCards();
 
   return (
-    <FieldGuideSectionLayout contentDir="concept-guide">
+    <FieldGuideSectionLayout contentDir="ethics-guide">
       {(columns) => (
         <div>
           <FieldGuideViewProvider>
             <FieldGuideCardSection>
               <section className="space-y-5 border-t border-gray-200 px-4 pt-8 dark:border-gray-800 md:px-16">
-                <RecognitionPatternCards patterns={cards} badgeLabel="Concept" preserveOrder columns={columns} />
+                <RecognitionPatternCards patterns={cards} badgeLabel="Framework" preserveOrder columns={columns} />
               </section>
             </FieldGuideCardSection>
             <FieldGuideCompactSection
               cards={cards.map(card => ({
                 title: card.title,
                 subtitle: card.subtitle,
-                href: card.slug ? `/field-guide/${card.slug}` : undefined,
+                href: `/field-guide/${card.slug}`,
               }))}
             />
           </FieldGuideViewProvider>

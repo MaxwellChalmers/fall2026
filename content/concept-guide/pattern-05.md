@@ -1,10 +1,12 @@
 ---
 title: "\"Normal\" is constructed."
 num: '7'
+id: sts-07
+slug: normal-is-constructed
 excerpt: "Anomaly detection depends on baselines, and baselines reflect choices about what counts as ordinary, acceptable, or suspicious."
-field_guide_section: 'concept-cards'
-field_guide_section_title: 'Concept Cards'
-field_guide_section_intro: 'These cards provide the STS foundations underlying the recognition patterns. Use them for deeper analysis, formal writing, or understanding why the recognition patterns occur.'
+field_guide_section: 'sts-concepts'
+field_guide_section_title: 'STS Concepts'
+field_guide_section_intro: "These cards provide the theoretical foundations that explain why deployment patterns occur. Use them for deeper analysis, formal writing, or understanding the structural forces behind what you observe."
 field_guide_section_order: 7
 field_guide_order: 4
 order: 3
