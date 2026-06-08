@@ -1,7 +1,7 @@
 ---
 title: "AI systems can encourage anthropomorphism, aliveness, or sentience claims."
 num: '12'
-id: dp-12
+id: dp-anthropomorphism
 slug: ai-systems-can-encourage-anthropomorphism-aliveness-or-sentience-claims
 excerpt: "Human-centered metaphors can distort public understanding of what systems are, what they do, and what they deserve."
 field_guide_section: 'deployment-patterns'

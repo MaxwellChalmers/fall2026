@@ -1,7 +1,7 @@
 ---
 title: "Opacity shifts authority."
 num: '16'
-id: dp-16
+id: dp-opacity
 slug: opacity-shifts-authority
 excerpt: "When systems become difficult to inspect or explain, authority can move away from affected people and toward institutions, vendors, or technical specialists."
 field_guide_section: 'deployment-patterns'

@@ -1,7 +1,7 @@
 ---
 title: "Governance is often framed as a barrier to innovation."
 num: '18'
-id: dp-18
+id: dp-governance-as-barrier
 slug: governance-is-often-framed-as-a-barrier-to-innovation
 excerpt: "When oversight is cast as delay or backwardness, it becomes harder to ask what kinds of accountability are being dismissed."
 field_guide_section: 'deployment-patterns'

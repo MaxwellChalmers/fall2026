@@ -1,7 +1,7 @@
 ---
 title: "Technical expertise can be used to dismiss democratic oversight."
 num: '19'
-id: dp-19
+id: dp-expertise-as-dismissal
 slug: technical-expertise-can-be-used-to-dismiss-democratic-oversight
 excerpt: "Expertise matters, but it should not be used to narrow who gets to ask questions, raise concerns, or shape public decisions."
 field_guide_section: 'deployment-patterns'

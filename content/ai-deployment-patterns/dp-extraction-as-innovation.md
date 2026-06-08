@@ -1,7 +1,7 @@
 ---
 title: "Extraction can be disguised as innovation."
 num: '13'
-id: dp-13
+id: dp-extraction-as-innovation
 slug: extraction-can-be-disguised-as-innovation
 excerpt: "New AI systems can frame the capture of data, labor, attention, resources, or public value as progress."
 field_guide_section: 'deployment-patterns'

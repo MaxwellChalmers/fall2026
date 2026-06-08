@@ -1,7 +1,7 @@
 ---
 title: "Automation changes accountability."
 num: '10'
-id: dp-10
+id: dp-accountability-gap
 slug: automation-changes-accountability
 excerpt: "Automation can make decisions feel more diffuse, making it harder to locate who is responsible for choices, errors, or harms."
 field_guide_section: 'deployment-patterns'

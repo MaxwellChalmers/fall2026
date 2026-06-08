@@ -1,7 +1,7 @@
 ---
 title: "Power can concentrate in infrastructure."
 num: '14'
-id: dp-14
+id: dp-infrastructure-power
 slug: power-can-concentrate-in-infrastructure
 excerpt: "Control over hardware, platforms, standards, vendors, and repair pathways can centralize decision-making power."
 field_guide_section: 'deployment-patterns'

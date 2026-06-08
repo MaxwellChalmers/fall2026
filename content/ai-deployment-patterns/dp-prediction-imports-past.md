@@ -1,7 +1,7 @@
 ---
 title: "Prediction imports the past."
 num: '8'
-id: dp-08
+id: dp-prediction-imports-past
 slug: prediction-imports-the-past
 excerpt: "Predictive systems often reuse historical patterns, which means older inequalities and institutional habits can reappear inside future-facing tools."
 field_guide_section: 'deployment-patterns'

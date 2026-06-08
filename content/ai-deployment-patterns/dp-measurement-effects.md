@@ -1,7 +1,7 @@
 ---
 title: "Changing what gets measured changes what exists."
 num: '23'
-id: dp-23
+id: dp-measurement-effects
 slug: changing-what-gets-measured-changes-what-exists
 excerpt: "When a metric is added, removed, or redrawn, it doesn't just change the record — it changes what officially happens."
 field_guide_section: 'deployment-patterns'

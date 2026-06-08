@@ -1,7 +1,7 @@
 ---
 title: "Alternatives can be foreclosed."
 num: '15'
-id: dp-15
+id: dp-foreclosed-alternatives
 slug: alternatives-can-be-foreclosed
 excerpt: "Stories of inevitability can narrow the range of options that institutions or communities are willing to consider."
 field_guide_section: 'deployment-patterns'

@@ -1,7 +1,7 @@
 ---
 title: "Invisible labor makes the system possible."
 num: '27'
-id: dp-27
+id: dp-invisible-labor
 slug: invisible-labor-makes-the-system-possible
 excerpt: "AI systems depend on human work that is systematically hidden — content moderators, data labelers, crowd workers — whose conditions and contributions rarely appear in how the system is described."
 field_guide_section: 'deployment-patterns'

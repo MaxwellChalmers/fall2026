@@ -1,7 +1,7 @@
 ---
 title: "Concentrated harm is hidden by aggregate benefit."
 num: '25'
-id: dp-25
+id: dp-concentrated-harm
 slug: concentrated-harm-is-hidden-by-aggregate-benefit
 excerpt: "A system can improve average outcomes while making things significantly worse for specific groups — and the aggregate number won't show it."
 field_guide_section: 'deployment-patterns'

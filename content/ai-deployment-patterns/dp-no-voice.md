@@ -1,7 +1,7 @@
 ---
 title: "The people most affected had no voice in the design."
 num: '24'
-id: dp-24
+id: dp-no-voice
 slug: the-people-most-affected-had-no-voice-in-the-design
 excerpt: "Systems built without input from affected communities often reflect the assumptions and blind spots of those who built them."
 field_guide_section: 'deployment-patterns'

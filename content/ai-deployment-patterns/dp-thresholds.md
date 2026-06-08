@@ -1,7 +1,7 @@
 ---
 title: "Thresholds make uncertainty consequential."
 num: '9'
-id: dp-09
+id: dp-thresholds
 slug: thresholds-make-uncertainty-consequential
 excerpt: "Thresholds turn scores, signals, and probabilities into action. They decide when systems intervene, wait, ignore, escalate, or ask for human judgment."
 field_guide_section: 'deployment-patterns'

@@ -1,7 +1,7 @@
 ---
 title: "Consent was obtained but wasn't meaningful."
 num: '26'
-id: dp-26
+id: dp-meaningless-consent
 slug: consent-was-obtained-but-wasnt-meaningful
 excerpt: "Formal consent — a checkbox, a terms-of-service agreement, a signature — does not guarantee that people understood what they agreed to or had a real choice."
 field_guide_section: 'deployment-patterns'

@@ -1,7 +1,7 @@
 ---
 title: "A vulnerable population is being used as a test case."
 num: '28'
-id: dp-28
+id: dp-test-case
 slug: a-vulnerable-population-is-being-used-as-a-test-case
 excerpt: "Systems are sometimes piloted on populations with the least power to refuse, contest, or exit — meaning they bear the risks of early deployment without having chosen to."
 field_guide_section: 'deployment-patterns'

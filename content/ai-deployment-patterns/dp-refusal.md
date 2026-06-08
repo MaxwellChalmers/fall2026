@@ -1,7 +1,7 @@
 ---
 title: "Delay, refusal, and non-adoption can be responsible choices."
 num: '21'
-id: dp-21
+id: dp-refusal
 slug: delay-refusal-and-non-adoption-can-be-responsible-choices
 excerpt: "Not every technically possible system should be deployed, and slowing down can be part of good public decision-making."
 field_guide_section: 'deployment-patterns'

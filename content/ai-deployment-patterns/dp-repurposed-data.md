@@ -1,7 +1,7 @@
 ---
 title: 'Data collected for one purpose gets used for another.'
 num: '5'
-id: dp-05
+id: dp-repurposed-data
 slug: data-collected-for-one-purpose-gets-used-for-another
 excerpt: 'When data flows out of the context it was gathered in, people often had no way to anticipate or refuse the new use.'
 field_guide_section: 'deployment-patterns'

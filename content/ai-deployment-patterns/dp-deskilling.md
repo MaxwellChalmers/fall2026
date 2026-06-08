@@ -1,7 +1,7 @@
 ---
 title: "AI can create dependency, cognitive offloading, and deskilling."
 num: '11'
-id: dp-11
+id: dp-deskilling
 slug: ai-can-create-dependency-cognitive-offloading-and-deskilling
 excerpt: "As systems take over tasks, they can reshape judgment, memory, expertise, and the distribution of skill."
 field_guide_section: 'deployment-patterns'
