@@ -7,6 +7,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
+priority: medium
 ---
 
 How AI systems use energy, why efficiency claims matter, and when lower-power computing can create new risks.

@@ -5,6 +5,7 @@ excerpt: "Turing proposes the \"imitation game\" as a test of machine intelligen
 timeline_cards:
   - label: 'AI systems can encourage anthropomorphism'
     href: '/field-guide/pattern-12'
+priority: low
 ---
 
 In "Computing Machinery and Intelligence," Alan Turing proposes reframing the question "Can machines think?" as a behavioral test: can a machine sustain a conversation that is indistinguishable from a human's? He calls this the imitation game.

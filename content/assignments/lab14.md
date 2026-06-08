@@ -7,6 +7,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
+priority: medium
 ---
 
 How to govern AI systems when learning, sensing, and decision-making are built into devices.

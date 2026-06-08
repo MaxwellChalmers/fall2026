@@ -6,6 +6,7 @@ color: violet
 excerpt: 'This module helps students revise, explain, and synthesize their technical and governance analysis for public audiences.'
 unit_focus: "Students revise public-facing work, practice peer feedback, and bring technical explanation into direct conversation with stakeholder analysis and governance reasoning."
 braid_elsi_arc: 'The culminating task is to connect mechanism, stakeholder concern, risk, and governance question in a form that is public-facing and usable.'
+priority: low
 ---
 
 This module is about synthesis and communication. Students refine public-facing explanations that connect technical mechanisms to stakeholder concerns, risks, and governance questions.

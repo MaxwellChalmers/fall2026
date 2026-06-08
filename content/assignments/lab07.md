@@ -7,6 +7,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
+priority: medium
 ---
 
 How measurement choices shape what AI systems can know, miss, and act on.

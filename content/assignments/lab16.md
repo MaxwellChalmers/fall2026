@@ -7,6 +7,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
+priority: medium
 ---
 
 How brain-inspired language helps explain AI systems, and how it can mislead us.

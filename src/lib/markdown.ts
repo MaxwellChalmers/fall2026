@@ -211,6 +211,7 @@ export interface PostData {
   status_reviewer?: string;
   status_date?: string;
   status_notes?: string;
+  priority?: 'high' | 'medium' | 'low';
 }
 
 export function getAllPostIds(subdirectory?: string) {

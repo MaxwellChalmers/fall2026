@@ -8,6 +8,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
+priority: medium
 ---
 
 How computer architecture shapes speed, energy use, learning, and governance.

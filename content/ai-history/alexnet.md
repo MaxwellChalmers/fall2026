@@ -7,6 +7,7 @@ timeline_cards:
     href: '/field-guide/pattern-09'
   - label: 'Prediction imports the past'
     href: '/field-guide/pattern-08'
+priority: low
 ---
 
 Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton submit AlexNet to the ImageNet Large Scale Visual Recognition Challenge, achieving a top-5 error rate of 15.3% — compared to 26.2% for the next best submission. The gap is decisive. The AI research community rapidly redirects attention toward deep convolutional networks.

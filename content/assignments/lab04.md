@@ -8,6 +8,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
+priority: medium
 ---
 
 How decision boundaries shape false positives, false negatives, and real-world harm.

@@ -194,7 +194,7 @@ export default async function DeploymentPatternPage({ params }: PageProps) {
         showToc={false}
         header={
           <>
-            <StatusBanner status={postData.status} status_reviewer={postData.status_reviewer} status_date={postData.status_date} status_notes={postData.status_notes} />
+            <StatusBanner status={postData.status} status_reviewer={postData.status_reviewer} status_date={postData.status_date} status_notes={postData.status_notes} contentType="ai-deployment-patterns" />
             <div className="space-y-4 py-6">
               <Breadcrumbs
                 className="px-4 md:px-16"

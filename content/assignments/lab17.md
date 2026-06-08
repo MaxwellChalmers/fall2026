@@ -7,6 +7,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
+priority: medium
 ---
 
 How physical signals become bits, data, and decisions.

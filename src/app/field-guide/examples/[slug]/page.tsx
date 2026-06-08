@@ -64,7 +64,7 @@ export default async function ExamplePage({ params }: PageProps) {
         showToc={false}
         header={
           <>
-            <StatusBanner status={post.status} status_reviewer={post.status_reviewer} status_date={post.status_date} status_notes={post.status_notes} />
+            <StatusBanner status={post.status} status_reviewer={post.status_reviewer} status_date={post.status_date} status_notes={post.status_notes} contentType="examples" />
             <div className="space-y-4 py-6">
               <Breadcrumbs
                 className="px-4 md:px-16"

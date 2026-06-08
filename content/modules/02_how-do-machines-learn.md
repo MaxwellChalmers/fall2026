@@ -6,6 +6,7 @@ color: sky
 excerpt: 'This module shows how parts of the world become sensed and measured data, and how machine learning systems turn that data into models, scores, predictions, and decisions.'
 unit_focus: 'Students study how sensing, measurement, categorization, baselines, model training, thresholds, prediction, and feedback loops operationalize human judgments and institutional priorities.'
 braid_elsi_arc: 'This unit prepares students to see that technical choices in sensing, encoding, feature design, thresholds, and prediction shape downstream governance questions long before a system reaches deployment.'
+priority: low
 ---
 
 This module explains how messy parts of the world become data for machine learning systems. Students begin with sensing, measurement, categories, baselines, and value-laden feature design, then move into model training, scoring, thresholds, prediction, and feedback loops.

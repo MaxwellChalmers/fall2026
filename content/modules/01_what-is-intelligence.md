@@ -6,6 +6,7 @@ color: indigo
 excerpt: 'This module gives students a human foundation for the course by linking AI to ethics, knowledge-making, learning, and contested ideas about intelligence.'
 unit_focus: 'Students begin by asking what AI is supposed to help us do, how knowledge is made, how learning happens, which ethical lenses help evaluate AI, and why intelligence is only one contested way of describing mind and capability.'
 braid_elsi_arc: 'This unit introduces BRAID as a socio-technical system and shows that technical goals such as efficiency, detection, adaptation, safety, and optimization always depend on prior ideas about what matters, what counts as evidence, and what kind of good a system is supposed to serve.'
+priority: low
 ---
 
 This opening module gives the course its human and ethical foundation. Rather than starting with models or code, students begin by asking what AI is supposed to help us do, how knowledge gets made, how learning happens, which ethical lenses help us evaluate technical systems, and why intelligence is a contested category rather than a settled fact.

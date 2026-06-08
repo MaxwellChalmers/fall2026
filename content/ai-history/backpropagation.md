@@ -4,6 +4,7 @@ year: '1986'
 excerpt: "Rumelhart, Hinton, and Williams publish the backpropagation algorithm, making it practical to train multi-layer neural networks. This is the technical foundation for modern deep learning, though its full societal impact won't be visible for another two decades."
 timeline_cards:
   - label: 'How Do Machines Learn from Data (Module 2)'
+priority: low
 ---
 
 David Rumelhart, Geoffrey Hinton, and Ronald Williams publish "Learning Representations by Back-propagating Errors" in _Nature_, demonstrating that multi-layer neural networks can be trained by propagating error signals backward through the network — adjusting each weight in proportion to its contribution to the output error.

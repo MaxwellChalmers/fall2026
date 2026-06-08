@@ -8,6 +8,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
+priority: medium
 ---
 
 > Note. This is a lot like the anomaly detection lab in terms of substance. it would be good to think of some examples of categories (like 5 per set).

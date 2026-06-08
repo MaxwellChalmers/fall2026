@@ -7,6 +7,7 @@ timeline_cards:
     href: '/field-guide/pattern-14'
   - label: 'Governance is often framed as a barrier to innovation'
     href: '/field-guide/pattern-18'
+priority: low
 ---
 
 Frank Rosenblatt at Cornell builds the Perceptron, a learning machine that adjusts its own weights in response to training examples. The Navy funds it; the press announces it as a machine that will soon walk, talk, see, and be conscious of its own existence.

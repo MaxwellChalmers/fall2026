@@ -888,7 +888,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
       fullWidth
       showToc={false}
       contentPadding={false}
-      header={topicPostData ? <StatusBanner section="topicsAndAssignments" status={topicPostData.status} status_reviewer={topicPostData.status_reviewer} status_date={topicPostData.status_date} status_notes={topicPostData.status_notes} /> : undefined}
+      header={topicPostData ? <StatusBanner section="topicsAndAssignments" status={topicPostData.status} status_reviewer={topicPostData.status_reviewer} status_date={topicPostData.status_date} status_notes={topicPostData.status_notes} contentType="topics" /> : undefined}
     >
       <div className="space-y-8">
         <Breadcrumbs

@@ -8,6 +8,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
+priority: medium
 ---
 
 How timing, events, and silence can carry information in neuromorphic systems.

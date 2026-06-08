@@ -39,6 +39,7 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
     const { heading_max_level } = postData;
     const isStyleGuideDemo = slug === 'style-guide-demo';
     const isTutorial02 = slug === 'tutorial02';
+    const contentType = slug.startsWith('lab') ? 'labs' : slug.startsWith('career') ? 'career-modules' : undefined;
     const dueDate = getDueDateForScheduledDay(postData.scheduled_day) || postData.due_date;
     
     return (
@@ -50,7 +51,7 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
         fullWidth
         header={
           <>
-            <StatusBanner section="topicsAndAssignments" status={postData.status} status_reviewer={postData.status_reviewer} status_date={postData.status_date} status_notes={postData.status_notes} />
+            <StatusBanner section="topicsAndAssignments" status={postData.status} status_reviewer={postData.status_reviewer} status_date={postData.status_date} status_notes={postData.status_notes} contentType={contentType} />
             <div className="space-y-4 py-6">
               <Breadcrumbs
                 className="px-4 md:px-16"

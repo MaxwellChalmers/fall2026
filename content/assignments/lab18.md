@@ -7,6 +7,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
+priority: medium
 ---
 
 How switches, logic gates, and binary states can become arithmetic, computation, and decision-making.

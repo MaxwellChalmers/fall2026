@@ -6,6 +6,7 @@ color: amber
 excerpt: 'This module examines how AI reshapes work, politics, healthcare, schools, infrastructure, and technological solutionism through concrete case studies.'
 unit_focus: 'Students use domain cases to study how AI changes employment, public discourse, healthcare, schools and other institutions, vendor power, and social problem-solving narratives.'
 braid_elsi_arc: 'This is the main translational unit for connecting BRAID and other technical systems to real institutional settings, contested public values, centralization of power, and the risks of technological solutionism.'
+priority: low
 ---
 
 This module asks what happens when AI systems move from technical possibility into major domains of social life. Rather than organizing the material mainly by mechanism, the module turns to case studies: work and employment, news and politics, healthcare, schools and other institutions, infrastructure power, and the recurring promise that complex social problems can be solved through better technical systems.

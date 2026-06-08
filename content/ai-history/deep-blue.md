@@ -6,6 +6,7 @@ timeline_cards:
   - label: 'AI systems can encourage anthropomorphism'
     href: '/field-guide/pattern-12'
   - label: 'What Counts as Intelligence (Module 1)'
+priority: low
 ---
 
 IBM's Deep Blue, a specialized chess-playing computer, defeats Garry Kasparov in a six-game match. The event generates enormous media attention and public anxiety about machine intelligence.

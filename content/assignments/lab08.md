@@ -8,6 +8,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
+priority: medium
 ---
 
 How systems define “normal,” flag difference, and decide what deserves attention.

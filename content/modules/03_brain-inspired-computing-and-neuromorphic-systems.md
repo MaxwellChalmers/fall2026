@@ -6,6 +6,7 @@ color: emerald
 excerpt: 'This module builds technical grounding in neural networks, spiking systems, and neuromorphic hardware while questioning easy brain metaphors.'
 unit_focus: 'Students build technical grounding in neuroscience concepts, neural network opacity, and neuromorphic architectures without collapsing those systems into myths of human-like intelligence.'
 braid_elsi_arc: 'The unit prepares students to analyze how brain metaphors, material substrates, adaptive hardware, and event-driven computation affect public understanding, trust, and governance.'
+priority: low
 ---
 
 This module introduces brain-inspired computing without treating the brain as a simple blueprint for AI. Students compare biological neurons, artificial neural networks, spiking neural networks, and neuromorphic architectures while asking what each comparison clarifies and what it can distort.

@@ -28,6 +28,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
                         normalizedPath === '/resources' ||
                         normalizedPath === '/bibliography' ||
                         normalizedPath === '/planning/taxonomy' ||
+                        normalizedPath === '/planning/review-status' ||
                         normalizedPath === '/field-guide' ||
                         normalizedPath === '/exams';
       

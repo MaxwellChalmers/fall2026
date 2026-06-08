@@ -38,6 +38,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
+priority: high
 ---
 
 ## What Happened

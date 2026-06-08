@@ -2,12 +2,15 @@ import { getAllPosts } from '@/lib/markdown';
 import { getTopics } from '@/lib/topics';
 import { getCourseConfig } from '@/lib/config';
 import Link from 'next/link';
+import ContentLayout from '@/components/ContentLayout';
+import QuickLinksNav from '@/components/QuickLinksNav';
 
 interface CardRow {
   id: string;
   title: string;
   href: string;
   status: string;
+  priority: string;
   status_reviewer?: string;
   status_date?: string;
   status_notes?: string;
@@ -15,6 +18,7 @@ interface CardRow {
 
 interface Section {
   label: string;
+  priority: 'high' | 'medium' | 'low';
   rows: CardRow[];
 }
 
@@ -52,6 +56,28 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
+function PriorityBadge({ priority }: { priority: string }) {
+  if (priority === 'high') {
+    return (
+      <span className="inline-flex items-center rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-700 dark:bg-red-950/50 dark:text-red-300">
+        high
+      </span>
+    );
+  }
+  if (priority === 'medium') {
+    return (
+      <span className="inline-flex items-center rounded-full bg-orange-100 px-2 py-0.5 text-xs font-semibold text-orange-700 dark:bg-orange-950/50 dark:text-orange-300">
+        medium
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-xs font-semibold text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+      low
+    </span>
+  );
+}
+
 function SectionTable({ section }: { section: Section }) {
   const counts = section.rows.reduce(
     (acc, r) => {
@@ -63,8 +89,9 @@ function SectionTable({ section }: { section: Section }) {
 
   return (
     <div className="space-y-3">
-      <div className="flex items-baseline gap-4">
+      <div className="flex items-baseline gap-3">
         <h2 className="text-xl font-semibold text-gray-950 dark:text-gray-50">{section.label}</h2>
+        <PriorityBadge priority={section.priority} />
         <span className="text-sm text-gray-500 dark:text-gray-400">
           {section.rows.length} total
           {counts['verified'] ? ` · ${counts['verified']} verified` : ''}
@@ -76,6 +103,7 @@ function SectionTable({ section }: { section: Section }) {
         <thead>
           <tr className="border-b border-gray-200 text-left dark:border-gray-800">
             <th className="py-2 pr-4 font-semibold text-gray-600 dark:text-gray-400">Status</th>
+            <th className="py-2 pr-4 font-semibold text-gray-600 dark:text-gray-400">Priority</th>
             <th className="py-2 pr-4 font-semibold text-gray-600 dark:text-gray-400">Title</th>
             <th className="py-2 pr-4 font-semibold text-gray-600 dark:text-gray-400">Reviewer</th>
             <th className="py-2 pr-4 font-semibold text-gray-600 dark:text-gray-400">Date</th>
@@ -87,6 +115,9 @@ function SectionTable({ section }: { section: Section }) {
             <tr key={row.id} className="align-top">
               <td className="py-2 pr-4 whitespace-nowrap">
                 <StatusBadge status={row.status} />
+              </td>
+              <td className="py-2 pr-4 whitespace-nowrap">
+                <PriorityBadge priority={row.priority} />
               </td>
               <td className="py-2 pr-4">
                 <Link href={row.href} className="text-blue-600 hover:underline dark:text-blue-400">
@@ -116,6 +147,7 @@ export default async function ReviewStatusPage() {
         title: p.title,
         href: hrefFn(p.id),
         status: (p.status as string) || 'unverified',
+        priority: (p.priority as string) || 'low',
         status_reviewer: p.status_reviewer,
         status_date: toDateString(p.status_date),
         status_notes: p.status_notes,
@@ -123,7 +155,6 @@ export default async function ReviewStatusPage() {
       .sort((a, b) => statusOrder(a.status) - statusOrder(b.status) || a.title.localeCompare(b.title));
   }
 
-  // Build topic rows using URL slug (not file id) from scheduledTopics
   const topicStatusByFileId = new Map(
     getAllPosts('topics').map(p => [p.id, p])
   );
@@ -137,6 +168,7 @@ export default async function ReviewStatusPage() {
         title: m.topic,
         href: `/topics/${m.slug}`,
         status: (p?.status as string) || 'unverified',
+        priority: (p?.priority as string) || 'low',
         status_reviewer: p?.status_reviewer,
         status_date: toDateString(p?.status_date),
         status_notes: p?.status_notes,
@@ -144,40 +176,56 @@ export default async function ReviewStatusPage() {
     })
     .sort((a, b) => statusOrder(a.status) - statusOrder(b.status) || a.title.localeCompare(b.title));
 
+  const allAssignments = getAllPosts('assignments').filter(p => p.id !== 'index');
+  const labRows = makeRows(allAssignments.filter(p => p.id.startsWith('lab')), id => `/assignments/${id}`);
+  const careerRows = makeRows(allAssignments.filter(p => p.id.startsWith('career')), id => `/assignments/${id}`);
+
   const sections: Section[] = [
     {
+      label: 'Ethical Frameworks',
+      priority: 'high',
+      rows: makeRows(getAllPosts('ethical-frameworks'), id => `/field-guide/ethical-frameworks/${id}`),
+    },
+    {
       label: 'AI Deployment Patterns',
+      priority: 'high',
       rows: makeRows(getAllPosts('ai-deployment-patterns'), id => {
         const slug = getAllPosts('ai-deployment-patterns').find(p => p.id === id)?.slug as string | undefined;
         return slug ? `/field-guide/deployment-patterns/${slug}` : `/field-guide/deployment-patterns`;
       }),
     },
     {
+      label: 'Examples',
+      priority: 'high',
+      rows: makeRows(getAllPosts('examples'), id => `/field-guide/examples/${id}`),
+    },
+    {
+      label: 'Technical Explainers',
+      priority: 'high',
+      rows: makeRows(getAllPosts('technical-explainers'), id => `/field-guide/technical-explainers/${id}`),
+    },
+    {
       label: 'STS Concepts',
+      priority: 'medium',
       rows: makeRows(getAllPosts('sts-concepts'), id => {
         const slug = getAllPosts('sts-concepts').find(p => p.id === id)?.slug as string | undefined;
         return slug ? `/field-guide/sts-concepts/${slug}` : `/field-guide/sts-concepts`;
       }),
     },
     {
-      label: 'Ethical Frameworks',
-      rows: makeRows(getAllPosts('ethical-frameworks'), id => `/field-guide/ethical-frameworks/${id}`),
-    },
-    {
-      label: 'Technical Explainers',
-      rows: makeRows(getAllPosts('technical-explainers'), id => `/field-guide/technical-explainers/${id}`),
-    },
-    {
-      label: 'Examples',
-      rows: makeRows(getAllPosts('examples'), id => `/field-guide/examples/${id}`),
+      label: 'Labs',
+      priority: 'medium',
+      rows: labRows,
     },
     {
       label: 'Topics',
+      priority: 'low',
       rows: topicRows,
     },
     {
-      label: 'Assignments',
-      rows: makeRows(getAllPosts('assignments'), id => `/assignments/${id}`),
+      label: 'Career Modules',
+      priority: 'low',
+      rows: careerRows,
     },
   ];
 
@@ -187,8 +235,8 @@ export default async function ReviewStatusPage() {
   const totalUnverified = sections.reduce((n, s) => n + s.rows.filter(r => r.status === 'unverified').length, 0);
 
   return (
-    <div className="max-w-5xl px-4 py-8 md:px-16">
-      <div className="mb-8 space-y-2">
+    <ContentLayout variant="list" leftNav={<QuickLinksNav />} fullWidth>
+      <div className="mb-10 space-y-2">
         <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400">
           Internal — Planning
         </p>
@@ -211,6 +259,6 @@ export default async function ReviewStatusPage() {
           <SectionTable key={section.label} section={section} />
         ))}
       </div>
-    </div>
+    </ContentLayout>
   );
 }
