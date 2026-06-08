@@ -18,7 +18,7 @@ interface ConceptEntry {
 }
 
 function getConceptCards(): ConceptEntry[] {
-  return getAllPosts('concept-guide')
+  return getAllPosts('sts-concepts')
     .filter(post => !post.hide_from_list && !post.no_render && post.card_type === 'concept')
     .map((post: PostData) => ({
       slug: post.slug ? `sts-concepts/${post.slug}` : post.id,
@@ -43,7 +43,7 @@ export default function ConceptCardsPage() {
   const cards = getConceptCards();
 
   return (
-    <FieldGuideSectionLayout contentDir="concept-guide">
+    <FieldGuideSectionLayout contentDir="sts-concepts">
       {(columns) => (
         <div>
           <FieldGuideViewProvider>

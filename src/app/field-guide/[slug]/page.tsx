@@ -232,7 +232,7 @@ export const dynamicParams = false;
 
 export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
   const recognition = await generateStaticParamsForContentType('recognition-guide');
-  const concept = await generateStaticParamsForContentType('concept-guide');
+  const concept = await generateStaticParamsForContentType('sts-concepts');
   return [...recognition, ...concept];
 }
 
@@ -241,13 +241,13 @@ export default async function EthicalPatternPage({ params }: PageProps) {
 
   try {
     let postData;
-    let contentDir: 'recognition-guide' | 'concept-guide';
+    let contentDir: 'recognition-guide' | 'sts-concepts';
     try {
       postData = await getPostData(slug, 'recognition-guide');
       contentDir = 'recognition-guide';
     } catch {
-      postData = await getPostData(slug, 'concept-guide');
-      contentDir = 'concept-guide';
+      postData = await getPostData(slug, 'sts-concepts');
+      contentDir = 'sts-concepts';
     }
 
     if (!validatePostForRender(slug, postData, contentDir)) {
