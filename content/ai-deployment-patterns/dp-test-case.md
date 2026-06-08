@@ -6,13 +6,15 @@ slug: a-vulnerable-population-is-being-used-as-a-test-case
 excerpt: "Systems are sometimes piloted on populations with the least power to refuse, contest, or exit — meaning they bear the risks of early deployment without having chosen to."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'who-has-voice-and-who-bears-risk'
+subtheme: 'who-has-voice-and-who-bears-risk'
+subtheme_title: 'Who has voice and who bears risk'
 field_guide_order: 5
 card_type: recognition
 status: unverified
 status_reviewer:
 status_date:
 status_notes:
-priority: high
+priority: medium
 ---
 
 ## What To Notice

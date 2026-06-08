@@ -6,6 +6,8 @@ slug: power-can-concentrate-in-infrastructure
 excerpt: "Control over hardware, platforms, standards, vendors, and repair pathways can centralize decision-making power."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'power-infrastructure-and-alternatives'
+subtheme: 'power-infrastructure-and-alternatives'
+subtheme_title: 'Power, infrastructure, and alternatives'
 field_guide_order: 2
 order: 5
 card_type: recognition
@@ -13,7 +15,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
-priority: high
+priority: medium
 ---
 
 ## What To Notice

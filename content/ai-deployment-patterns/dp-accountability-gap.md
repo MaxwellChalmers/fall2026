@@ -6,6 +6,8 @@ slug: automation-changes-accountability
 excerpt: "Automation can make decisions feel more diffuse, making it harder to locate who is responsible for choices, errors, or harms."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'how-systems-act-and-shift-power'
+subtheme: 'how-systems-act-and-shift-power'
+subtheme_title: 'How systems act and shift power'
 field_guide_order: 2
 order: 2
 card_type: recognition

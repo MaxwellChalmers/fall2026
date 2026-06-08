@@ -6,6 +6,8 @@ slug: delay-refusal-and-non-adoption-can-be-responsible-choices
 excerpt: "Not every technically possible system should be deployed, and slowing down can be part of good public decision-making."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'governance-and-refusal'
+subtheme: 'governance-and-refusal'
+subtheme_title: 'Governance and refusal'
 field_guide_order: 2
 order: 6
 card_type: recognition
@@ -13,7 +15,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
-priority: high
+priority: medium
 ---
 
 ## What To Notice

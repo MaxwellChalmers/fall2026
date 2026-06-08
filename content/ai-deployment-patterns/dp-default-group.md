@@ -5,7 +5,9 @@ id: dp-default-group
 slug: this-system-treats-one-group-as-the-default
 excerpt: 'When one group is treated as the normal baseline, everyone else becomes an edge case — and bears the cost of the gap.'
 field_guide_section: 'deployment-patterns'
-field_guide_group: 'how-systems-draw-boundaries'
+field_guide_group: 'how-systems-classify-and-sort'
+subtheme: 'how-systems-classify-and-sort'
+subtheme_title: 'How systems classify and sort'
 field_guide_order: 1
 order: 5
 card_type: recognition

@@ -6,6 +6,8 @@ slug: ai-can-create-dependency-cognitive-offloading-and-deskilling
 excerpt: "As systems take over tasks, they can reshape judgment, memory, expertise, and the distribution of skill."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'how-systems-act-and-shift-power'
+subtheme: 'how-systems-act-and-shift-power'
+subtheme_title: 'How systems act and shift power'
 field_guide_order: 3
 order: 3
 card_type: recognition
@@ -14,7 +16,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
-priority: high
+priority: low
 ---
 
 ## What To Notice

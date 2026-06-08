@@ -6,6 +6,8 @@ slug: governance-is-often-framed-as-a-barrier-to-innovation
 excerpt: "When oversight is cast as delay or backwardness, it becomes harder to ask what kinds of accountability are being dismissed."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'governance-and-refusal'
+subtheme: 'governance-and-refusal'
+subtheme_title: 'Governance and refusal'
 field_guide_order: 1
 order: 3
 card_type: recognition
@@ -13,7 +15,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
-priority: high
+priority: medium
 ---
 
 ## What To Notice

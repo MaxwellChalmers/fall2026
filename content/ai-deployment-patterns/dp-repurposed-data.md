@@ -6,6 +6,8 @@ slug: data-collected-for-one-purpose-gets-used-for-another
 excerpt: 'When data flows out of the context it was gathered in, people often had no way to anticipate or refuse the new use.'
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'how-data-is-made-and-used'
+subtheme: 'how-data-is-made-and-used'
+subtheme_title: 'How data is made and used'
 field_guide_order: 3
 order: 1
 card_type: recognition

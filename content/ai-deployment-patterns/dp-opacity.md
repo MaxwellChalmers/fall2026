@@ -6,6 +6,8 @@ slug: opacity-shifts-authority
 excerpt: "When systems become difficult to inspect or explain, authority can move away from affected people and toward institutions, vendors, or technical specialists."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'how-systems-act-and-shift-power'
+subtheme: 'how-systems-act-and-shift-power'
+subtheme_title: 'How systems act and shift power'
 field_guide_order: 1
 order: 1
 card_type: recognition

@@ -5,7 +5,9 @@ id: dp-thresholds
 slug: thresholds-make-uncertainty-consequential
 excerpt: "Thresholds turn scores, signals, and probabilities into action. They decide when systems intervene, wait, ignore, escalate, or ask for human judgment."
 field_guide_section: 'deployment-patterns'
-field_guide_group: 'how-systems-draw-boundaries'
+field_guide_group: 'how-systems-classify-and-sort'
+subtheme: 'how-systems-classify-and-sort'
+subtheme_title: 'How systems classify and sort'
 field_guide_order: 2
 order: 1
 card_type: recognition
@@ -22,7 +24,9 @@ A threshold is the point where a score, signal, probability, or anomaly measure 
 
 Thresholds do more than distribute harm. They allocate attention, resources, delay, trust, accountability, and responsibility. They can reduce some risks while increasing others. They can make a system more cautious, more permissive, more efficient, more intrusive, more helpful, or more punitive.
 
-The ethical question is not simply whether the threshold is "right." It is what the threshold is being asked to optimize, who benefits from that choice, who bears the cost of mistakes, and how easily the threshold can be contested or changed.
+Every threshold produces two types of errors: false positives, where the system acts on someone who shouldn't have been flagged, and false negatives, where it fails to act on someone it should have caught. Raising the threshold reduces false positives but increases false negatives; lowering it does the reverse. The FICO credit score illustrates this clearly: set the cutoff too high and creditworthy people get denied; set it too low and lenders absorb losses. What makes this a governance question — not just a technical one — is that the costs of each error type typically fall on different parties. A false positive in a hiring screen costs a qualified candidate an opportunity; the cost to the employer is minimal. A false positive in a fraud detection system freezes a legitimate account; the bank experiences little inconvenience. Whoever sets the threshold determines who bears which error. That choice is often invisible, presented as a technical parameter rather than a policy decision.
+
+The ethical question is not simply whether the threshold is "right." It is what the threshold is being asked to optimize, who benefits from that choice, who bears the cost of each type of mistake, and how easily the threshold can be contested or changed.
 
 ## Questions To Ask
 

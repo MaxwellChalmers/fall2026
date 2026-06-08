@@ -6,6 +6,8 @@ slug: technical-expertise-can-be-used-to-dismiss-democratic-oversight
 excerpt: "Expertise matters, but it should not be used to narrow who gets to ask questions, raise concerns, or shape public decisions."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'who-has-voice-and-who-bears-risk'
+subtheme: 'who-has-voice-and-who-bears-risk'
+subtheme_title: 'Who has voice and who bears risk'
 field_guide_order: 2
 order: 4
 card_type: recognition
@@ -13,7 +15,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
-priority: high
+priority: medium
 ---
 
 ## What To Notice

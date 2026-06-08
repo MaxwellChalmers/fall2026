@@ -6,6 +6,8 @@ slug: prediction-imports-the-past
 excerpt: "Predictive systems often reuse historical patterns, which means older inequalities and institutional habits can reappear inside future-facing tools."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'how-data-is-made-and-used'
+subtheme: 'how-data-is-made-and-used'
+subtheme_title: 'How data is made and used'
 field_guide_order: 1
 order: 4
 card_type: recognition

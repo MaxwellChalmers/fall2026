@@ -6,6 +6,8 @@ slug: concentrated-harm-is-hidden-by-aggregate-benefit
 excerpt: "A system can improve average outcomes while making things significantly worse for specific groups — and the aggregate number won't show it."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'who-has-voice-and-who-bears-risk'
+subtheme: 'who-has-voice-and-who-bears-risk'
+subtheme_title: 'Who has voice and who bears risk'
 field_guide_order: 4
 card_type: recognition
 status: unverified

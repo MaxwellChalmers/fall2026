@@ -6,13 +6,15 @@ slug: consent-was-obtained-but-wasnt-meaningful
 excerpt: "Formal consent — a checkbox, a terms-of-service agreement, a signature — does not guarantee that people understood what they agreed to or had a real choice."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'how-data-is-made-and-used'
+subtheme: 'how-data-is-made-and-used'
+subtheme_title: 'How data is made and used'
 field_guide_order: 5
 card_type: recognition
 status: unverified
 status_reviewer:
 status_date:
 status_notes:
-priority: high
+priority: medium
 ---
 
 ## What To Notice

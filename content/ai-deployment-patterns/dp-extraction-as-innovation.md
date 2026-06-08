@@ -6,6 +6,8 @@ slug: extraction-can-be-disguised-as-innovation
 excerpt: "New AI systems can frame the capture of data, labor, attention, resources, or public value as progress."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'power-infrastructure-and-alternatives'
+subtheme: 'power-infrastructure-and-alternatives'
+subtheme_title: 'Power, infrastructure, and alternatives'
 field_guide_order: 1
 order: 5
 card_type: recognition
@@ -13,7 +15,7 @@ status: unverified
 status_reviewer:
 status_date:
 status_notes:
-priority: high
+priority: low
 ---
 
 ## What To Notice

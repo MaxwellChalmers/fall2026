@@ -6,6 +6,8 @@ slug: the-people-most-affected-had-no-voice-in-the-design
 excerpt: "Systems built without input from affected communities often reflect the assumptions and blind spots of those who built them."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'who-has-voice-and-who-bears-risk'
+subtheme: 'who-has-voice-and-who-bears-risk'
+subtheme_title: 'Who has voice and who bears risk'
 field_guide_order: 3
 card_type: recognition
 status: unverified

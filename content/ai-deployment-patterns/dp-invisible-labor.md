@@ -6,13 +6,15 @@ slug: invisible-labor-makes-the-system-possible
 excerpt: "AI systems depend on human work that is systematically hidden — content moderators, data labelers, crowd workers — whose conditions and contributions rarely appear in how the system is described."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'power-infrastructure-and-alternatives'
+subtheme: 'power-infrastructure-and-alternatives'
+subtheme_title: 'Power, infrastructure, and alternatives'
 field_guide_order: 4
 card_type: recognition
 status: unverified
 status_reviewer:
 status_date:
 status_notes:
-priority: high
+priority: low
 ---
 
 ## What To Notice

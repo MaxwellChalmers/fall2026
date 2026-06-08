@@ -6,13 +6,15 @@ slug: changing-what-gets-measured-changes-what-exists
 excerpt: "When a metric is added, removed, or redrawn, it doesn't just change the record — it changes what officially happens."
 field_guide_section: 'deployment-patterns'
 field_guide_group: 'how-data-is-made-and-used'
+subtheme: 'how-data-is-made-and-used'
+subtheme_title: 'How data is made and used'
 field_guide_order: 4
 card_type: recognition
 status: unverified
 status_reviewer:
 status_date:
 status_notes:
-priority: high
+priority: medium
 ---
 
 ## What To Notice
