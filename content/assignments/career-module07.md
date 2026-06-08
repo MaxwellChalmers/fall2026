@@ -5,6 +5,10 @@ num: '7'
 type: 'career module'
 excerpt: 'Cultural capital, unwritten rules, "organizational fit," and boundaries.'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Overview

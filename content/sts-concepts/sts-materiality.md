@@ -12,6 +12,10 @@ field_guide_order: 6
 order: 4
 card_type: concept
 field_guide_display_title: 'AI is material.'
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## What To Notice

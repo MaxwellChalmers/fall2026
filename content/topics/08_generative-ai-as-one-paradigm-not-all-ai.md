@@ -3,6 +3,10 @@ title: "What Gets Built Into the Data?"
 scheduled_day: 8
 module_id: 2
 subtitle: "Use datasets, proxies, and feature design to ask what assumptions and exclusions are carried into a system."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

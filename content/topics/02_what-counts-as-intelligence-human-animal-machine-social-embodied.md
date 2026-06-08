@@ -3,6 +3,10 @@ title: 'What Is AI Supposed to Help Us Do?'
 scheduled_day: 2
 module_id: 1
 subtitle: 'Examine how ideas about safety, care, efficiency, creativity, and improvement shape what AI is imagined to be for.'
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

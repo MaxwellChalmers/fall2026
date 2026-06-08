@@ -3,6 +3,10 @@ title: 'What Is Knowledge, and How Is It Made?'
 scheduled_day: 3
 module_id: 1
 subtitle: 'Examine how evidence, interpretation, institutions, and authority shape what comes to count as knowledge.'
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

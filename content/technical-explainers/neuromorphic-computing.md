@@ -11,6 +11,10 @@ related_concept_cards: []
 related_labs: ['9', '10']
 field_guide_section: 'technical-explainers'
 field_guide_section_title: 'Technical Explainers'
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 > **Course connection:** This is the system at the center of the course's anticipatory governance analysis. The questions in the critical bridge section are the ones Module 5 asks prospectively — before deployment, not after. The technical design choices described here are exactly the ones the BRAID framework asks you to analyze in advance.

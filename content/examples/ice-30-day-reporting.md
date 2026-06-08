@@ -18,6 +18,10 @@ connected_cards:
     interpretation: "Responsibility for deaths connected to detention was distributed across ICE, private contractors, and a bureaucratic handoff at the moment of release. When the 30-day window closed, that distributed responsibility became harder to trace. The change in reporting requirement didn't change who was responsible — it changed whether anyone had to account for it."
 field_guide_section: 'examples'
 field_guide_section_title: 'Examples'
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## What Happened

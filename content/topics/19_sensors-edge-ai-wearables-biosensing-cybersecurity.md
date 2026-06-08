@@ -3,6 +3,10 @@ title: "How Is AI Changing Work and Employment?"
 scheduled_day: 18
 module_id: 4
 subtitle: "Examine hiring, monitoring, productivity systems, and algorithmic management as cases of AI in the workplace."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

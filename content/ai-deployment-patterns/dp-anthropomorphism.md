@@ -16,6 +16,10 @@ field_guide_order: 4
 order: 4
 card_type: recognition
 field_guide_display_title: 'AI can encourage anthropomorphism and aliveness claims.'
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## What To Notice

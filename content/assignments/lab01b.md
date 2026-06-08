@@ -3,6 +3,10 @@ title: 'Categorization Lab'
 num: '1b'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Categorization Is Not Neutral

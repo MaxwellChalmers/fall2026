@@ -18,6 +18,7 @@ import { getTopics } from '@/lib/topics';
 import type { Topic } from '@/lib/topics';
 import { getReadingsForTopic, type Reading } from '@/lib/readings';
 import { getTopicModules } from '@/lib/topic-config';
+import StatusBanner from '@/components/StatusBanner';
 
 interface TopicPageProps {
   params: Promise<{
@@ -882,7 +883,13 @@ export default async function TopicPage({ params }: TopicPageProps) {
   }
 
   return (
-    <ContentLayout variant="detail-with-toc" fullWidth showToc={false} contentPadding={false}>
+    <ContentLayout
+      variant="detail-with-toc"
+      fullWidth
+      showToc={false}
+      contentPadding={false}
+      header={topicPostData ? <StatusBanner section="topicsAndAssignments" status={topicPostData.status} status_reviewer={topicPostData.status_reviewer} status_date={topicPostData.status_date} status_notes={topicPostData.status_notes} /> : undefined}
+    >
       <div className="space-y-8">
         <Breadcrumbs
           className="px-4 md:px-16"

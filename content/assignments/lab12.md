@@ -4,6 +4,10 @@ scheduled_day: 20
 num: '12'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 How computer architecture shapes speed, energy use, learning, and governance.

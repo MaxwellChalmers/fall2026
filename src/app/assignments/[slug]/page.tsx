@@ -6,6 +6,7 @@ import QuickLinksNav from '@/components/QuickLinksNav';
 import StyleGuideStyles from '@/components/StyleGuideStyles';
 import TopLevelPageHeader from '@/components/TopLevelPageHeader';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import StatusBanner from '@/components/StatusBanner';
 import { getDueDateForScheduledDay } from '@/lib/course-calendar';
 import { notFound } from 'next/navigation';
 
@@ -48,21 +49,24 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
         tocMaxLevel={heading_max_level || 2}
         fullWidth
         header={
-          <div className="space-y-4 py-6">
-            <Breadcrumbs
-              className="px-4 md:px-16"
-              items={[
-                { label: 'Assignments', href: '/assignments' },
-                { label: postData.title },
-              ]}
-            />
-            <TopLevelPageHeader
-              label={postData.type || 'Assignment'}
-              title={postData.title}
-              description={postData.excerpt}
-              tone="sky"
-            />
-          </div>
+          <>
+            <StatusBanner section="topicsAndAssignments" status={postData.status} status_reviewer={postData.status_reviewer} status_date={postData.status_date} status_notes={postData.status_notes} />
+            <div className="space-y-4 py-6">
+              <Breadcrumbs
+                className="px-4 md:px-16"
+                items={[
+                  { label: 'Assignments', href: '/assignments' },
+                  { label: postData.title },
+                ]}
+              />
+              <TopLevelPageHeader
+                label={postData.type || 'Assignment'}
+                title={postData.title}
+                description={postData.excerpt}
+                tone="sky"
+              />
+            </div>
+          </>
         }
       >
         <div className={`assignment-page max-w-4xl pr-8 pt-6${isTutorial02 ? ' assignment-page-tutorial02' : ''}`}>

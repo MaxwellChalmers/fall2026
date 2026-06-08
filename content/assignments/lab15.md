@@ -3,6 +3,10 @@ title: 'Energy and Computation'
 num: '15'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 How AI systems use energy, why efficiency claims matter, and when lower-power computing can create new risks.

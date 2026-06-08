@@ -3,6 +3,10 @@ title: "How Do Machines Learn from Data?"
 scheduled_day: 9
 module_id: 2
 subtitle: "Introduce models, training, inference, and the basic machine learning pipeline."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

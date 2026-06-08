@@ -3,6 +3,10 @@ title: "How Do Scores Become Decisions?"
 scheduled_day: 11
 module_id: 2
 subtitle: "Trace how model outputs become scores, rankings, thresholds, and institutional action."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

@@ -14,6 +14,10 @@ field_guide_group_intro: 'Who gets to shape a system matters as much as what the
 field_guide_group_order: 4
 field_guide_order: 5
 card_type: recognition
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## What To Notice

@@ -4,6 +4,10 @@ scheduled_day: 15
 num: '13'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 How timing, events, and silence can carry information in neuromorphic systems.

@@ -3,6 +3,10 @@ title: 'How Circuits Do Math'
 num: '18'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 How switches, logic gates, and binary states can become arithmetic, computation, and decision-making.

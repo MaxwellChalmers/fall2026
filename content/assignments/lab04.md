@@ -4,6 +4,10 @@ scheduled_day: 9
 num: '4'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 How decision boundaries shape false positives, false negatives, and real-world harm.

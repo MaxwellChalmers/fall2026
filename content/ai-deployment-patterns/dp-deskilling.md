@@ -16,6 +16,10 @@ field_guide_order: 3
 order: 3
 card_type: recognition
 field_guide_display_title: 'AI can create dependency, offloading, and deskilling.'
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## What To Notice

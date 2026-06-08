@@ -4,6 +4,10 @@ scheduled_day: 11
 num: '5'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Prediction and Historical Data

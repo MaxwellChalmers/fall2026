@@ -5,6 +5,10 @@ num: '6'
 type: 'career module'
 excerpt: 'Professional presence, networking, and informational interview practice.'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Overview

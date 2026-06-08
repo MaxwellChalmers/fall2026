@@ -3,6 +3,10 @@ title: 'Clustering Lab'
 num: '1c'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Clustering Is Not Neutral

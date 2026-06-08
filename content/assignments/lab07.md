@@ -3,6 +3,10 @@ title: 'Sensors Translate the World into Data'
 num: '7'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 How measurement choices shape what AI systems can know, miss, and act on.

@@ -3,6 +3,10 @@ title: "What Have We Learned?"
 scheduled_day: 28
 module_id: 6
 subtitle: "Bring together mechanism, stakeholders, risks, and governance questions."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

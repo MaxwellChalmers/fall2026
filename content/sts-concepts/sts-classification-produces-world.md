@@ -12,6 +12,10 @@ field_guide_order: 9
 order: 9
 card_type: concept
 related_recognition_cards: ['pattern-22', 'pattern-07', 'pattern-08']
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Core Idea

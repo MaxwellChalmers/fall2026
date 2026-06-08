@@ -5,6 +5,7 @@ import { getPostData, getAllPosts } from '@/lib/markdown';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ContentLayout from '@/components/ContentLayout';
 import MarkdownContent from '@/components/MarkdownContent';
+import StatusBanner from '@/components/StatusBanner';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -62,41 +63,44 @@ export default async function ExamplePage({ params }: PageProps) {
         fullWidth
         showToc={false}
         header={
-          <div className="space-y-4 py-6">
-            <Breadcrumbs
-              className="px-4 md:px-16"
-              items={[
-                { label: 'Field Guide', href: '/field-guide' },
-                { label: 'Examples', href: '/field-guide/examples' },
-                { label: post.title },
-              ]}
-            />
-            <header className="border-y border-violet-200 bg-violet-50 px-4 py-16 dark:border-violet-900 dark:bg-violet-950/30 md:px-16">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-violet-700 dark:text-violet-300">
-                Example Card
-              </p>
-              <h1 className="m-0! max-w-5xl text-5xl font-semibold leading-[1.05] tracking-tight text-gray-950 dark:text-gray-50">
-                {post.title}
-              </h1>
-              {post.excerpt && (
-                <p className="mb-0 mt-5 max-w-4xl text-lg leading-8 text-gray-700 dark:text-gray-300">
-                  {post.excerpt}
+          <>
+            <StatusBanner status={post.status} status_reviewer={post.status_reviewer} status_date={post.status_date} status_notes={post.status_notes} />
+            <div className="space-y-4 py-6">
+              <Breadcrumbs
+                className="px-4 md:px-16"
+                items={[
+                  { label: 'Field Guide', href: '/field-guide' },
+                  { label: 'Examples', href: '/field-guide/examples' },
+                  { label: post.title },
+                ]}
+              />
+              <header className="border-y border-violet-200 bg-violet-50 px-4 py-16 dark:border-violet-900 dark:bg-violet-950/30 md:px-16">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-violet-700 dark:text-violet-300">
+                  Example Card
                 </p>
-              )}
-              {domains.length > 0 && (
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {domains.map(d => (
-                    <span
-                      key={d}
-                      className="rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-200"
-                    >
-                      {DOMAIN_LABELS[d] ?? d}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </header>
-          </div>
+                <h1 className="m-0! max-w-5xl text-5xl font-semibold leading-[1.05] tracking-tight text-gray-950 dark:text-gray-50">
+                  {post.title}
+                </h1>
+                {post.excerpt && (
+                  <p className="mb-0 mt-5 max-w-4xl text-lg leading-8 text-gray-700 dark:text-gray-300">
+                    {post.excerpt}
+                  </p>
+                )}
+                {domains.length > 0 && (
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {domains.map(d => (
+                      <span
+                        key={d}
+                        className="rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-200"
+                      >
+                        {DOMAIN_LABELS[d] ?? d}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </header>
+            </div>
+          </>
         }
       >
         <div className="space-y-8">

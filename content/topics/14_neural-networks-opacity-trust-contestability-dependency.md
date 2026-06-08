@@ -3,6 +3,10 @@ title: "Are Predictions Ever Neutral?"
 scheduled_day: 14
 module_id: 2
 subtitle: "Explore how prediction systems reuse history, reinforce patterns, and help shape the futures they claim to forecast."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

@@ -4,6 +4,10 @@ scheduled_day: 18
 num: '9'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 How on-device AI changes what is sensed, stored, shared, explained, and governed.

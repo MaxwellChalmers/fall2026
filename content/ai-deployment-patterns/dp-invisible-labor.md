@@ -14,6 +14,10 @@ field_guide_group_intro: 'AI development concentrates resources, locks in depend
 field_guide_group_order: 5
 field_guide_order: 4
 card_type: recognition
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## What To Notice

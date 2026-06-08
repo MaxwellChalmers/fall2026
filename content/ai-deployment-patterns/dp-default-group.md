@@ -16,6 +16,10 @@ field_guide_order: 1
 order: 5
 card_type: recognition
 related_concept_cards: ['pattern-04', 'pattern-05']
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## What To Notice

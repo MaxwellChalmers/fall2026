@@ -3,6 +3,10 @@ title: "How Is AI Entering Schools and Other Social Institutions?"
 scheduled_day: 21
 module_id: 4
 subtitle: "Use schools and other institutional settings to examine tutoring, proctoring, monitoring, and administrative triage."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

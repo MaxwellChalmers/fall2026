@@ -3,6 +3,10 @@ title: "When Does Prediction Start to Look Like Intelligence?"
 scheduled_day: 13
 module_id: 2
 subtitle: "Examine how prediction, pattern recognition, and historical data can make systems seem smart."
+status: verified
+status_reviewer: svw
+status_date: 2026-06-08
+status_notes:
 ---
 
 ## Topic / Focus

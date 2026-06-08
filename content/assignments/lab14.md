@@ -3,6 +3,10 @@ title: 'Hardware Governance Lab'
 num: '14'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 How to govern AI systems when learning, sensing, and decision-making are built into devices.

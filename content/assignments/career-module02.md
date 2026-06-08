@@ -5,6 +5,10 @@ num: '2'
 type: 'career module'
 excerpt: 'Design thinking for future paths and a semester-scale SMART goal.'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Overview

@@ -3,6 +3,10 @@ title: 'Memory as Physical State'
 num: '11'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 How information persists in material systems, and why storage is never purely abstract.

@@ -5,6 +5,10 @@ num: '4'
 type: 'career module'
 excerpt: 'Naming strengths, mapping accomplishments, and identifying durable skills.'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Overview

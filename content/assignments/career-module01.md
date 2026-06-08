@@ -5,6 +5,10 @@ num: '1'
 type: 'career module'
 excerpt: 'Helping you identify your values and interests'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Overview

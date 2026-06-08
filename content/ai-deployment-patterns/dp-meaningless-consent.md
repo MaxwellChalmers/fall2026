@@ -14,6 +14,10 @@ field_guide_group_intro: "AI systems make some things visible and others invisib
 field_guide_group_order: 1
 field_guide_order: 5
 card_type: recognition
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## What To Notice

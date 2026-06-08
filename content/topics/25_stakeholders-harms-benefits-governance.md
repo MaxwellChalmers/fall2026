@@ -5,6 +5,10 @@ module_id: 5
 subtitle: "Map benefits, risks, and governance questions around an emerging AI system."
 recognition_pattern_notes:
   - "Student-selected pattern."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

@@ -14,6 +14,7 @@ import PatternCaseTabs, { type PatternCaseTab } from '@/components/PatternCaseTa
 import PatternComicStrip, { type PatternComicStripItem } from '@/components/PatternComicStrip';
 import { getExamplesForCard } from '@/lib/examples';
 import { getReadingsForCard, type Reading } from '@/lib/readings';
+import StatusBanner from '@/components/StatusBanner';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -192,17 +193,20 @@ export default async function DeploymentPatternPage({ params }: PageProps) {
         fullWidth
         showToc={false}
         header={
-          <div className="space-y-4 py-6">
-            <Breadcrumbs
-              className="px-4 md:px-16"
-              items={[
-                { label: 'Field Guide', href: '/field-guide' },
-                { label: 'AI Deployment Patterns', href: '/field-guide/deployment-patterns' },
-                { label: postData.title },
-              ]}
-            />
-            <PatternHeader title={postData.title} excerpt={postData.excerpt} group={groupLabel} />
-          </div>
+          <>
+            <StatusBanner status={postData.status} status_reviewer={postData.status_reviewer} status_date={postData.status_date} status_notes={postData.status_notes} />
+            <div className="space-y-4 py-6">
+              <Breadcrumbs
+                className="px-4 md:px-16"
+                items={[
+                  { label: 'Field Guide', href: '/field-guide' },
+                  { label: 'AI Deployment Patterns', href: '/field-guide/deployment-patterns' },
+                  { label: postData.title },
+                ]}
+              />
+              <PatternHeader title={postData.title} excerpt={postData.excerpt} group={groupLabel} />
+            </div>
+          </>
         }
       >
         <div className="space-y-8">

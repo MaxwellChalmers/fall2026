@@ -4,6 +4,10 @@ scheduled_day: 16
 num: '8'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 How systems define “normal,” flag difference, and decide what deserves attention.

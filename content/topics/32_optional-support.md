@@ -3,6 +3,10 @@ title: "Optional Support"
 scheduled_day: 29
 module_id: 6
 subtitle: "Optional time for conferences, revision, and final project support."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

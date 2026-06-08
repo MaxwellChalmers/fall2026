@@ -3,6 +3,10 @@ title: "How Does Neuromorphic Computing Work?"
 scheduled_day: 17
 module_id: 3
 subtitle: "Introduce neuromorphic computing through spiking neural networks, event-driven signals, and timing."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

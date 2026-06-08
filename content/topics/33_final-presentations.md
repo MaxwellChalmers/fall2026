@@ -5,6 +5,10 @@ module_id: 7
 subtitle: "Present a public-facing explainer and ELSI analysis."
 recognition_pattern_notes:
   - "Student-selected pattern(s)."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

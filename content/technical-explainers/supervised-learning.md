@@ -11,6 +11,10 @@ related_concept_cards: []
 related_labs: ['1a', '2', '3', '4', '5', '6']
 field_guide_section: 'technical-explainers'
 field_guide_section_title: 'Technical Explainers'
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## What the System Is Trying to Do

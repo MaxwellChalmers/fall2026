@@ -11,6 +11,10 @@ field_guide_section_order: 7
 field_guide_order: 2
 order: 1
 card_type: concept
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## What To Notice

@@ -3,6 +3,10 @@ title: "Why Is AI a Public and Ethical Issue?"
 scheduled_day: 1
 module_id: 1
 subtitle: "Frame AI as a technical project shaped by public values, institutions, and ethical choices."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

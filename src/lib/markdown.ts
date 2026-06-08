@@ -207,6 +207,10 @@ export interface PostData {
   card_type?: string;
   domains?: string[];
   connected_cards?: Array<{ num: string; interpretation: string }>;
+  status?: 'verified' | 'in-progress' | 'unverified';
+  status_reviewer?: string;
+  status_date?: string;
+  status_notes?: string;
 }
 
 export function getAllPostIds(subdirectory?: string) {

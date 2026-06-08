@@ -4,6 +4,10 @@ scheduled_day: 13
 num: '6'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Neural Networks and Opacity

@@ -2,6 +2,10 @@ import courseConfig from '../../content/config/course.json';
 import navConfig from '../../content/config/nav.json';
 
 export interface CourseConfig {
+  statusBanners: {
+    fieldGuide: boolean;
+    topicsAndAssignments: boolean;
+  };
   courseNumber: string;
   courseName: string;
   semester: string;

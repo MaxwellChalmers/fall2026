@@ -16,6 +16,10 @@ field_guide_order: 3
 order: 1
 card_type: recognition
 related_concept_cards: []
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## What To Notice

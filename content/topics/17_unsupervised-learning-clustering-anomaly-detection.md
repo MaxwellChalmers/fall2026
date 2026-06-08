@@ -3,6 +3,10 @@ title: "Why Are Neural Networks Hard to Trust?"
 scheduled_day: 16
 module_id: 3
 subtitle: "Connect neural networks to opacity, contestability, trust, and over-reliance."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

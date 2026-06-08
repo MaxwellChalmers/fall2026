@@ -15,6 +15,10 @@ field_guide_group_order: 4
 field_guide_order: 2
 order: 4
 card_type: recognition
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## What To Notice

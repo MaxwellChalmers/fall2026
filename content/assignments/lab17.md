@@ -3,6 +3,10 @@ title: 'Electricity as Information'
 num: '17'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 How physical signals become bits, data, and decisions.

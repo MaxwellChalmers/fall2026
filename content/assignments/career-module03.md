@@ -5,6 +5,10 @@ num: '3'
 type: 'career module'
 excerpt: 'Post-college realities, budgeting, salary context, and negotiation.'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Overview

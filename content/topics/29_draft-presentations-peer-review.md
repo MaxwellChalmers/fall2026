@@ -5,6 +5,10 @@ module_id: 6
 subtitle: "Use peer review to strengthen clarity, accuracy, and public usefulness."
 recognition_pattern_notes:
   - "Student-selected pattern."
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 ## Topic / Focus

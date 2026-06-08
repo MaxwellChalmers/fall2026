@@ -3,6 +3,10 @@ title: 'BRAID Anticipatory Governance Lab'
 num: '10'
 type: 'lab'
 draft: 0
+status: unverified
+status_reviewer:
+status_date:
+status_notes:
 ---
 
 How to analyze an emerging AI technology before its impacts are fully known.
