@@ -21,11 +21,11 @@ priority: high
 
 Procedural justice holds that the legitimacy of an outcome depends not just on what was decided but on how the decision was made. A fair process includes voice, transparency, consistency, and the ability to contest decisions. Even a system that produces acceptable outcomes can be illegitimate if the process that created it excluded affected communities, lacked transparency, or offered no recourse.
 
-This frame is especially important for AI governance, where technical complexity is often used to limit who gets to participate in decisions.
+This framework is especially important for AI governance, where technical complexity is often used to limit who gets to participate in decisions.
 
 ## The Diagnostic Question
 
-**Does this system come from a design and deployment process in which affected communities had a meaningful voice??**
+**Does this system come from a design and deployment process in which affected communities had a meaningful voice?**
 
 ## Questions To Ask
 
