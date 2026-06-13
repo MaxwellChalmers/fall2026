@@ -10,10 +10,10 @@ related_recognition_cards: []
 related_concept_cards: []
 related_example_cards: []
 field_guide_section: 'ethical-frameworks'
-status: unverified
-status_reviewer:
-status_date:
-status_notes:
+status: verified
+status_reviewer: Maxwell Chalmers
+status_date: 2026-06-13
+status_notes: "Reviewed for conceptual accuracy, accessibility, diagnostic usefulness, limitations, and cross-references."
 priority: high
 ---
 
@@ -25,7 +25,7 @@ This frame is especially important for AI governance, where technical complexity
 
 ## The Diagnostic Question
 
-**Was the process by which this system was built and deployed one that affected communities had meaningful voice in?**
+**Does this system come from a design and deployment process in which affected communities had a meaningful voice??**
 
 ## Questions To Ask
 
@@ -33,11 +33,12 @@ This frame is especially important for AI governance, where technical complexity
 - Were affected communities consulted before key decisions were made, or after?
 - Is there a meaningful process for contesting the system's decisions?
 - Is the system's decision-making transparent enough for affected people to understand and challenge?
-- Who has standing to raise concerns, and through what channels?
+- Who is allowed to raise concerns, and through what channels?
+- Are the same procedures and standards applied consistently across people and cases?
 
 ## Tensions and Limits
 
-Procedural justice doesn't guarantee good outcomes — a fair process can still produce a harmful system. And genuine participation is resource-intensive and easy to perform without substance. But it provides something outcome-based frameworks miss: a way to evaluate the legitimacy of a system independent of its results. A system that produces acceptable outcomes through an illegitimate process is still a problem.
+Procedural justice doesn't guarantee good outcomes — a fair process can still produce a harmful system. Genuine participation takes time and resources, and organizations can easily create the appearance of consultation without giving affected communities real influence. But it provides something outcome-based frameworks miss: a way to evaluate the legitimacy of a system independent of its results. A system that produces acceptable outcomes through an illegitimate process is still a problem.
 
 ## Key Thinkers
 
@@ -51,7 +52,7 @@ Procedural justice doesn't guarantee good outcomes — a fair process can still 
 
 ## Connected Field Guide Cards
 
-- The people most affected had no voice in the design
+- The people most affected had no voice in the design 
 - Consent was obtained but wasn't meaningful
-- Oversight is being framed as a barrier to innovation
-- Refusal and non-adoption are legitimate choices
+- Governance is often framed as a barrier to innovation.
+- Delay, refusal, and non-adoption can be responsible choices.
