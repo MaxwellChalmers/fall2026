@@ -10,10 +10,11 @@ related_recognition_cards: ['22', '7', '25', '8']
 related_concept_cards: []
 related_labs: ['8', '9']
 field_guide_section: 'technical-explainers'
-status: unverified
-status_reviewer:
-status_date:
-status_notes:
+status: in-progress
+status_reviewer: svanwart
+status_date: 2026-06-18
+status_notes: |
+  TODO: Brainstorm the beginner / medium / advanced format, where the examples and types of anomaly detection are explained in more detail.
 priority: high
 ---
 

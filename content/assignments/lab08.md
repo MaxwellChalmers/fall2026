@@ -4,10 +4,11 @@ scheduled_day: 16
 num: '8'
 type: 'lab'
 draft: 0
-status: unverified
-status_reviewer:
-status_date:
-status_notes:
+status: in-progress
+status_reviewer: svanwart
+status_date: 2026-06-18
+status_notes: |
+  I like this lab, but I think it needs to be pedagogically smoothed. I'd also like a little math / no code situation.
 priority: medium
 ---
 
