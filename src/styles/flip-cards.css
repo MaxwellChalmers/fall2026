@@ -1,0 +1,178 @@
+/* Flip card grids — generated from {% flip-cards %} markdown tags */
+
+.prose .flip-card-grid {
+  --flip-card-bg: var(--color-violet-50);
+  --flip-card-border: var(--color-violet-200);
+  --flip-card-heading: var(--color-violet-900);
+  --flip-card-text: var(--color-gray-700);
+  --flip-card-hint: var(--color-violet-600);
+  --flip-card-focus: var(--color-violet-600);
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-items: stretch;
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.prose .flip-card-grid--benefit {
+  --flip-card-bg: var(--color-green-50);
+  --flip-card-border: var(--color-green-200);
+  --flip-card-heading: var(--color-green-800);
+  --flip-card-text: var(--color-gray-700);
+  --flip-card-hint: var(--color-green-700);
+  --flip-card-focus: var(--color-green-600);
+}
+
+.prose .flip-card-grid--harm {
+  --flip-card-bg: var(--color-orange-50);
+  --flip-card-border: var(--color-orange-200);
+  --flip-card-heading: var(--color-orange-800);
+  --flip-card-text: var(--color-gray-700);
+  --flip-card-hint: var(--color-orange-700);
+  --flip-card-focus: var(--color-orange-600);
+}
+
+.dark .prose .flip-card-grid {
+  --flip-card-bg: var(--color-violet-950);
+  --flip-card-border: var(--color-violet-800);
+  --flip-card-heading: var(--color-violet-200);
+  --flip-card-text: var(--color-gray-200);
+  --flip-card-hint: var(--color-violet-300);
+  --flip-card-focus: var(--color-violet-400);
+}
+
+.dark .prose .flip-card-grid--benefit {
+  --flip-card-bg: var(--color-green-950);
+  --flip-card-border: var(--color-green-800);
+  --flip-card-heading: var(--color-green-200);
+  --flip-card-text: var(--color-gray-200);
+  --flip-card-hint: var(--color-green-300);
+  --flip-card-focus: var(--color-green-400);
+}
+
+.dark .prose .flip-card-grid--harm {
+  --flip-card-bg: var(--color-orange-950);
+  --flip-card-border: var(--color-orange-800);
+  --flip-card-heading: var(--color-orange-200);
+  --flip-card-text: var(--color-gray-200);
+  --flip-card-hint: var(--color-orange-300);
+  --flip-card-focus: var(--color-orange-400);
+}
+
+.prose .flip-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  perspective: 1000px;
+  cursor: pointer;
+  outline: none;
+}
+
+.prose .flip-card:focus-visible .flip-card-inner {
+  outline: 2px solid var(--flip-card-focus);
+  outline-offset: 4px;
+  border-radius: 1rem;
+}
+
+.prose .flip-card-inner {
+  display: grid;
+  grid-template-rows: 1fr;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  transition: transform 0.55s ease;
+  transform-style: preserve-3d;
+}
+
+.prose .flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.prose .flip-card-front,
+.prose .flip-card-back {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  min-height: 100%;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid var(--flip-card-border);
+  background: var(--flip-card-bg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  text-align: center;
+}
+
+.prose .flip-card-front {
+  justify-content: center;
+}
+
+.prose .flip-card-back {
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  transform: rotateY(180deg);
+}
+
+.prose .flip-card-front h3,
+.prose .flip-card-back h3 {
+  margin: 0 !important;
+  font-size: 1.125rem !important;
+  font-weight: 700 !important;
+  color: var(--flip-card-heading);
+}
+
+.prose .flip-card-front p,
+.prose .flip-card-back p {
+  margin: 0 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+  color: var(--flip-card-text);
+}
+
+.prose .flip-card-icon {
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--color-black);
+}
+
+.dark .prose .flip-card-icon {
+  color: var(--color-white);
+}
+
+.prose .flip-card-hint {
+  margin-top: auto;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--flip-card-hint);
+}
+
+.prose .flip-card.is-flipped .flip-card-hint {
+  visibility: hidden;
+}
+
+@media print {
+  .prose .flip-card-inner {
+    display: block;
+    transform: none !important;
+  }
+
+  .prose .flip-card-front,
+  .prose .flip-card-back {
+    transform: none !important;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose .flip-card-hint {
+    display: none;
+  }
+}

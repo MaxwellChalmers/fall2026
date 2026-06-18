@@ -8,6 +8,7 @@ import highlight from 'remark-highlight.js';
 import smartypants from 'remark-smartypants';
 import { preprocessCheckboxes, postprocessCheckboxes } from './markdown-checkboxes';
 import { preprocessMarkdownTags } from './markdown-tags';
+import { preprocessFlipCards } from './flip-cards';
 
 const postsDirectory = path.join(process.cwd(), 'content');
 const quizzesDirectory = path.join(process.cwd(), 'content', 'quizzes');
@@ -279,9 +280,10 @@ export async function getPostData(id: string, subdirectory?: string): Promise<Po
   
   markdownContent = processedLines.join('\n');
 
-  // Pre-process custom markdown tags (e.g. {% no-copy %}, {% collapsible %})
-  // This rewrites them into HTML comments that the HTML post-processors understand
+  // Pre-process custom markdown tags (e.g. {% no-copy %}, {% collapsible %}, {% flip-cards %})
+  // This rewrites them into HTML comments or HTML blocks that post-processors understand
   markdownContent = preprocessMarkdownTags(markdownContent);
+  markdownContent = preprocessFlipCards(markdownContent);
   
   // Pre-process checkboxes: replace [ ] patterns with placeholders
   // This prevents GFM from converting them into disabled task list items

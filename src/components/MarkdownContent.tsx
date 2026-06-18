@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import { triggerConfetti } from '@/lib/utils';
+import { useFlipCards } from '@/hooks/useFlipCards';
 import hljs from 'highlight.js';
 
 interface MarkdownContentProps {
@@ -11,6 +12,8 @@ interface MarkdownContentProps {
 
 export default function MarkdownContent({ content, className }: MarkdownContentProps) {
   const contentRef = useRef<HTMLDivElement>(null);
+
+  useFlipCards(contentRef, content);
 
   useEffect(() => {
     if (!contentRef.current) return;

@@ -1,5 +1,6 @@
 /* stylelint-disable at-rule-no-unknown */
 @import 'tailwindcss';
+@import '../styles/flip-cards.css';
 
 /* Tailwind v4: Define custom dark mode variant for class-based dark mode */
 @custom-variant dark (&:where(.dark, .dark *));

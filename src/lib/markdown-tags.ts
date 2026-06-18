@@ -3,6 +3,7 @@
  *
  * We currently support:
  *   - {% collapsible %} / {% collapsible closed %}
+ *   - {% flip-cards tone="benefit|harm" %} / {% flip-card %} (see flip-cards.ts)
  *   - {% no-copy %}
  *   - {: .class #id } (Kramdown-style inline attribute lists)
  *
