@@ -26,7 +26,15 @@ function parseExplainerSectionLabel(label: string) {
   };
 }
 
-function ExplainerSection({ label, children }: { label: string; children: ReactNode }) {
+function ExplainerSection({
+  label,
+  children,
+  isFirst = false,
+}: {
+  label: string;
+  children: ReactNode;
+  isFirst?: boolean;
+}) {
   if (!label.trim()) {
     return <div className="min-w-0 space-y-4">{children}</div>;
   }
@@ -40,7 +48,7 @@ function ExplainerSection({ label, children }: { label: string; children: ReactN
         : 'bg-violet-100 text-violet-800 dark:bg-violet-950/60 dark:text-violet-300';
 
   return (
-    <section className="space-y-4 pt-4">
+    <section className={isFirst ? 'space-y-4' : 'space-y-4 pt-4'}>
       <h2 className="m-0 flex flex-wrap items-center gap-3 text-3xl font-semibold tracking-tight text-gray-950 dark:text-gray-50">
         <span>{title}</span>
         {badge && (
@@ -81,6 +89,7 @@ export default async function TechnicalExplainerDetailPage({ params }: PageProps
     const postData = await getPostData(slug, 'technical-explainers');
     const subtitle = (postData as PostData & { subtitle?: string }).subtitle;
     const contentSections = splitPatternContentSections(postData.content);
+    const firstLabeledSectionIndex = contentSections.findIndex(section => section.label.trim());
 
     return (
       <ContentLayout
@@ -123,23 +132,18 @@ export default async function TechnicalExplainerDetailPage({ params }: PageProps
       >
         <div className="space-y-8">
           {contentSections.map((section, index) => (
-            <ExplainerSection key={`${section.label || 'intro'}-${index}`} label={section.label}>
+            <ExplainerSection
+              key={`${section.label || 'intro'}-${index}`}
+              label={section.label}
+              isFirst={index === firstLabeledSectionIndex}
+            >
               <MarkdownContent content={section.content} className="technical-explainer-content" />
             </ExplainerSection>
           ))}
-          <section className="rounded-2xl border border-violet-200 bg-violet-50/70 p-6 dark:border-violet-900 dark:bg-violet-950/20">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-violet-700 dark:text-violet-300">
-              Field Guide
-            </p>
-            <h2 className="m-0 text-2xl font-semibold tracking-tight text-gray-950 dark:text-gray-50">
-              Browse Technical Explainers
-            </h2>
-            <p className="mb-0 mt-3 max-w-3xl text-sm leading-6 text-gray-700 dark:text-gray-300">
-              Return to the full list of technical explainers.
-            </p>
+          <section className="pt-2">
             <Link
               href="/field-guide/technical-explainers"
-              className="mt-5 inline-flex items-center rounded-full bg-violet-700 px-4 py-2 text-sm font-semibold text-white no-underline hover:bg-violet-800 dark:bg-violet-500 dark:hover:bg-violet-400"
+              className="inline-flex items-center rounded-full bg-violet-700 px-4 py-2 text-sm font-semibold text-white no-underline hover:bg-violet-800 dark:bg-violet-500 dark:hover:bg-violet-400"
             >
               Back to Technical Explainers
             </Link>

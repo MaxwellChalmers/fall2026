@@ -59,9 +59,15 @@ Use this page as the simple template for new technical explainers.
 
 ## 5. Key Takeaways <span class="badge required">Required</span>
 
-**Description:** End with a single takeaway section that combines the main things students should remember with the broader field guide connections. A good pattern is: one short framing sentence, then 3 to 5 numbered takeaways, each optionally followed by a `Learn more:` link to a field guide card when there is a clear connection.
+**Description:** End with a plain-language summary of the main things students should remember. A good pattern is: one short framing sentence, then 3 to 5 numbered takeaways.
 
-**Example:** In the [Supervised Learning](/fall2026/field-guide/technical-explainers/supervised-learning) example, the section begins with "Supervised learning finds patterns, not truth," then uses numbered points for the main lessons, and adds `Learn more:` links where students should connect the mechanism to a broader STS or governance idea.
+**Example:** In the [Supervised Learning](/fall2026/field-guide/technical-explainers/supervised-learning) example, the section begins with "Supervised learning finds patterns, not truth," then uses numbered points to summarize the most important lessons from the explainer.
+
+## 6. Related Course Concepts <span class="badge required">Required</span>
+
+**Description:** Immediately after `Key Takeaways`, include a short `Related Course Concepts` section that points students to 3 to 5 strong course connections. Use flip cards rather than a table. Each card should connect one technical feature of the system to one broader STS, governance, or pattern idea.
+
+**Example:** In the [Supervised Learning](/fall2026/field-guide/technical-explainers/supervised-learning) example, the flip cards connect labels to [Data is produced, not found](/fall2026/field-guide/sts-concepts/data-is-produced-not-found), training context to [Prediction imports the past](/fall2026/field-guide/deployment-patterns/prediction-imports-the-past), and aggregate accuracy to [Concentrated harm is hidden by aggregate benefit](/fall2026/field-guide/deployment-patterns/concentrated-harm-is-hidden-by-aggregate-benefit).
 
 > ### 5.1. Going Deeper <span class="badge conditional">Skip for Now</span>
 >
@@ -71,7 +77,7 @@ Use this page as the simple template for new technical explainers.
 >
 > **Interpretation:** This meets the template because the technical detail is preserved without making the main explanation harder to follow.
 
-## 6. Connected Labs <span class="badge required">Required</span>
+## 7. Connected Labs <span class="badge required">Required</span>
 
 **Description:** Always include this section, even if no labs are mapped yet.
 
