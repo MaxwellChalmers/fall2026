@@ -76,6 +76,15 @@ function getPlainTextFromHtml(html: string) {
   return decodeHtmlText(html.replace(/<[^>]+>/g, '').trim());
 }
 
+function getHeadingLabelFromHtml(html: string) {
+  const htmlWithBadgeMarkers = html.replace(
+    /<span\b[^>]*class=(["'])[^"']*\bbadge\b[^"']*\1[^>]*>([\s\S]*?)<\/span>/gi,
+    (_match, _quote, badgeText) => ` [${getPlainTextFromHtml(badgeText)}]`
+  );
+
+  return getPlainTextFromHtml(htmlWithBadgeMarkers);
+}
+
 function slugifyForId(value: string) {
   return value
     .toLowerCase()
@@ -105,7 +114,7 @@ export function splitPatternSubsections(content: string): { intro: string; items
     } else if (!currentLabel && sectionContent) {
       intro = sectionContent;
     }
-    currentLabel = getPlainTextFromHtml(match[1]);
+    currentLabel = getHeadingLabelFromHtml(match[1]);
     currentStart = match.index + match[0].length;
   }
 
@@ -136,7 +145,7 @@ export function splitPatternContentSections(content: string) {
     if (sectionContent) {
       sections.push({ label: currentLabel, content: sectionContent });
     }
-    currentLabel = getPlainTextFromHtml(match[1]);
+    currentLabel = getHeadingLabelFromHtml(match[1]);
     currentStart = match.index + match[0].length;
   }
 

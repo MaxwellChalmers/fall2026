@@ -9,5 +9,5 @@
 }
 
 .prose.technical-explainer-content h3 {
-  @apply mb-3 mt-8 text-lg font-medium leading-snug text-violet-700 dark:text-violet-300;
+  @apply mb-3 mt-8 text-lg font-medium leading-snug uppercase tracking-wide text-gray-950 dark:text-gray-50;
 }

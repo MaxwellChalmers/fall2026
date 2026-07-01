@@ -3,15 +3,16 @@ id: 1
 slug: ai-mediated-world
 title: 'AI-Mediated World: Purposes, Values, and Conceptual Foundations'
 color: indigo
-excerpt: 'This module builds the human and conceptual foundation for the course by asking where AI shows up, what it is supposed to do, and what it assumes about knowledge, learning, and intelligence.'
-unit_focus: 'Students survey the landscape of AI mediation, examine the purposes and values embedded in AI systems, and develop conceptual vocabulary around knowledge, learning, and intelligence before studying any technical mechanisms directly.'
-braid_elsi_arc: 'This unit introduces BRAID as a socio-technical system and establishes that technical goals such as efficiency, detection, adaptation, safety, and optimization always depend on prior ideas about what matters, what counts as evidence, and what kind of good a system is supposed to serve.'
+excerpt: 'In this opening module, you map where AI shows up, ask what it is supposed to do, and build a vocabulary for thinking about knowledge, learning, and intelligence before turning to technical mechanisms.'
+unit_focus: 'In this opening unit, you will explore where AI is already shaping everyday and institutional life, examine the purposes and values built into these systems, and build a shared vocabulary for thinking about knowledge, learning, and intelligence before turning to technical mechanisms.'
 priority: low
 ---
 
-This opening module builds the conceptual foundation for the course. Rather than starting with models or algorithms, students begin by asking where AI is already operating in public and institutional life, what purposes and values are embedded in AI systems, and how contested ideas about knowledge, learning, and intelligence shape what AI is built to do.
+This opening module gives you the conceptual foundation for the course. Rather than starting with models or algorithms, you begin by asking where AI is already operating in public and institutional life, what purposes and values are embedded in AI systems, and how ideas about knowledge, learning, and intelligence shape what AI is built to do.
 
-The goal is to establish that AI is never just a technical artifact. It is built within larger visions of benefit, care, efficiency, safety, and public value. By the end of the module, students should be able to use the five course guiding questions as analytical tools and explain why knowledge, learning, and intelligence are contested categories — not neutral inputs.
+Across these first meetings, you will map where AI mediates everyday life, ask why it is a public and ethical issue, and compare different claims about what AI is supposed to help us do. You will also begin using the course guiding questions as analytical tools and build a vocabulary for thinking about knowledge, learning, and intelligence as contested categories rather than neutral inputs.
+
+The goal is to establish early that AI is never just a technical artifact. It is shaped by larger visions of benefit, care, efficiency, safety, creativity, and public value. By the end of the module, you should be able to explain why those underlying ideas matter before we ever get to datasets, models, or algorithms.
 
 Fall 2026 dates: `Tue, Aug 18 - Thu, Sep 3`
 
@@ -25,4 +26,4 @@ Meeting sequence:
 6. `What Is Learning, and How Does It Happen?`
 7. `What Counts as Intelligence?`
 
-The module also introduces the course's BRAID throughline. Even before students study neuromorphic anomaly detection in detail, they begin asking how claims about intelligence, adaptation, protection, efficiency, and technical solutionism are tied to public values and governance choices.
+By the end of this module, you should have a stronger sense of where AI is shaping the world around you, what assumptions sit behind familiar claims about intelligence and improvement, and what questions you will need as the course turns from concepts to technical systems.

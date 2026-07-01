@@ -51,7 +51,13 @@ h2 {
   @apply mt-0!;
 }
 
-h3,
+h3 {
+  @apply text-lg md:text-xl mb-2 mt-6 uppercase tracking-wide;
+  font-family: var(--font-outfit), serif;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
 .logo {
   @apply text-lg md:text-xl mb-2 mt-6;
   font-family: var(--font-outfit), serif;

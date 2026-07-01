@@ -4,6 +4,12 @@ scheduled_day:
 num:
 type: 'homework'
 draft: 0
+assignment_series: hw01
+series_role: step
+series_order: 2
+series_label: Governance Revision
+series_tab_id: part-2
+hide_from_list: 1
 status: unverified
 status_reviewer:
 status_date:
@@ -31,14 +37,14 @@ This artifact does not need to be polished, but it should show how the framework
 
 The framework has six categories.
 
-| Category | Guiding Question |
-| -------- | ---------------- |
-| Auditability | Can we look back and understand what the chip did and why? |
-| Accountability | When something goes wrong, who is responsible? |
-| Contestability | If the chip makes a mistake, can the affected person challenge it? |
-| Surveillance and privacy | What is being monitored, inferred, stored, shared, or repurposed? |
-| Differential impacts | Are some people, places, machines, or communities more likely to be misread, flagged, burdened, or excluded? |
-| Environmental impact | What are the energy, material, manufacturing, deployment, and disposal costs? |
+| Category                 | Guiding Question                                                                                             |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| Auditability             | Can we look back and understand what the chip did and why?                                                   |
+| Accountability           | When something goes wrong, who is responsible?                                                               |
+| Contestability           | If the chip makes a mistake, can the affected person challenge it?                                           |
+| Surveillance and privacy | What is being monitored, inferred, stored, shared, or repurposed?                                            |
+| Differential impacts     | Are some people, places, machines, or communities more likely to be misread, flagged, burdened, or excluded? |
+| Environmental impact     | What are the energy, material, manufacturing, deployment, and disposal costs?                                |
 
 These categories are connected. For example, a person cannot meaningfully contest a decision if no one can reconstruct what happened. Accountability is also difficult if responsibility is spread across designers, manufacturers, deployers, maintainers, and people who act on alerts.
 
@@ -48,12 +54,12 @@ Return to the concerns and questions you generated in Pass 1. Sort each one into
 
 | Concern or Question from Pass 1 | Framework Category or Categories | Why Does It Belong There? |
 | ------------------------------- | -------------------------------- | ------------------------- |
-| | | |
-| | | |
-| | | |
-| | | |
-| | | |
-| | | |
+|                                 |                                  |                           |
+|                                 |                                  |                           |
+|                                 |                                  |                           |
+|                                 |                                  |                           |
+|                                 |                                  |                           |
+|                                 |                                  |                           |
 
 A concern can belong to more than one category.
 
@@ -65,14 +71,14 @@ Example:
 
 After sorting, look for gaps.
 
-| Category | Did your group consider this in Pass 1? | Add a new concern or question if needed |
-| -------- | -------------------------------------- | --------------------------------------- |
-| Auditability | | |
-| Accountability | | |
-| Contestability | | |
-| Surveillance and privacy | | |
-| Differential impacts | | |
-| Environmental impact | | |
+| Category                 | Did your group consider this in Pass 1? | Add a new concern or question if needed |
+| ------------------------ | --------------------------------------- | --------------------------------------- |
+| Auditability             |                                         |                                         |
+| Accountability           |                                         |                                         |
+| Contestability           |                                         |                                         |
+| Surveillance and privacy |                                         |                                         |
+| Differential impacts     |                                         |                                         |
+| Environmental impact     |                                         |                                         |
 
 Choose at least one category your group did not initially consider and add a new concern or question.
 
@@ -81,33 +87,33 @@ Choose at least one category your group did not initially consider and add a new
 Your final analysis should not cover everything equally. Choose the **three most important governance categories** for your scenario.
 
 | Priority Category | Why is this category especially important in your scenario? |
-| ----------------- | ---------------------------------------------------------- |
-| 1. | |
-| 2. | |
-| 3. | |
+| ----------------- | ----------------------------------------------------------- |
+| 1.                |                                                             |
+| 2.                |                                                             |
+| 3.                |                                                             |
 
 For each selected category, answer:
 
-| Question | Category 1 | Category 2 | Category 3 |
-| -------- | ---------- | ---------- | ---------- |
-| What is the concern? | | | |
-| What technical feature of the chip makes this concern more serious? | | | |
-| How does the learning mode — fixed, adaptive, or hybrid — affect the concern? | | | |
-| Who is most affected? | | | |
-| What evidence, documentation, or oversight would be needed? | | | |
-| What would make this risk acceptable, unacceptable, or uncertain? | | | |
+| Question                                                                      | Category 1 | Category 2 | Category 3 |
+| ----------------------------------------------------------------------------- | ---------- | ---------- | ---------- |
+| What is the concern?                                                          |            |            |            |
+| What technical feature of the chip makes this concern more serious?           |            |            |            |
+| How does the learning mode — fixed, adaptive, or hybrid — affect the concern? |            |            |            |
+| Who is most affected?                                                         |            |            |            |
+| What evidence, documentation, or oversight would be needed?                   |            |            |            |
+| What would make this risk acceptable, unacceptable, or uncertain?             |            |            |            |
 
 ## Part D: Connect Each Concern to the Technical Mechanism
 
 For each of your top three categories, complete this sentence:
 
-> This governance concern arises because the chip can __________.
+> This governance concern arises because the chip can ****\_\_****.
 
-| Priority Category | Sentence |
-| ----------------- | -------- |
-| 1. | This governance concern arises because the chip can... |
-| 2. | This governance concern arises because the chip can... |
-| 3. | This governance concern arises because the chip can... |
+| Priority Category | Sentence                                               |
+| ----------------- | ------------------------------------------------------ |
+| 1.                | This governance concern arises because the chip can... |
+| 2.                | This governance concern arises because the chip can... |
+| 3.                | This governance concern arises because the chip can... |
 
 Examples:
 
@@ -127,7 +133,7 @@ Your paragraph should answer:
 
 Write your paragraph here:
 
-> 
+>
 
 ## What to Submit for Pass 2
 

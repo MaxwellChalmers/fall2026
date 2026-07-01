@@ -13,14 +13,44 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+function parseExplainerSectionLabel(label: string) {
+  const match = label.match(/^(.*?)\s+\[(Required|Optional|Required if Needed)\]\s*$/);
+
+  if (!match) {
+    return { title: label, badge: null };
+  }
+
+  return {
+    title: match[1].trim(),
+    badge: match[2],
+  };
+}
+
 function ExplainerSection({ label, children }: { label: string; children: ReactNode }) {
   if (!label.trim()) {
     return <div className="min-w-0 space-y-4">{children}</div>;
   }
 
+  const { title, badge } = parseExplainerSectionLabel(label);
+  const badgeClasses =
+    badge === 'Optional'
+      ? 'bg-sky-100 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300'
+      : badge === 'Required if Needed'
+        ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300'
+        : 'bg-violet-100 text-violet-800 dark:bg-violet-950/60 dark:text-violet-300';
+
   return (
     <section className="space-y-4 pt-4">
-      <h2 className="m-0 text-3xl font-semibold tracking-tight text-gray-950 dark:text-gray-50">{label}</h2>
+      <h2 className="m-0 flex flex-wrap items-center gap-3 text-3xl font-semibold tracking-tight text-gray-950 dark:text-gray-50">
+        <span>{title}</span>
+        {badge && (
+          <span
+            className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.14em] ${badgeClasses}`}
+          >
+            {badge}
+          </span>
+        )}
+      </h2>
       <div className="min-w-0 [&_li]:my-2 [&_ol]:pl-5! [&_ul]:pl-5!">{children}</div>
     </section>
   );
@@ -60,7 +90,13 @@ export default async function TechnicalExplainerDetailPage({ params }: PageProps
         tocMaxLevel={postData.heading_max_level || 2}
         header={
           <>
-            <StatusBanner status={postData.status} status_reviewer={postData.status_reviewer} status_date={postData.status_date} status_notes={postData.status_notes} contentType="technical-explainers" />
+            <StatusBanner
+              status={postData.status}
+              status_reviewer={postData.status_reviewer}
+              status_date={postData.status_date}
+              status_notes={postData.status_notes}
+              contentType="technical-explainers"
+            />
             <div className="space-y-4 py-6">
               <Breadcrumbs
                 className="px-4 md:px-16"

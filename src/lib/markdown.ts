@@ -218,6 +218,12 @@ export interface PostData {
   status_date?: string;
   status_notes?: string;
   priority?: 'high' | 'medium' | 'low';
+  assignment_series?: string;
+  series_role?: 'hub' | 'step' | 'resource';
+  series_order?: number;
+  series_label?: string;
+  series_tab_id?: string;
+  series_card_id?: string;
 }
 
 export function getAllPostIds(subdirectory?: string) {

@@ -92,11 +92,20 @@ Two specialists looking at the same photograph sometimes disagree. Mild and mode
 
 ## Key Takeaways
 
-1. Supervised learning finds patterns in labeled examples. It does not reason about the world — it finds what tends to go with what in the data it was trained on.
-2. Labels are human decisions. The system learns to reproduce what people decided, not what is objectively true.
-3. Training data carries the context it came from. A system trained in one setting may not generalize well to another.
-4. Aggregate accuracy can hide unequal performance across groups.
-5. The same technique applies across many domains. The stakes depend on what is being classified, and what happens when the system is wrong.
+Supervised learning finds patterns, not truth. It doesn't reason about the world - it finds what tends to go with what in the data it was trained on.
+
+1. Labels are human decisions, not ground truth. The system learns to reproduce what people decided, not what is objectively true.  
+   Learn more: [Data is produced, not found](/fall2026/field-guide/sts-concepts/data-is-produced-not-found)
+2. Training data carries the context it came from. A system trained in one setting may not generalize well to another.  
+   Learn more: [Prediction imports the past](/fall2026/field-guide/deployment-patterns/prediction-imports-the-past)
+3. A single accuracy number can hide unequal performance across groups.  
+   Learn more: [Concentrated harm is hidden by aggregate benefit](/fall2026/field-guide/deployment-patterns/concentrated-harm-is-hidden-by-aggregate-benefit)
+4. Optimizing for a measurable target can replace the real goal.  
+   Learn more: [Changing what gets measured changes what exists](/fall2026/field-guide/deployment-patterns/changing-what-gets-measured-changes-what-exists)
+5. Turning a score into a decision requires a threshold — and that choice determines who is harmed by errors.  
+   Learn more: [Thresholds make uncertainty consequential](/fall2026/field-guide/deployment-patterns/thresholds-make-uncertainty-consequential)
+
+The same technique applies across many domains. The stakes depend on what is being classified, who created the labels, and what happens when the system is wrong.
 
 {% collapsible closed %}
 
@@ -108,13 +117,3 @@ Two important limits of this process:
 
 - The system can only minimize errors on its training data. It has no guarantee of performing well on examples that look different from what it was trained on.
 - Minimizing errors does not mean the system has learned something meaningful about the world. It means it has gotten better at predicting the labels in its training set — whatever those labels encode.
-
-## Critical Bridge
-
-| What the system does                      | What that creates                                          | Field guide resource                                                                                                                           |
-| ----------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| Learns from historically labeled data     | Training context shapes what the system can and cannot see | [Prediction imports the past](/fall2026/field-guide/deployment-patterns/prediction-imports-the-past)                                           |
-| Labels encode human judgment              | System reproduces decisions, not ground truth              | [Data is produced, not found](/fall2026/field-guide/sts-concepts/data-is-produced-not-found)                                                   |
-| Optimizes for the metric it is given      | Measurable target can replace real goal                    | [Changing what gets measured changes what exists](/fall2026/field-guide/deployment-patterns/changing-what-gets-measured-changes-what-exists)   |
-| Reports accuracy in aggregate             | Group-level failures become invisible                      | [Concentrated harm is hidden by aggregate benefit](/fall2026/field-guide/deployment-patterns/concentrated-harm-is-hidden-by-aggregate-benefit) |
-| Requires a threshold to produce decisions | Threshold choice determines who is harmed by errors        | [Thresholds make uncertainty consequential](/fall2026/field-guide/deployment-patterns/thresholds-make-uncertainty-consequential)               |

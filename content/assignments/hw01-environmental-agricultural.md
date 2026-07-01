@@ -4,6 +4,11 @@ scheduled_day:
 num:
 type: 'homework'
 draft: 0
+assignment_series: hw01
+series_role: resource
+series_order: 5
+series_card_id: environmental-agricultural
+excerpt: 'Environmental sensing and agricultural monitoring scenarios for land, water, and crops.'
 hide_from_list: 1
 status: unverified
 status_reviewer:
@@ -11,10 +16,6 @@ status_date:
 status_notes:
 priority: high
 ---
-
----
-
-Scenario handout for the [BRAID Group Anticipatory Analysis](/fall2026/assignments/hw01).
 
 ## Overview
 

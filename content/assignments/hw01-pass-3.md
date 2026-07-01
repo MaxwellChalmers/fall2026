@@ -4,6 +4,12 @@ scheduled_day:
 num:
 type: 'homework'
 draft: 0
+assignment_series: hw01
+series_role: step
+series_order: 3
+series_label: Policy Brief
+series_tab_id: part-3
+hide_from_list: 1
 status: unverified
 status_reviewer:
 status_date:
@@ -165,14 +171,17 @@ Does the strongest benefit depend on fixed, adaptive, or hybrid learning?
 ## Technical Features Creating Governance Stakes
 
 Feature 1:
+
 - What it allows:
 - Governance question it creates:
 
 Feature 2:
+
 - What it allows:
 - Governance question it creates:
 
 Feature 3:
+
 - What it allows:
 - Governance question it creates:
 
